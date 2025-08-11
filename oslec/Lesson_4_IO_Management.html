@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الرابع: إدارة الإدخال والإخراج</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #9c27b0; /* Purple for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #9c27b0, #7b1fa2);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #9c27b0;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #f3e5f5;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #9c27b0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #4a148c;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس الرابع: إدارة الإدخال والإخراج (I/O Management)</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 4: I/O Management</div>
+
+            <div class="topic">
+                <div class="topic-title">4.1 الحاجة لإدارة I/O</div>
+                <p>الكمبيوتر متوصل بأجهزة كتير مختلفة (كيبورد، شاشة، هارد ديسك، واي فاي...). كل جهاز له طريقة تواصل وسرعة مختلفة. وظيفة الـ OS هنا إنه يعمل نظام I/O موحد يخفي كل التعقيدات دي عن البرامج.</p>
+                <div class="source-text">
+The OS presents a <span class="red-highlight">unified I/O system</span> that <span class="red-highlight">abstracts the complexity</span> from applications. The I/O subsystem usually forms the complex part of the operating system due to the dynamics and the wide variety of I/Os involved.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.2 نظام I/O الفرعي (I/O Subsystem)</div>
+                <p>الأجهزة الطرفية (<span class="red-highlight">peripheral devices</span>) بتتواصل مع الـ CPU عن طريق الـ Buses. عشان الـ OS يعرف يتكلم مع جهاز معين، لازم يكون فيه برنامج صغير اسمه "تعريف الجهاز".</p>
+                <div class="source-text">
+Typically, there is a software component in kernel mode called as the <span class="red-highlight">“device driver”</span> that handles all interfaces with a device. It helps with communicating between the device and the OS and <span class="red-highlight">abstracts the device specifics</span>.
+                </div>
+                <p>الـ OS بيدعم بروتوكولات مختلفة للأجهزة دي زي:</p>
+                <ul>
+                    <li><strong class="red-highlight">PCIe (Peripheral Component Interconnect Express):</strong> للأجهزة السريعة زي كروت الشاشة.</li>
+                    <li><strong class="red-highlight">I2C (Inter-Integrated Circuit):</strong> للحساسات والأجهزة البسيطة.</li>
+                    <li><strong class="red-highlight">ACPI (Advanced Configuration and Power Interface):</strong> لإدارة الطاقة.</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.3 فئات أجهزة I/O</div>
+                <p>بنقسم الأجهزة لنوعين أساسيين حسب طريقة نقل البيانات:</p>
+                <ul>
+                    <li><strong>أجهزة الكتل (Block Devices):</strong> بتنقل البيانات على شكل كتل (Blocks) ليها حجم ثابت. زي الهارد ديسك والفلاش ميموري.</li>
+                    <li><strong>أجهزة الحروف (Character Devices):</strong> بتبعت وتستقبل البيانات حرف حرف (Byte by Byte). زي الكيبورد والماوس.</li>
+                </ul>
+                <div class="source-text">
+The I/O devices can be broadly divided into two categories called <span class="red-highlight">block</span> and <span class="red-highlight">character</span> devices.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.4 فئات بروتوكولات I/O</div>
+                <p>دي الطرق اللي الـ CPU بيستخدمها عشان يتكلم مع الأجهزة. فيه 3 طرق رئيسية:</p>
+                <ol>
+                    <li><strong>Special Instruction I/O (أو PMIO):</strong> الـ CPU بيستخدم أوامر خاصة عشان يكلم الجهاز. كل جهاز بيكون له عنوان I/O فريد. طريقة قديمة ومش منتشرة كتير.</li>
+                    <li><strong>Memory-Mapped I/O (MMIO):</strong> <strong class="red-highlight">دي الطريقة الأكثر شيوعاً.</strong> الـ OS بيحجز جزء من عناوين الذاكرة للجهاز، والـ CPU بيتعامل مع الجزء ده كأنه ذاكرة عادية. دي طريقة سريعة ومناسبة للأجهزة اللي بتنقل داتا كتير زي كروت الشبكة والجرافيكس.</li>
+                    <li><strong>Direct Memory Access (DMA):</strong> دي طريقة عبقرية للأجهزة اللي بتنقل كميات داتا كبيرة. بدل ما الـ CPU يفضل مشغول في عملية النقل، هو بيدي الأمر لوحدة تحكم خاصة اسمها <span class="red-highlight">DMA controller</span>، وهي اللي بتنقل الداتا مباشرة بين الجهاز والذاكرة. لما النقل يخلص، الـ DMA بيبعت مقاطعة (Interrupt) للـ CPU عشان يعرفه إن الشغل خلص.</li>
+                </ol>
+                <div class="example">
+                    <div class="example-title">مثال على DMA:</div>
+                    لما تيجي تنسخ فيلم مساحته 10 جيجا من الهارد للرامات عشان تشغله. من غير DMA، الـ CPU هيفضل مشغول تماماً في عملية النسخ ومش هتعرف تعمل أي حاجة تانية. مع الـ DMA، الـ CPU بيقول للـ DMA controller "انسخ الفيلم ده"، ويروح يكمل شغله عادي، ولما النسخ يخلص الـ DMA يخبط على الـ CPU ويقوله "أنا خلصت".
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.5 آليات التعامل مع المقاطعات (Interrupt Handling)</div>
+                <p>إزاي الـ OS بيعرف إن جهاز معين خلص شغل أو محتاج حاجة؟ بطريقتين:</p>
+                <ul>
+                    <li><strong>Polling (الاستطلاع):</strong> الـ OS بيفضل يسأل الجهاز كل شوية "خلصت ولا لسه؟". طريقة غير فعالة وبتضيع وقت الـ CPU.</li>
+                    <li><strong>Interrupt-Driven I/O (المقاطعات):</strong> <strong class="red-highlight">الطريقة المستخدمة في معظم الأنظمة.</strong> لما الجهاز يخلص، هو اللي بيبعت إشارة (مقاطعة) للـ CPU. كل جهاز له رقم مقاطعة فريد (<span class="red-highlight">IRQ</span>). الـ OS بيستخدم الرقم ده عشان يعرف مين اللي بعت المقاطعة ويروح ينفذ الكود المخصص ليه (<span class="red-highlight">ISR - Interrupt Service Routine</span>).</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">4.6 I/O المتزامن مقابل غير المتزامن</div>
+                <ul>
+                    <li><strong class="red-highlight">Synchronous I/O:</strong> العملية بتطلب عملية I/O وتفضل واقفة مستنية (<span class="red-highlight">blocked</span>) لحد ما تخلص تماماً.</li>
+                    <li><strong class="red-highlight">Asynchronous I/O:</strong> العملية بتطلب عملية I/O وبترجعلها السيطرة فوراً عشان تكمل شغلها. عملية الـ I/O بتكمل في الخلفية، ولما تخلص الـ OS بيبعت إشعار للعملية.</li>
+                </ul>
+                <div class="example">
+                    <div class="example-title">مثال:</div>
+                     <ul>
+                        <li><strong>متزامن (Synchronous):</strong> لما تطلب طباعة ملف، البرنامج ممكن يهنج لحد ما الطباعة تخلص.</li>
+                        <li><strong>غير متزامن (Asynchronous):</strong> لما تطلب تحميل ملف من الإنترنت، التحميل بيشتغل في الخلفية وتقدر تستخدم البرنامج عادي.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.7 التزامن والمقاطع الحرجة (Synchronization)</div>
+                <p>لما أكتر من Thread يحاولوا يستخدموا نفس المورد المشترك (زي ملف أو متغير)، ممكن تحصل <span class="red-highlight">Race Condition</span> والدنيا تبوظ. عشان نحمي الموارد دي، بنستخدم آليات تزامن.</p>
+                <ul>
+                    <li><strong class="red-highlight">Mutex (Mutual Exclusion):</strong> ده عبارة عن "قفل". Thread واحد بس يقدر يمتلك القفل في أي وقت ويدخل "المنطقة الحرجة" (<span class="red-highlight">Critical Section</span>). الباقي لازم يستنوا.</li>
+                    <li><strong class="red-highlight">Semaphore:</strong> ده "عدّاد". بيسمح لعدد معين من الـ Threads إنهم يدخلوا المنطقة الحرجة في نفس الوقت. لو العداد ده قيمته 1، يبقى بيشتغل زي الـ Mutex بالظبط (<span class="red-highlight">binary semaphore</span>).</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4.8 الجمود (Deadlocks)</div>
+                <p>الـ Deadlock هو موقف كارثي بيحصل لما مجموعة من العمليات بتفضل مستنية بعضها للأبد، ومحدش فيهم بيقدر يكمل.</p>
+                <div class="source-text">
+When a set of processes become <span class="red-highlight">blocked</span> because each process is <span class="red-highlight">holding a resource</span> and <span class="red-highlight">waiting for another resource</span> acquired by some other process.
+                </div>
+                <div class="note">
+                    <strong>شروط حدوث الـ Deadlock الأربعة (لازم الأربعة يحصلوا مع بعض):</strong>
+                    <ol>
+                        <li><span class="red-highlight">Mutual Exclusion</span>: على الأقل مورد واحد غير قابل للمشاركة.</li>
+                        <li><span class="red-highlight">Hold and Wait</span>: عملية ماسكة مورد ومستنية مورد تاني.</li>
+                        <li><span class="red-highlight">No Preemption</span>: مينفعش نسحب المورد من العملية غصب عنها.</li>
+                        <li><span class="red-highlight">Circular Wait</span>: عملية A مستنية B، و B مستنية A (حلقة انتظار).</li>
+                    </ol>
+                    لو شرط واحد من دول مش موجود، مستحيل يحصل Deadlock.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال كلاسيكي على Deadlock:</div>
+                    تخيل تقاطع شارعين حارة واحدة. عربية (Process A) دخلت التقاطع وماسكة الشارع الأول (Resource 1) ومستنية الشارع التاني يفضى (Resource 2). في نفس الوقت، عربية تانية (Process B) دخلت التقاطع من الناحية التانية وماسكة الشارع التاني (Resource 2) ومستنية الشارع الأول يفضى (Resource 1). الاتنين هيفضلوا واقفين قصاد بعض للأبد.
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس الرابع. الملف الجاي هيغطي الدرس الخامس: أنظمة الملفات.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

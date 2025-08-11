@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس السادس: الوصول والحماية</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #00acc1; /* Cyan for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #00acc1, #00838f);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #00838f;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e0f7fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #00acc1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #006064;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+        .diagram-container { text-align: center; margin: 20px 0; }
+        .diagram-container img { max-width: 50%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس السادس: الوصول والحماية (Access and Protection)</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 6: Access and Protection</div>
+
+            <div class="topic">
+                <div class="topic-title">6.1 الحاجة للوصول والحماية</div>
+                <p>ليه محتاجين حماية حتى لو الكمبيوتر بيستخدمه شخص واحد بس؟ لأن البرامج اللي بنشغلها ممكن تأذي بعضها أو تأذي نظام التشغيل نفسه. الحماية هنا مش بس ضد الهاكرز، لكن كمان عشان نضمن استقرار النظام.</p>
+                <div class="source-text">
+If we have a system that is used by only one user without any access... there may still not be assurance that the contents in the system are protected.
+There is still a need to protect the <span class="red-highlight">program resources from other applications</span>.
+Also, there may be a need to protect <span class="red-highlight">critical devices</span> on the system.
+Hence, it is important to protect these resources accordingly. The OS provides APIs that help with access control and protection.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال:</div>
+                    تخيل إنك نزلت برنامج فيه bug، والبرنامج ده حاول يكتب في مساحة الذاكرة المخصصة لبرنامج تاني مهم. لو مفيش حماية، البرنامج ده ممكن يسبب انهيار البرنامج التاني أو حتى النظام كله.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">6.2 وضع المستخدم ووضع النواة (User Mode and Kernel Mode - Rings)</div>
+                <p>ده أهم مفهوم في الدرس كله. عشان الـ OS يحمي نفسه والهاردوير من البرامج العادية، الـ CPU بيوفر مستويين (أو أكتر) من الصلاحيات اسمهم "أوضاع التشغيل" أو "الحلقات" (Rings).</p>
+                <div class="source-text">
+One of the reasons the separation between user mode and kernel mode is implemented by most OSs is that it ensures <span class="red-highlight">different privilege levels</span> are granted to programs, based on which mode they run in.
+OS divides the program execution privileges into different <span class="red-highlight">rings</span>.
+                </div>
+                
+                <h4>ما هي الحلقات (Rings)؟</h4>
+                <p>تخيل إن الصلاحيات في الكمبيوتر متقسمة زي دوائر جوه بعضها. الدائرة اللي في النص ليها أعلى صلاحيات، وكل ما نطلع لبره الصلاحيات بتقل.</p>
+                <ul>
+                    <li><strong class="red-highlight">Ring 0 (Kernel Mode):</strong> دي الدائرة اللي في القلب. ليها أعلى مستوى من الصلاحيات (<span class="red-highlight">most privileged</span>) وتقدر توصل للهاردوير مباشرة وتعمل أي حاجة في النظام. الـ OS Kernel والـ Device Drivers بيشتغلوا هنا.</li>
+                    <li><strong class="red-highlight">Ring 1 & 2:</strong> معظم أنظمة التشغيل زي ويندوز ولينكس مش بتستخدمهم.</li>
+                    <li><strong class="red-highlight">Ring 3 (User Mode):</strong> دي أبعد دائرة عن المركز. ليها أقل مستوى من الصلاحيات (<span class="red-highlight">least privileged</span>). كل البرامج اللي بنستخدمها (زي المتصفح، الألعاب، الأوفيس) بتشتغل هنا. البرامج دي مينفعش تكلم الهاردوير مباشرة.</li>
+                </ul>
+                <div class="source-text">
+• For example, applications and user-mode services running in <span class="red-highlight">Ring 3</span> would <span class="red-highlight">not be able to access the hardware directly</span>.
+• The drivers running on the <span class="red-highlight">Ring 0</span> level would have the <span class="red-highlight">highest privileges</span> and access to the hardware on the system.
+• In practice, most OSs only leverage two rings, which are <span class="red-highlight">Ring 0</span> and <span class="red-highlight">Ring 3</span>.
+                </div>
+
+                <div class="diagram-container">
+                    <img src="https://i.imgur.com/u5I7Ywz.png" alt="Protection Rings Diagram">
+                    <p><em>شكل توضيحي لمستويات الصلاحية (Rings)</em></p>
+                </div>
+
+                <h4>إزاي بيحصل التواصل بين الـ User Mode والـ Kernel Mode؟</h4>
+                <p>طيب لو برنامج في الـ User Mode (زي Word) عايز يعمل حاجة محتاجة صلاحيات عالية (زي إنه يطبع ملف)، هيعمل إيه؟</p>
+                <p>البرنامج مش بيوصل للطابعة مباشرة. بدل كده، هو بيطلب من نظام التشغيل (اللي في الـ Kernel Mode) إنه يطبعله. العملية دي اسمها <strong class="red-highlight">System Call</strong>. الـ System Call هو البوابة الوحيدة الآمنة اللي بتسمح للبرامج العادية إنها تطلب خدمات من الـ Kernel.</p>
+                <div class="example">
+                    <div class="example-title">سيناريو عملي:</div>
+                    <ol>
+                        <li>برنامج Word (في <span class="red-highlight">User Mode</span>) عايز يحفظ ملف.</li>
+                        <li>البرنامج بيعمل <span class="red-highlight">System Call</span> لنظام التشغيل وبيقوله "يا ويندوز، احفظلي الملف ده".</li>
+                        <li>الـ CPU بينقل وضع التشغيل من User Mode إلى <span class="red-highlight">Kernel Mode</span>.</li>
+                        <li>الـ OS Kernel بينفذ عملية الحفظ على الهارد ديسك (لأنه الوحيد اللي له صلاحية يكلم الهاردوير).</li>
+                        <li>بعد ما الحفظ يخلص، الـ CPU بيرجع تاني لوضع <span class="red-highlight">User Mode</span> والبرنامج بيكمل شغله عادي.</li>
+                    </ol>
+                    الفصل ده بيضمن إن البرامج العادية متقدرش تعمل أي حاجة خطيرة أو تبوظ النظام، كل العمليات الحساسة لازم تتم عن طريق الـ OS.
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس السادس. الملف الجاي هيغطي الدرس السابع والأخير: المحاكاة الافتراضية وواجهة المستخدم.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

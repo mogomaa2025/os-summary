@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الأول: مقدمة عن نظم الحاسوب ونظم التشغيل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.3em;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #007bff;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e9f5ff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #1a237e;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس الأول: مقدمة عن نظم الحاسوب ونظم التشغيل</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 1: Introduction to Computer System and Operating System</div>
+
+            <div class="topic">
+                <div class="topic-title">1.1 مكونات نظام الكمبيوتر (Computer System Components)</div>
+                <p>أي نظام كمبيوتر بيتكون من 4 طبقات مترتبة فوق بعض بشكل هرمي، كل طبقة بتعتمد على اللي تحتها.</p>
+                <div class="source-text">
+• <span class="red-highlight">Hardware</span>: provides basic computing resources (CPU, memory, I/O devices)
+• <span class="red-highlight">Operating system</span>: controls and coordinates the use of the hardware among the various application programs for the various users
+• <span class="red-highlight">Applications programs</span>: define the ways in which the system resources are used to solve the computing problems of the users (compilers, database systems, video games, business programs)
+• <span class="red-highlight">Users</span>: people, machines, other computers
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال توضيحي:</div>
+                    تخيل إنك بتستخدم برنامج Word.
+                    <ul>
+                        <li><strong>أنت (User)</strong> بتكتب على الكيبورد.</li>
+                        <li><strong>برنامج Word هو (Application Program)</strong> اللي بيستقبل الكتابة.</li>
+                        <li><strong>نظام التشغيل Windows هو (Operating System)</strong> اللي بياخد الكلام من البرنامج ويوصله للهاردوير.</li>
+                        <li><strong>البروسيسور والشاشة هما (Hardware)</strong> اللي بيعالجوا الكلام ويظهروه قدامك.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">1.2 معمارية فون نيومان (Von Neumann Architecture)</div>
+                <p>ده التصميم الأساسي اللي اتبنى عليه معظم أجهزة الكمبيوتر في العالم من سنة 1945. أهم ميزة فيه هي فكرة "البرنامج المخزن".</p>
+                <div class="source-text">
+• Von Neumann architecture is based on the <span class="red-highlight">stored-program computer concept</span>, where instruction data and program data are stored in the same memory. This design is still used in most computers produced today.
+• His computer architecture design consists of a <span class="red-highlight">Control Unit (CU)</span>, <span class="red-highlight">Arithmetic and Logic Unit (ALU)</span>, <span class="red-highlight">Memory Unit</span>, <span class="red-highlight">Registers</span> and <span class="red-highlight">Inputs/Outputs</span>.
+                </div>
+                
+                <h4>1.2.1 وحدة المعالجة المركزية (CPU)</h4>
+                <p>الـ CPU هو العقل المدبر للكمبيوتر، بيتكون من 3 أجزاء رئيسية:</p>
+                <div class="source-text">
+• The CPU contains the ALU, CU and a variety of registers.
+• <span class="red-highlight">Registers</span> are high speed storage areas in the CPU. All data must be stored in a register before it can be processed.
+                </div>
+                <h5>أهم المسجلات (Registers) ووظائفها:</h5>
+                <ul>
+                    <li><strong class="red-highlight">MAR (Memory Address Register)</strong>: بيخزن "عنوان" المكان في الذاكرة اللي عايزين نوصله.</li>
+                    <li><strong class="red-highlight">MDR (Memory Data Register)</strong>: بيخزن "البيانات" نفسها اللي بننقلها من أو إلى الذاكرة.</li>
+                    <li><strong class="red-highlight">AC (Accumulator)</strong>: بيخزن النتائج المؤقتة للعمليات الحسابية والمنطقية.</li>
+                    <li><strong class="red-highlight">PC (Program Counter)</strong>: بيخزن عنوان "التعليمة التالية" اللي عليها الدور تتنفذ.</li>
+                    <li><strong class="red-highlight">CIR (Current Instruction Register)</strong>: بيخزن "التعليمة الحالية" اللي بتتنفذ دلوقتي.</li>
+                </ul>
+
+                <h4>1.2.3 الناقلات (Buses)</h4>
+                <p>دي عبارة عن الأسلاك أو المسارات اللي بتوصل كل مكونات الكمبيوتر ببعض.</p>
+                <div class="source-text">
+• <span class="red-highlight">Address Bus</span>: Carries the addresses of data (but not the data) between the processor and memory.
+• <span class="red-highlight">Data Bus</span>: Carries data between the processor, the memory unit and the input/output devices.
+• <span class="red-highlight">Control Bus</span>: Carries control signals/commands from the CPU... to control and coordinate all the activities.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">1.3 نظام التشغيل (Operating System)</div>
+                <p>الـ OS هو برنامج بيدير الهاردوير وبيسهل تشغيل البرامج التانية. أول كود بيشتغل لما الكمبيوتر يفتح هو الـ <span class="red-highlight">bootstrap</span> اللي بيكون متخزن في الـ <span class="red-highlight">ROM</span> وبيحتوي على الـ <span class="red-highlight">BIOS</span>.</p>
+                <div class="source-text">
+An operating system, commonly referred to as the <span class="red-highlight">OS</span>, is a program that <span class="red-highlight">controls the execution of other programs</span> running on the system. It acts as a facilitator and <span class="red-highlight">intermediate layer</span> between the different software components and the computer hardware.
+                </div>
+                <h5>أهداف أي OS:</h5>
+                <ul>
+                    <li><strong class="red-highlight">Efficiency</strong>: الكفاءة والسرعة.</li>
+                    <li><strong class="red-highlight">Ease of usability</strong>: سهولة الاستخدام للمستخدم.</li>
+                    <li><strong class="red-highlight">Ability to abstract and extend</strong>: القدرة على إخفاء تعقيدات الهاردوير وإضافة أجهزة جديدة بسهولة.</li>
+                </ul>
+                <h5>أجزاء الـ OS:</h5>
+                <ul>
+                    <li><strong class="red-highlight">Kernel (النواة)</strong>: الجزء الأساسي اللي شغال طول الوقت في الذاكرة وبيتعامل مع الهاردوير مباشرة.</li>
+                    <li><strong class="red-highlight">Libraries, Applications, and Tools</strong>: البرامج والأدوات المساعدة اللي بتيجي مع الـ OS.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">1.3.2 فئات أنظمة التشغيل (OS Categories)</div>
+                <p>بنقسم أنظمة التشغيل بطريقتين:</p>
+                <h5>1. حسب نوع الاستخدام (Usage Types):</h5>
+                <ul>
+                    <li><strong class="red-highlight">Batch:</strong> بينفذ مجموعة مهام ورا بعض من غير تدخل بشري. (زي أنظمة الشركات الكبيرة زمان).</li>
+                    <li><strong class="red-highlight">Time Sharing:</strong> بيقسم وقت الـ CPU بين كذا مستخدم أو برنامج عشان الكل يحس إنه شغال في نفس الوقت. (زي Windows و Mac).</li>
+                    <li><strong class="red-highlight">Parallel – Distributed:</strong> بيشغل أجهزة كتير كأنهم جهاز واحد قوي.</li>
+                    <li><strong class="red-highlight">Network:</strong> بيربط أجهزة مختلفة عن طريق شبكة.</li>
+                    <li><strong class="red-highlight">Real Time:</strong> بيحتاج دقة واستجابة في أجزاء من الثانية. (زي أنظمة التحكم في الطيارات والمصانع).</li>
+                </ul>
+                <h5>2. حسب التصميم (Designed and Supported Features):</h5>
+                <ul>
+                    <li><strong class="red-highlight">Monolithic:</strong> الـ OS كله عبارة عن كتلة واحدة في الـ Kernel. لو حصلت مشكلة في جزء، النظام كله ممكن يتأثر.</li>
+                    <li><strong class="red-highlight">Modular:</strong> الـ OS متقسم لوحدات (Modules) زي تعريفات الأجهزة، وتقدر تحدث كل جزء لوحده. (معظم الأنظمة الحديثة).</li>
+                    <li><strong class="red-highlight">Micro-service based:</strong> أحدث تصميم، الـ OS متقسم لخدمات صغيرة جداً ومستقلة، وده بيسهل الصيانة والتطوير.</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">1.4 لماذا نحتاج نظام تشغيل؟ (Why We Need an OS?)</div>
+                <p>ببساطة، بنحتاجه عشان:</p>
+                <ul>
+                    <li>يشغل البرامج ويسهل عليها استخدام الهاردوير.</li>
+                    <li>يدير التعارضات بين البرامج اللي عايزة تستخدم نفس الموارد في نفس الوقت.</li>
+                    <li>يخفي تعقيدات الهاردوير عن المبرمج والمستخدم.</li>
+                </ul>
+                 <h5>الأنظمة المعقدة ومتعددة المعالجات (Complex and Multiprocessor Systems)</h5>
+                 <p>الأجهزة الحديثة فيها بروسيسورات بكذا نواة (Core).</p>
+                 <div class="source-text">
+• When all cores provide the same or identical capabilities, they are called as <span class="red-highlight">homogeneous platforms</span>.
+• There could also be systems that provide different capabilities on different CPU cores. These are called <span class="red-highlight">heterogeneous platforms</span>.
+                 </div>
+                 <p>الـ OS لازم يكون ذكي كفاية عشان يوزع الشغل صح على الأنوية المختلفة دي (<span class="red-highlight">efficient scheduling</span>).</p>
+                 <h5>تعدد المهام (Multitasking) وتعدد المستخدمين (Multiuser)</h5>
+                 <p>الـ OS بيسمح بتشغيل برامج كتير في نفس الوقت (برامج في الواجهة <span class="red-highlight">foreground</span> وبرامج في الخلفية <span class="red-highlight">background</span>). كمان بيسمح لكذا مستخدم (زي الـ Admin والـ User العادي) إنهم يستخدموا نفس الجهاز بصلاحيات مختلفة.</p>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">1.7 مسؤوليات نظام التشغيل (Responsibilities of an OS)</div>
+                <p>الـ OS عنده 6 مسؤوليات أساسية، وكل درس من الدروس الجاية هيشرح واحدة منهم بالتفصيل:</p>
+                <div class="source-text">
+They are broadly classified into the following functional areas:
+• <span class="red-highlight">Scheduling</span>
+• <span class="red-highlight">Memory management</span>
+• <span class="red-highlight">I/O and resource management</span>
+• <span class="red-highlight">Access and protection</span>
+• <span class="red-highlight">File systems</span>
+• <span class="red-highlight">User interface/shell</span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس الأول. الملف الجاي هيغطي الدرس التاني: العمليات والجدولة.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

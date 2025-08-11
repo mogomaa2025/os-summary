@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار MCQ شامل - أنظمة التشغيل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; }
+
+        #quiz-container { margin-top: 20px; }
+        .question-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .options-container label {
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .options-container label:hover {
+            background-color: #f1f1f1;
+            border-color: #007bff;
+        }
+        .options-container input[type="radio"] {
+            margin-left: 10px;
+        }
+
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #1cb5e0 0%, #000046 100%);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        
+        #results-container {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        .correct-feedback {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .incorrect-feedback {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .explanation {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .red-highlight {
+            font-weight: bold;
+            color: #c00;
+        }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>اختبار MCQ شامل</h1>
+            <p>اختبر فهمك لمادة أنظمة التشغيل</p>
+        </div>
+
+        <form id="quiz-form">
+            <div id="quiz-container">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            <button type-="submit" id="submit-btn">اعرض النتيجة والشرح</button>
+        </form>
+        
+        <div id="results-container"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            // Lesson 1
+            {
+                lesson: 1,
+                question: "ما هو المكون الذي يعمل كطبقة وسيطة بين الهاردوير وبرامج التطبيقات؟",
+                options: ["Application Programs", "Hardware", "Operating System", "Users"],
+                answer: "Operating System",
+                explanation: "نظام التشغيل (OS) هو اللي بيدير الهاردوير وبيكون الوسيط اللي البرامج بتكلمه عشان تستخدم موارد الجهاز."
+            },
+            {
+                lesson: 1,
+                question: "ما هو المسجل (Register) الذي يحتوي دائمًا على عنوان التعليمة التالية التي سيتم تنفيذها؟",
+                options: ["MAR (Memory Address Register)", "MDR (Memory Data Register)", "CIR (Current Instruction Register)", "PC (Program Counter)"],
+                answer: "PC (Program Counter)",
+                explanation: "الـ Program Counter أو عداد البرنامج هو اللي دايماً بيشاور على السطر الجاي في الكود اللي عليه الدور في التنفيذ."
+            },
+            // Lesson 2
+            {
+                lesson: 2,
+                question: "ما هو المصطلح الذي يصف برنامجًا قيد التنفيذ (a program in execution)؟",
+                options: ["A Thread", "A Program", "A Process", "A System Call"],
+                answer: "A Process",
+                explanation: "البرنامج هو الملف الساكن على الهارد. لما يشتغل ويبقى في الذاكرة، بنسميه عملية (Process)."
+            },
+            {
+                lesson: 2,
+                question: "عندما تنتقل عملية من حالة 'Running' إلى حالة 'Waiting'، فما السبب الأكثر احتمالاً؟",
+                options: ["انتهى وقتها المخصص على الـ CPU", "تنتظر حدوث عملية إدخال/إخراج (I/O)", "تم إنشاء عملية جديدة", "أصدرت أمر إنهاء"],
+                answer: "تنتظر حدوث عملية إدخال/إخراج (I/O)",
+                explanation: "العملية بتدخل في حالة انتظار (Waiting) لما تكون مستنية حاجة تحصل زي اكتمال قراءة ملف أو وصول بيانات من الشبكة."
+            },
+            {
+                lesson: 2,
+                question: "ما هو الغرض الأساسي من الـ Process Control Block (PCB)؟",
+                options: ["تخزين الكود الخاص بالعملية", "تخزين كل المعلومات التي يحتاجها الـ OS لإدارة العملية", "تنفيذ العمليات الحسابية", "التواصل بين العمليات"],
+                answer: "تخزين كل المعلومات التي يحتاجها الـ OS لإدارة العملية",
+                explanation: "الـ PCB هو بطاقة هوية العملية. فيه كل حاجة عنها: حالتها، الـ ID، الـ PC، والـ Registers... إلخ."
+            },
+            // Lesson 3
+            {
+                lesson: 3,
+                question: "ما هي وحدة الهاردوير المسؤولة عن ترجمة العنوان المنطقي إلى عنوان فيزيائي؟",
+                options: ["ALU", "CPU", "MMU", "DMA Controller"],
+                answer: "MMU",
+                explanation: "وحدة إدارة الذاكرة (Memory Management Unit) هي المسؤولة عن عملية الترجمة دي."
+            },
+            {
+                lesson: 3,
+                question: "ما هي أسرع طريقة للتواصل بين العمليات (IPC) ولكنها تتطلب تزامنًا دقيقًا؟",
+                options: ["Message Passing", "Sockets", "Shared Memory", "Pipes"],
+                answer: "Shared Memory",
+                explanation: "الذاكرة المشتركة هي الأسرع لأن مفيش نسخ للداتا، لكنها خطيرة لو مفيش تزامن (Synchronization) عشان محدش يكتب على شغل التاني."
+            },
+            // Lesson 4
+            {
+                lesson: 4,
+                question: "ما هي الميزة الرئيسية لاستخدام DMA (Direct Memory Access)؟",
+                options: ["تسريع عمل الـ CPU", "السماح للأجهزة بنقل البيانات للذاكرة مباشرة دون إشغال الـ CPU", "إدارة صلاحيات المستخدمين", "تقليل استهلاك الطاقة"],
+                answer: "السماح للأجهزة بنقل البيانات للذاكرة مباشرة دون إشغال الـ CPU",
+                explanation: "الـ DMA بيفضي الـ CPU من مهمة نقل البيانات المملة، وبيخليه يركز في مهام أهم."
+            },
+            {
+                lesson: 4,
+                question: "أي من التالي ليس شرطًا ضروريًا لحدوث Deadlock؟",
+                options: ["Mutual Exclusion", "Circular Wait", "High Priority", "Hold and Wait"],
+                answer: "High Priority",
+                explanation: "شروط الـ Deadlock الأربعة هي: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. أولوية العملية (Priority) ملهاش علاقة مباشرة بحدوث الـ Deadlock."
+            },
+            {
+                lesson: 4,
+                question: "ما هو الفرق الرئيسي بين الـ Mutex والـ Semaphore؟",
+                options: ["الـ Mutex أسرع من الـ Semaphore", "الـ Mutex يسمح لـ thread واحد فقط بالدخول، بينما الـ Semaphore يمكن أن يسمح لعدد معين (N > 1)", "الـ Semaphore يستخدم للـ I/O فقط", "لا يوجد فرق حقيقي"],
+                answer: "الـ Mutex يسمح لـ thread واحد فقط بالدخول، بينما الـ Semaphore يمكن أن يسمح لعدد معين (N > 1)",
+                explanation: "الـ Mutex هو قفل (يسمح لواحد بس). الـ Semaphore هو عدّاد (يسمح لـ N من الـ threads بالدخول)."
+            },
+            // Lesson 5
+            {
+                lesson: 5,
+                question: "أين يتم تخزين معلومات الملف مثل حجمه وتاريخ إنشائه وصلاحيات الوصول إليه؟",
+                options: ["في الملف نفسه", "في الـ Boot sector", "في الـ File Control Block (FCB)", "في الـ RAM"],
+                answer: "في الـ File Control Block (FCB)",
+                explanation: "الـ FCB هو اللي بيحتوي على كل البيانات الوصفية (metadata) للملف."
+            },
+            // Lesson 6
+            {
+                lesson: 6,
+                question: "في أي مستوى من مستويات الحماية (Rings) تعمل برامج المستخدم العادية مثل متصفح الإنترنت؟",
+                options: ["Ring 0 (Kernel Mode)", "Ring 1", "Ring 2", "Ring 3 (User Mode)"],
+                answer: "Ring 3 (User Mode)",
+                explanation: "البرامج العادية بتشتغل في Ring 3 بأقل صلاحيات عشان متقدرش تأذي النظام. الـ OS والـ Drivers بيشتغلوا في Ring 0 بأعلى صلاحيات."
+            },
+            {
+                lesson: 6,
+                question: "كيف يطلب برنامج يعمل في User Mode خدمة من الـ Kernel؟",
+                options: ["عن طريق إرسال Interrupt", "عن طريق تعديل الـ PC مباشرة", "عن طريق System Call", "عن طريق الوصول المباشر للذاكرة"],
+                answer: "عن طريق System Call",
+                explanation: "الـ System Call هو البوابة الآمنة والوحيدة اللي بتسمح للبرامج العادية تطلب خدمات من الـ Kernel اللي عنده صلاحيات أعلى."
+            },
+            // Lesson 7
+            {
+                lesson: 7,
+                question: "ما هو البرنامج الذي يدير الـ Virtual Machines ويوزع عليها موارد الهاردوير؟",
+                options: ["Host OS", "Guest OS", "Hypervisor", "Emulator"],
+                answer: "Hypervisor",
+                explanation: "الـ Hypervisor هو المدير المسؤول عن إنشاء وتشغيل وإدارة الأجهزة الافتراضية (VMs)."
+            },
+            {
+                lesson: 7,
+                question: "عندما تقوم بتسجيل الدخول إلى نظام باستخدام اسم مستخدم وكلمة مرور، فإن هذه العملية تسمى:",
+                options: ["Authorization", "Authentication", "Encryption", "Virtualization"],
+                answer: "Authentication",
+                explanation: "الـ Authentication هي عملية التحقق من هويتك (إثبات إنك أنت الشخص اللي بتقول عليه). أما الـ Authorization فهي تحديد صلاحياتك بعد ما سجلت الدخول."
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const resultsContainer = document.getElementById('results-container');
+        const quizForm = document.getElementById('quiz-form');
+
+        function buildQuiz() {
+            const output = [];
+            quizData.forEach((currentQuestion, questionNumber) => {
+                const options = [];
+                for (const option of currentQuestion.options) {
+                    options.push(
+                        `<label>
+                            <input type="radio" name="question${questionNumber}" value="${option}">
+                            ${option}
+                        </label>`
+                    );
+                }
+
+                output.push(
+                    `<div class="question-block">
+                        <div class="question-text">${questionNumber + 1}. ${currentQuestion.question}</div>
+                        <div class="options-container">${options.join('')}</div>
+                        <div class="feedback" id="feedback${questionNumber}" style="display:none;"></div>
+                    </div>`
+                );
+            });
+            quizContainer.innerHTML = output.join('');
+        }
+
+        function showResults(event) {
+            event.preventDefault(); // Prevent form from submitting and reloading the page
+            
+            let score = 0;
+            quizData.forEach((currentQuestion, questionNumber) => {
+                const feedbackContainer = document.getElementById(`feedback${questionNumber}`);
+                const selector = `input[name=question${questionNumber}]:checked`;
+                const userAnswer = (document.querySelector(selector) || {}).value;
+
+                if (userAnswer === currentQuestion.answer) {
+                    score++;
+                    feedbackContainer.className = "feedback correct-feedback";
+                    feedbackContainer.innerHTML = `<strong>صحيح!</strong> <div class="explanation">${currentQuestion.explanation}</div>`;
+                } else {
+                    feedbackContainer.className = "feedback incorrect-feedback";
+                    let feedbackText = `<strong>خطأ.</strong> الإجابة الصحيحة هي: <span class="red-highlight">${currentQuestion.answer}</span>.`;
+                    feedbackText += `<div class="explanation">${currentQuestion.explanation}</div>`;
+                    feedbackContainer.innerHTML = feedbackText;
+                }
+                feedbackContainer.style.display = "block";
+            });
+
+            const percentage = Math.round((score / quizData.length) * 100);
+            let resultHTML = `<h2>نتيجتك: ${score} من ${quizData.length} (${percentage}%)</h2>`;
+            if (percentage > 80) {
+                resultHTML += "<p>ممتاز! مذاكرتك ممتازة.</p>";
+            } else if (percentage > 50) {
+                resultHTML += "<p>جيد جدًا، راجع الأسئلة اللي غلطت فيها.</p>";
+            } else {
+                resultHTML += "<p>محتاج تراجع على المفاهيم الأساسية تاني.</p>";
+            }
+            resultsContainer.innerHTML = resultHTML;
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        buildQuiz();
+        quizForm.addEventListener('submit', showResults);
+    </script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص نهائي وخريطة ذهنية - أنظمة التشغيل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #1a2933;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            display: inline-block;
+        }
+        .center-wrapper { text-align: center; }
+        
+        /* Summary Styles */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .lesson-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 5px solid;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-summary h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+            color: #333;
+        }
+        .lesson-summary ul {
+            padding-right: 20px;
+            list-style-type: none;
+        }
+        .lesson-summary li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+        .lesson-summary li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-weight: bold;
+            color: inherit;
+        }
+        .l1 { border-color: #007bff; color: #007bff; }
+        .l2 { border-color: #28a745; color: #28a745; }
+        .l3 { border-color: #ffc107; color: #ffc107; }
+        .l4 { border-color: #9c27b0; color: #9c27b0; }
+        .l5 { border-color: #f44336; color: #f44336; }
+        .l6 { border-color: #00acc1; color: #00acc1; }
+        .l7 { border-color: #ff9800; color: #ff9800; }
+        
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* --- NEW MIND MAP STYLES --- */
+        .mindmap {
+            text-align: center;
+            padding: 20px;
+            direction: ltr; /* Mindmap is better LTR for tree structures */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent wrapping of flex items */
+        }
+        .mindmap > ul {
+             display: inline-flex; /* The root ul is the starting point */
+        }
+        .mindmap ul {
+            position: relative;
+            padding: 1em 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+        }
+        .mindmap ul li {
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            position: relative;
+            padding: 1em 0.5em 0 0.5em;
+        }
+
+        /* Connecting Lines */
+        .mindmap li::before, .mindmap li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 1em;
+        }
+        .mindmap li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+        .mindmap li:only-child {
+            padding-top: 0;
+        }
+        .mindmap li:only-child::before, .mindmap li:only-child::after {
+            display: none;
+        }
+        .mindmap li:first-child::before, .mindmap li:last-child::after {
+            border: 0 none;
+        }
+        .mindmap li:last-child::before {
+            border-right: 2px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+        .mindmap li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+        .mindmap ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #ccc;
+            width: 0;
+            height: 1em;
+        }
+
+        /* Node Box Styling */
+        .mindmap li span {
+            border: 2px solid #ccc;
+            padding: 8px 15px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: white;
+            color: #333;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        .mindmap li span:hover, .mindmap li span:hover + ul li span {
+            background: #f0f4f8;
+            border-color: #94a0b4;
+            transform: scale(1.05);
+        }
+
+        /* Color Coding */
+        .mindmap > ul > li > span { /* Root node */
+            background-color: #007bff; color: white; border-color: #0056b3; font-size: 1.2em;
+        }
+        .mindmap ul ul > li > span { /* Lesson nodes */
+            background-color: #e9ecef; border-color: #adb5bd;
+        }
+        .mindmap ul ul ul > li > span { /* Topic nodes */
+            background-color: #f8f9fa; border-color: #dee2e6; font-size: 0.9em;
+        }
+        
+        .final-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>الملخص النهائي والخريطة الذهنية</h1>
+            <p>مادة أنظمة التشغيل (Operating Systems)</p>
+        </div>
+
+        <div class="center-wrapper">
+            <h2 class="section-title">ملخص شامل لأهم نقاط المادة (MCQ Focused)</h2>
+        </div>
+        <div class="summary-grid">
+            <div class="lesson-summary l1">
+                <h3>الدرس 1: مقدمة</h3>
+                <ul>
+                    <li><strong>مكونات النظام:</strong> <span class="red-highlight">Hardware</span> → <span class="red-highlight">OS</span> → <span class="red-highlight">Applications</span> → <span class="red-highlight">Users</span>.</li>
+                    <li><strong>معمارية Von Neumann:</strong> الكود والبيانات في نفس الذاكرة.</li>
+                    <li><strong>مكونات الـ CPU:</strong> CU, ALU, <span class="red-highlight">Registers</span>.</li>
+                    <li><strong>أهم Registers:</strong> <span class="red-highlight">PC</span> (التعليمة الجاية)، <span class="red-highlight">CIR</span> (التعليمة الحالية).</li>
+                    <li><strong>أهداف الـ OS:</strong> كفاءة، سهولة استخدام، تجريد.</li>
+                    <li><strong>أنواع الـ OS:</strong> Batch, Time Sharing, <span class="red-highlight">Real Time</span>.</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l2">
+                <h3>الدرس 2: العمليات والجدولة</h3>
+                <ul>
+                    <li><strong>Process:</strong> هو <span class="red-highlight">Program in Execution</span>.</li>
+                    <li><strong>حالات العملية (5):</strong> New → Ready ↔ Running → Waiting → Terminated.</li>
+                    <li><strong>PCB:</strong> بطاقة هوية العملية (تحتوي على State, PC, Registers...).</li>
+                    <li><strong>Context Switch:</strong> حفظ حالة عملية وتحميل حالة عملية أخرى.</li>
+                    <li><strong>Thread:</strong> عملية خفيفة (<span class="red-highlight">Lightweight Process</span>) لتحقيق التوازي داخل العملية الواحدة.</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l3">
+                <h3>الدرس 3: إدارة الذاكرة</h3>
+                <ul>
+                    <li><strong>Address Binding:</strong> ترجمة العناوين من منطقية إلى فيزيائية.</li>
+                    <li><strong>Logical Address:</strong> العنوان اللي بيولده الـ CPU.</li>
+                    <li><strong>Physical Address:</strong> العنوان الحقيقي في الرامات.</li>
+                    <li><strong>MMU:</strong> هي الهاردوير المسؤول عن الترجمة.</li>
+                    <li><strong>IPC (التواصل):</strong> <span class="red-highlight">Shared Memory</span> (سريع ومعقد) و <span class="red-highlight">Message Passing</span> (أبطأ وآمن).</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l4">
+                <h3>الدرس 4: إدارة I/O</h3>
+                <ul>
+                    <li><strong>Device Driver:</strong> برنامج وسيط بين الـ OS والجهاز.</li>
+                    <li><strong>أنواع الأجهزة:</strong> <span class="red-highlight">Block</span> (زي الهارد) و <span class="red-highlight">Character</span> (زي الكيبورد).</li>
+                    <li><strong>DMA:</strong> لنقل البيانات الكبيرة بدون إزعاج الـ CPU.</li>
+                    <li><strong>Interrupts:</strong> الطريقة الفعالة لإعلام الـ CPU بانتهاء عملية I/O.</li>
+                    <li><strong>Synchronization:</strong> لحماية البيانات المشتركة باستخدام <span class="red-highlight">Mutex</span> (قفل) و <span class="red-highlight">Semaphore</span> (عدّاد).</li>
+                    <li><strong>Deadlock:</strong> جمود يحدث عند تحقق 4 شروط (Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait).</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l5">
+                <h3>الدرس 5: أنظمة الملفات</h3>
+                <ul>
+                    <li><strong>مكوناته:</strong> <span class="red-highlight">Directory Service</span> (للتنظيم) و <span class="red-highlight">Storage Service</span> (للتخزين الفعلي).</li>
+                    <li><strong>File Attributes:</strong> معلومات الملف (حجم، نوع، صلاحيات) وتخزن في <span class="red-highlight">FCB</span>.</li>
+                    <li><strong>Directory Namespace:</strong> الهيكل الهرمي (الشجري) للفولدرات والملفات.</li>
+                    <li><strong>Concurrency Control:</strong> يمنع مسح أو تعديل ملف وهو مفتوح.</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l6">
+                <h3>الدرس 6: الوصول والحماية</h3>
+                <ul>
+                    <li><strong>Protection Rings:</strong> مستويات صلاحيات لحماية النظام.</li>
+                    <li><strong class="red-highlight">Ring 0 (Kernel Mode):</strong> أعلى صلاحية (للـ OS والـ Drivers).</li>
+                    <li><strong class="red-highlight">Ring 3 (User Mode):</strong> أقل صلاحية (للبرامج العادية).</li>
+                    <li><strong>System Call:</strong> البوابة الآمنة للانتقال من User Mode إلى Kernel Mode لطلب خدمة.</li>
+                </ul>
+            </div>
+            <div class="lesson-summary l7">
+                <h3>الدرس 7: Virtualization & UI</h3>
+                <ul>
+                    <li><strong>Virtualization:</strong> تشغيل "كمبيوترات افتراضية" (<span class="red-highlight">VMs</span>) على جهاز واحد.</li>
+                    <li><strong>مكوناتها:</strong> <span class="red-highlight">Host OS</span> (الأساسي)، <span class="red-highlight">Guest OS</span> (الضيف)، و <span class="red-highlight">Hypervisor</span> (المدير).</li>
+                    <li><strong>الحماية:</strong> <span class="red-highlight">Authentication</span> (مين أنت؟) و <span class="red-highlight">Authorization</span> (مسموحلك تعمل إيه؟).</li>
+                    <li><strong>الواجهة (UI):</strong> <span class="red-highlight">GUI</span> (رسومية) و <span class="red-highlight">CLI/Shell</span> (نصية).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="center-wrapper">
+            <h2 class="section-title">خريطة ذهنية لمفاهيم المادة</h2>
+        </div>
+        <div class="mindmap">
+            <ul>
+                <li>
+                    <span>Operating System Concepts</span>
+                    <ul>
+                        <li>
+                            <span>L1: Intro & Computer Arch.</span>
+                            <ul>
+                                <li><span>System Components</span></li>
+                                <li><span>Von Neumann Arch</span></li>
+                                <li><span>CPU (Registers)</span></li>
+                                <li><span>Buses</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>L2: Processes & Scheduling</span>
+                             <ul>
+                                <li><span>Program vs. Process</span></li>
+                                <li><span>Process States</span></li>
+                                <li><span>PCB & Context Switch</span></li>
+                                <li><span>Threads</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>L3: Memory Management</span>
+                            <ul>
+                                <li><span>Address Binding (MMU)</span></li>
+                                <li><span>Logical vs. Physical Address</span></li>
+                                <li><span>IPC Methods</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span>L4: I/O Management</span>
+                             <ul>
+                                <li><span>Device Drivers</span></li>
+                                <li><span>Device Types</span></li>
+                                <li><span>I/O Protocols (DMA)</span></li>
+                                <li><span>Synchronization (Mutex)</span></li>
+                                <li><span>Deadlock (4 Conditions)</span></li>
+                            </ul>
+                        </li>
+                         <li>
+                            <span>L5: File Systems</span>
+                             <ul>
+                                <li><span>Services & FCB</span></li>
+                                <li><span>Namespace</span></li>
+                                <li><span>Access Control</span></li>
+                            </ul>
+                        </li>
+                         <li>
+                            <span>L6: Access & Protection</span>
+                             <ul>
+                                <li><span>Protection Rings</span></li>
+                                <li><span>Kernel vs. User Mode</span></li>
+                                <li><span>System Calls</span></li>
+                            </ul>
+                        </li>
+                         <li>
+                            <span>L7: Virtualization & UI</span>
+                             <ul>
+                                <li><span>Virtual Machines (VM)</span></li>
+                                <li><span>Hypervisor</span></li>
+                                <li><span>Authentication/Authorization</span></li>
+                                <li><span>GUI vs. CLI</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="final-note">
+            <h3>بالتوفيق في الامتحان!</h3>
+            <p>المذاكرة المنظمة هي مفتاح النجاح. استخدم الملخص للمراجعة السريعة والخريطة الذهنية لربط المفاهيم ببعضها.</p>
+        </div>
+    </div>
+</body>
+</html>

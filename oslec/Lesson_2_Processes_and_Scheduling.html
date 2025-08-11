@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثاني: العمليات والجدولة</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.3em;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #28a745; /* Green for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #28a745, #1e8e3e);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #28a745;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #1b5e20;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس الثاني: العمليات والجدولة (Processes and Scheduling)</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 2: Processes and Scheduling</div>
+
+            <div class="topic">
+                <div class="topic-title">2.1 مقدمة عن الجدولة (Introduction to Scheduling)</div>
+                <p>من أهم وظايف الـ OS إنه يقدر يشغل برامج كتير في نفس الوقت (<span class="red-highlight">concurrent applications</span>) ويدير وصولهم لموارد الجهاز (زي الـ CPU والذاكرة) بكفاءة. بما إن البرامج دي بتتنافس على نفس الموارد، الـ OS لازم ينظم الطلبات دي عشان يتجنب التعارضات، وده بيحصل عن طريق "الجدولة".</p>
+                <div class="source-text">
+One of the primary functionalities of the OS would be to provide the ability to run multiple, concurrent applications on the system and efficiently manage their access to system resources.
+The operating system streamlines these requests and orchestrates the execution at runtime by <span class="red-highlight">scheduling</span> the execution... to avoid conflicts.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.2 مفهوم البرنامج والعملية (Program and Process Concept)</div>
+                <p>دي نقطة أساسية ومهمة جداً للامتحان. فيه فرق كبير بين البرنامج والعملية.</p>
+                <ul>
+                    <li><strong>البرنامج (Program):</strong> هو مجموعة من التعليمات مكتوبة في ملف وموجودة على الهارد ديسك (كيان سلبي/غير نشط). زي ملف `Word.exe`.</li>
+                    <li><strong>العملية (Process):</strong> هي نسخة من البرنامج شغالة حالياً في الذاكرة (كيان نشط). لما تدوس دبل كليك على `Word.exe`، الـ OS بيعمله `Process`.</li>
+                </ul>
+                <div class="source-text">
+This is typically referred to as the <span class="red-highlight">program</span>.
+When the program gets triggered to run, the OS assigns a <span class="red-highlight">process ID</span>...
+However, <span class="red-highlight">process refer to a program in execution</span>.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.3 محتويات العملية (Process Contents)</div>
+                <p>الـ Process لما تكون في الذاكرة بيبقى ليها هيكل معين متقسم لأجزاء:</p>
+                <div class="source-text">
+• <span class="red-highlight">Text section</span>: Program instructions
+• <span class="red-highlight">Data Section</span>: Global and Static Variables
+• <span class="red-highlight">Stack Section</span>: Local variables, Return addresses, Method parameters
+• <span class="red-highlight">PC</span>: Next instruction address
+• <span class="red-highlight">Heap section</span>: Dynamic Allocation (at run-time)
+                </div>
+                <div class="example">
+                    <div class="example-title">تخيل العملية كأنها ورشة شغل:</div>
+                    <ul>
+                        <li><strong>Text section:</strong> كتالوج التعليمات اللي بيقول للعمال يعملوا إيه.</li>
+                        <li><strong>Data section:</strong> المخزن اللي فيه المواد الخام الأساسية (المتغيرات الثابتة).</li>
+                        <li><strong>Stack:</strong> الترابيزة اللي العامل بيشتغل عليها وبيحط أدواته المؤقتة (المتغيرات المحلية).</li>
+                        <li><strong>Heap:</strong> مساحة إضافية جنب الورشة بنجيب منها مواد زيادة لما نحتاج (الذاكرة الديناميكية).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.4 حالات العملية (Process States)</div>
+                <p>العملية بتمر بـ 5 حالات أساسية في دورة حياتها. الرسمة دي بتلخص التنقلات بينهم.</p>
+                <div class="source-text">
+• <span class="red-highlight">New</span>: The process is being created.
+• <span class="red-highlight">Ready</span>: The process is waiting to be assigned to a processor.
+• <span class="red-highlight">Running</span>: Instructions are being executed.
+• <span class="red-highlight">Waiting</span>: The process is waiting for some event to occur (e.g. I/O).
+• <span class="red-highlight">Terminated or Exit</span>: The process has finished execution.
+                </div>
+                <div class="note">
+                    <strong>ملحوظة مهمة:</strong> الـ Process بتروح من حالة <span class="red-highlight">Running</span> لحالة <span class="red-highlight">Waiting</span> لما تكون مستنية حاجة تحصل، زي إنها تخلص قراءة ملف من الهارد ديسك. وبتروح من <span class="red-highlight">Running</span> لـ <span class="red-highlight">Ready</span> لما الـ CPU يسيبها ويروح لعملية تانية (بسبب مقاطعة أو انتهاء وقتها المخصص).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.5 كتلة التحكم في العملية (Process Control Block - PCB)</div>
+                <p>الـ PCB هو "بطاقة الهوية" بتاعة كل عملية. الـ OS بيخزن فيه كل المعلومات اللي محتاجها عشان يدير العملية دي.</p>
+                <div class="source-text">
+The <span class="red-highlight">process ID</span> is a unique identifier.
+The <span class="red-highlight">process state</span> determines the current state of the process.
+The <span class="red-highlight">priority</span> refers to the priority level (e.g., high, medium, low).
+The <span class="red-highlight">program counter</span> usually refers to the next instruction that needs to be run.
+The PCB also contains:
+• Pointer, CPU registers, Memory management info, I/O status information, Accounting Information.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.6 تبديل السياق (Context Switching)</div>
+                <p>لما الـ OS يقرر يوقف عملية شغالة ويشغل واحدة تانية، لازم يعمل عملية "تبديل السياق".</p>
+                <div class="source-text">
+When the OS needs to swap a currently executing process with another process, it must do the following steps:
+1. <span class="red-highlight">Pause</span> the currently executing process and <span class="red-highlight">save the context</span>.
+2. <span class="red-highlight">Switch</span> to the new process.
+3. When starting a new process, the OS must <span class="red-highlight">set the context appropriately</span> for that process.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال: لاعب شطرنج بيلعب مع 10 في نفس الوقت</div>
+                    اللاعب بيلعب نقلة مع الأول (Process A is running)، بعدين بيسيب الطاولة دي ويروح للتاني (Context Switch). عشان يعرف يكمل مع الأول بعدين، لازم يكون فاكر شكل الرقعة كان إزاي بالظبط (Save context). لما يرجعله، بيبص على الرقعة تاني وبيكمل (Load context).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">2.7 الجدولة (Scheduling)</div>
+                <p>الـ OS بيستخدم "طوابير" عشان ينظم العمليات.</p>
+                <h5>أنواع طوابير الجدولة (Scheduling Queues):</h5>
+                <div class="source-text">
+1. <span class="red-highlight">Ready Queue</span>: It enters this queue indicating that it is ready to be scheduled.
+2. <span class="red-highlight">Waiting Queue</span>: When a process gets blocked by a dependent I/O or device... it moves to the Waiting queue.
+3. <span class="red-highlight">Job queue</span> that maintains all the processes in the system at any point in time.
+                </div>
+                <h5>معايير الجدولة (Scheduling Criteria):</h5>
+                <p>إزاي الـ OS بيقرر مين يتنفذ الأول؟ بيبص على معايير زي:</p>
+                <ul>
+                    <li><strong class="red-highlight">CPU Utilization</strong>: عايزين الـ CPU يفضل مشغول على قد ما نقدر.</li>
+                    <li><strong class="red-highlight">Throughput</strong>: عدد العمليات اللي بتخلص في الثانية الواحدة.</li>
+                    <li><strong class="red-highlight">Responsiveness</strong>: سرعة الاستجابة لطلب المستخدم.</li>
+                    <li><strong class="red-highlight">Waiting Time</strong>: تقليل وقت انتظار العمليات في الطوابير.</li>
+                </ul>
+                <div class="note">
+                    من أشهر خوارزميات الجدولة: <span class="red-highlight">First Come, First Serve (FCFS)</span>، <span class="red-highlight">Shortest Job First (SJF)</span>، و <span class="red-highlight">Round-Robin</span>.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">2.8 مفهوم الخيوط (Thread Concepts)</div>
+                <p>الـ Thread هو ببساطة "عملية خفيفة" (<span class="red-highlight">lightweight process</span>). العملية الواحدة ممكن يكون جواها خيوط كتير، كلهم بيشاركوا نفس مساحة الذاكرة (Code, Data)، لكن كل واحد له الـ PC والـ Registers والـ Stack الخاصين بيه.</p>
+                <div class="source-text">
+A <span class="red-highlight">thread</span> is nothing more than a lightweight process.
+These threads have their own PCB; program counter, context, and register information.
+<span class="red-highlight">Threads help in performing parallelism within the same process</span>.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال: برنامج محرر نصوص (like Word)</div>
+                    <ul>
+                        <li><strong>Thread 1:</strong> بيستقبل الكتابة منك ويظهرها على الشاشة.</li>
+                        <li><strong>Thread 2:</strong> بيعمل تدقيق إملائي في الخلفية وانت بتكتب.</li>
+                        <li><strong>Thread 3:</strong> بيعمل حفظ تلقائي للملف كل دقيقتين.</li>
+                    </ul>
+                    كل ده بيحصل في نفس الوقت جوه نفس العملية (برنامج Word).
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس الثاني. الملف الجاي هيغطي الدرس الثالث: إدارة الذاكرة.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

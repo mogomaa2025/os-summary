@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time MCQ Quiz - Operating Systems</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; }
+
+        #quiz-container { margin-top: 20px; }
+        .question-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: left;
+            direction: ltr;
+        }
+        .options-container .option {
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-align: left;
+            direction: ltr;
+        }
+        .options-container .option:hover {
+            background-color: #e9ecef;
+            border-color: #007bff;
+        }
+        
+        /* Feedback styles */
+        .options-container .option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            font-weight: bold;
+        }
+        .options-container .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+            font-weight: bold;
+        }
+        .options-container.disabled .option:not(.correct):not(.incorrect) {
+            cursor: not-allowed;
+            opacity: 0.6;
+            background-color: #f8f9fa;
+        }
+        .options-container.disabled .option:hover {
+            border-color: #ccc;
+        }
+        
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #fff8e1;
+            border-right: 5px solid #ffc107;
+        }
+        .explanation strong {
+            color: #856404;
+        }
+        
+        #quiz-summary {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>OS Comprehensive MCQ Quiz</h1>
+            <p>Test your understanding of Operating Systems concepts</p>
+        </div>
+        
+        <div id="quiz-summary">Score: 0 / 20</div>
+
+        <div id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            // Lesson 1
+            { lesson: 1, question: "Which component of a computer system controls and coordinates the use of hardware among various application programs?", options: ["User", "Application Program", "Operating System", "Hardware"], answer: "Operating System", explanation: "نظام التشغيل (OS) هو المدير اللي بينسق استخدام الهاردوير بين كل البرامج." },
+            { lesson: 1, question: "In the Von Neumann architecture, which register holds the address of the next instruction to be executed?", options: ["MAR", "MDR", "PC", "CIR"], answer: "PC", explanation: "الـ Program Counter (PC) دايماً بيشاور على التعليمة الجاية اللي عليها الدور تتنفذ." },
+            // Lesson 2
+            { lesson: 2, question: "What is the term for a program in execution?", options: ["Thread", "Process", "Job", "Scheduler"], answer: "Process", explanation: "البرنامج هو الملف على الهارد ديسك، لكن لما يشتغل ويدخل الذاكرة بنسميه عملية (Process)." },
+            { lesson: 2, question: "A process transitions from the 'Running' state to the 'Ready' state when...", options: ["An I/O event completes", "The process terminates", "An interrupt occurs or its time slice expires", "It requests an I/O operation"], answer: "An interrupt occurs or its time slice expires", explanation: "العملية بترجع لطابور الجاهزين (Ready) لما الـ CPU يسيبها ويروح لعملية تانية، وده بيحصل بسبب مقاطعة أو انتهاء وقتها." },
+            { lesson: 2, question: "A lightweight process that shares the code and data sections with other threads from the same process is called a:", options: ["Child Process", "Thread", "Kernel", "PCB"], answer: "Thread", explanation: "الـ Thread هو عملية خفيفة بيشارك الموارد الأساسية مع باقي الـ Threads اللي معاه في نفس الـ Process." },
+            // Lesson 3
+            { lesson: 3, question: "The hardware device that translates a logical address to a physical address is the:", options: ["DMA", "CPU", "ALU", "MMU"], answer: "MMU", explanation: "وحدة إدارة الذاكرة (MMU) هي المسؤولة عن ترجمة العناوين." },
+            { lesson: 3, question: "Which Inter-Process Communication (IPC) method is generally faster but requires careful synchronization?", options: ["Message Passing", "Pipes", "Shared Memory", "Sockets"], answer: "Shared Memory", explanation: "الذاكرة المشتركة أسرع لأن مفيش نسخ للداتا، لكنها محتاجة تنظيم دقيق باستخدام Mutex أو Semaphore." },
+            // Lesson 4
+            { lesson: 4, question: "What is the main purpose of using Direct Memory Access (DMA)?", options: ["To speed up CPU calculations", "To manage virtual memory", "To allow I/O devices to transfer data directly to/from memory without involving the CPU", "To handle interrupts"], answer: "To allow I/O devices to transfer data directly to/from memory without involving the CPU", explanation: "الـ DMA بيفضي الـ CPU من مهمة نقل البيانات، وده بيحسن أداء النظام بشكل عام." },
+            { lesson: 4, question: "Which of the following is NOT one of the four necessary conditions for a deadlock to occur?", options: ["Mutual Exclusion", "Hold and Wait", "Process Starvation", "Circular Wait"], answer: "Process Starvation", explanation: "شروط الجمود (Deadlock) الأربعة هي: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait. الـ Starvation (المجاعة) مشكلة تانية بتحصل لما عملية تفضل مستنية للأبد ومبيجلهاش الدور." },
+            { lesson: 4, question: "A synchronization tool that acts like a lock, allowing only one thread to enter a critical section at a time, is a:", options: ["Semaphore", "Mutex", "Scheduler", "Pipe"], answer: "Mutex", explanation: "الـ Mutex هو قفل (Mutual Exclusion)، بيضمن إن واحد بس اللي يدخل المنطقة الحرجة في كل مرة." },
+            { lesson: 4, question: "A keyboard is an example of which type of I/O device?", options: ["Block Device", "Storage Device", "Character Device", "Network Device"], answer: "Character Device", explanation: "الكيبورد بيبعت البيانات حرف حرف، عشان كده هو Character Device. الهارد ديسك هو اللي Block Device." },
+            // Lesson 5
+            { lesson: 5, question: "Where is the metadata of a file, such as its size, location, and permissions, stored?", options: ["In the file's header", "In the File Control Block (FCB)", "In the root directory", "In the boot sector"], answer: "In the File Control Block (FCB)", explanation: "الـ FCB هو شهادة ميلاد الملف، فيه كل المعلومات الوصفية الخاصة بيه." },
+            { lesson: 5, question: "Most modern operating systems organize files in a structure known as a:", options: ["Linear list", "Flat namespace", "Hierarchical namespace", "Linked list"], answer: "Hierarchical namespace", explanation: "الهيكل الهرمي (الشجري) هو المستخدم، يعني فولدرات جوه فولدرات." },
+            // Lesson 6
+            { lesson: 6, question: "In the protection ring model, which ring has the highest privilege and can access hardware directly?", options: ["Ring 3", "Ring 2", "Ring 1", "Ring 0"], answer: "Ring 0", explanation: "Ring 0 (Kernel Mode) هو اللي فيه الـ OS والـ Drivers وليه كل الصلاحيات. البرامج العادية بتشتغل في Ring 3 (User Mode)." },
+            { lesson: 6, question: "How does an application running in User Mode request a service from the Kernel?", options: ["By sending an interrupt", "By making a System Call", "By directly writing to kernel memory", "By using a device driver"], answer: "By making a System Call", explanation: "الـ System Call هو البوابة الآمنة والمصرح بيها عشان البرامج العادية تطلب خدمات من الـ Kernel." },
+            // Lesson 7
+            { lesson: 7, question: "What is the software layer that creates and manages virtual machines (VMs)?", options: ["Guest OS", "Host OS", "Hypervisor", "Emulator"], answer: "Hypervisor", explanation: "الـ Hypervisor هو المدير المسؤول عن تشغيل وإدارة الأجهزة الافتراضية." },
+            { lesson: 7, question: "Verifying a user's identity with a username and password is known as:", options: ["Authorization", "Authentication", "Accounting", "Administration"], answer: "Authentication", explanation: "الـ Authentication هي إثبات الهوية (مين أنت؟). أما الـ Authorization هي تحديد الصلاحيات (تقدر تعمل إيه؟)." },
+            { lesson: 7, question: "Which type of user interface is typically preferred by programmers for its speed and scripting capabilities?", options: ["Graphical User Interface (GUI)", "Touch-based Interface", "Voice-based Interface", "Command Line Interface (CLI/Shell)"], answer: "Command Line Interface (CLI/Shell)", explanation: "المبرمجين بيحبوا الـ CLI (أو الـ Shell) عشان سريع، قوي، وبيسمحلهم يعملوا Automation للمهام عن طريق الـ Scripts." },
+            { lesson: 2, question: "Which scheduling algorithm executes jobs in the order they arrive?", options: ["Shortest Job First (SJF)", "Round Robin", "First-Come, First-Served (FCFS)", "Priority Scheduling"], answer: "First-Come, First-Served (FCFS)", explanation: "خوارزمية FCFS بسيطة جداً، بتشتغل بمبدأ الطابور: اللي يجي الأول يتخدم الأول." },
+            { lesson: 4, question: "Which I/O method involves the CPU repeatedly checking the status of a device?", options: ["Interrupts", "DMA", "Polling", "MMIO"], answer: "Polling", explanation: "الـ Polling هو إن الـ CPU يفضل يسأل الجهاز كل شوية 'خلصت ولا لسه؟'. ده بيضيع وقت وموارد الـ CPU." }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const summaryContainer = document.getElementById('quiz-summary');
+        let score = 0;
+
+        function buildQuiz() {
+            quizData.forEach((currentQuestion, questionNumber) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+
+                const questionText = document.createElement('div');
+                questionText.className = 'question-text';
+                questionText.innerHTML = `${questionNumber + 1}. ${currentQuestion.question}`;
+                questionBlock.appendChild(questionText);
+
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'options-container';
+                optionsContainer.id = `q${questionNumber}-options`;
+
+                currentQuestion.options.forEach(optionText => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.innerText = optionText;
+                    optionDiv.dataset.question = questionNumber;
+                    optionsContainer.appendChild(optionDiv);
+                });
+
+                questionBlock.appendChild(optionsContainer);
+                
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.id = `exp${questionNumber}`;
+                explanationDiv.innerHTML = `<strong>الشرح:</strong> ${currentQuestion.explanation}`;
+                questionBlock.appendChild(explanationDiv);
+
+                quizContainer.appendChild(questionBlock);
+            });
+        }
+
+        function checkAnswer(e) {
+            if (!e.target.classList.contains('option')) return;
+            
+            const selectedOption = e.target;
+            const questionNumber = selectedOption.dataset.question;
+            const optionsContainer = document.getElementById(`q${questionNumber}-options`);
+            
+            // Prevent further clicks on this question's options
+            if (optionsContainer.classList.contains('disabled')) return;
+            optionsContainer.classList.add('disabled');
+
+            const userAnswer = selectedOption.innerText;
+            const correctAnswer = quizData[questionNumber].answer;
+            const explanationDiv = document.getElementById(`exp${questionNumber}`);
+
+            if (userAnswer === correctAnswer) {
+                score++;
+                selectedOption.classList.add('correct');
+            } else {
+                selectedOption.classList.add('incorrect');
+                // Highlight the correct answer
+                const allOptions = optionsContainer.children;
+                for(let option of allOptions){
+                    if(option.innerText === correctAnswer){
+                        option.classList.add('correct');
+                        break;
+                    }
+                }
+            }
+            
+            // Show explanation and update score
+            explanationDiv.style.display = 'block';
+            summaryContainer.innerText = `Score: ${score} / ${quizData.length}`;
+        }
+
+        buildQuiz();
+        quizContainer.addEventListener('click', checkAnswer);
+
+    </script>
+</body>
+</html>

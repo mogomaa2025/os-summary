@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الخامس: أنظمة الملفات</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #f44336; /* Red for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #f44336, #d32f2f);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #d32f2f;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #ffebee;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #f44336;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #b71c1c;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس الخامس: أنظمة الملفات (File Systems)</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 5: File Systems</div>
+
+            <div class="topic">
+                <div class="topic-title">5.1 الحاجة لأنظمة الملفات (Need for File Systems)</div>
+                <p>البرامج بتحتاج تقرا وتكتب ملفات عشان تشتغل. الـ OS هو اللي بيوفرلها نظام لإدارة الملفات دي بشكل منظم وآمن. نظام الملفات بيتكون من طبقتين أساسيتين:</p>
+                <div class="source-text">
+OS file systems have two main components to facilitate file management:
+• <span class="red-highlight">Directory Service</span>: There is a need to uniquely manage files in a structured manner, manage access, and provide Read-Write-Edit controls on the file system.
+• <span class="red-highlight">Storage Service</span>: There is a need to communicate to the underlying hardware such as the disk. This is managed by a storage service that abstracts different types of storage devices.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال توضيحي:</div>
+                    لما تيجي تحفظ ملف Word:
+                    <ul>
+                        <li><strong>Directory Service:</strong> هي اللي بتسجل اسم الملف، مكانه فين في الفولدرات، ومين مسموح له يفتحه.</li>
+                        <li><strong>Storage Service:</strong> هي اللي بتاخد محتويات الملف الفعلية وتكتبها على الهارد ديسك في المكان المناسب.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">5.2 مفهوم الملف (File Concept)</div>
+                <p>من وجهة نظر المستخدم، الملف هو شوية بيانات ليها علاقة ببعض ومتخزنة تحت اسم معين. لكن من جوه، الملفات ليها أشكال كتير.</p>
+                <div class="source-text">
+From the perspective of the user, a file is a <span class="red-highlight">collection of related data</span> that is stored together and can be accessed using a unique file ID usually referred as the <span class="red-highlight">file name</span>.
+These files can be represented internally by different methods. For example, there could be <span class="red-highlight">.bin</span> files... which only represent a sequence of bytes. An <span class="red-highlight">EXE</span> is also a file format... with specific headers, a body, and controls in place.
+                </div>
+                <h4>خصائص الملف (File Attributes)</h4>
+                <p>كل ملف له مجموعة من الخصائص اللي الـ OS بيخزنها في مكان اسمه <strong class="red-highlight">File Control Block (FCB)</strong>. دي زي شهادة ميلاد الملف.</p>
+                <div class="source-text">
+The common attributes of any file include the <span class="red-highlight">location</span> of the file, file <span class="red-highlight">extension</span>, <span class="red-highlight">size</span>, <span class="red-highlight">access controls</span>, and some <span class="red-highlight">history of operations</span> done on the file, to name a few.
+Some of these are part of the so-called <span class="red-highlight">file control block</span>, which a user has access to via the OS.
+                </div>
+                <div class="example">
+                    <div class="example-title">إزاي تشوف الخصائص دي؟</div>
+                    لما تعمل كليك يمين على أي ملف وتختار "Properties"، كل المعلومات اللي بتظهرلك (الاسم، النوع، الحجم، تاريخ الإنشاء والتعديل، الصلاحيات) دي كلها جاية من الـ File Control Block.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">5.3 مساحة أسماء المجلدات (Directory Name Space)</div>
+                <p>الـ OS بينظم الملفات في هيكل منطقي عشان يسهل الوصول ليها. معظم الأنظمة بتستخدم هيكل هرمي (شجري)، يعني ملفات جوه فولدرات، والفولدرات ممكن تكون جوه فولدرات تانية.</p>
+                <div class="source-text">
+Most OSs organize their files in a <span class="red-highlight">hierarchical form</span> with files organized inside <span class="red-highlight">folders</span>.
+Each folder in this case is a <span class="red-highlight">directory</span>. This structure is called as the <span class="red-highlight">directory namespace</span>.
+The directory namespaces can be <span class="red-highlight">multileveled</span> and adaptive.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال على الهيكل الهرمي:</div>
+                    المسار ده `C:\Users\Ahmed\Documents\Project1\main.c` بيوضح هيكل هرمي متعدد المستويات.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">5.4 التحكم في الوصول (Access Control)</div>
+                <p>مش أي حد يقدر يعمل أي حاجة في أي ملف. الـ OS بيوفر نظام صلاحيات عشان يتحكم مين يقدر يقرأ، يكتب، أو يعدل في الملفات والفولدرات.</p>
+                <div class="source-text">
+The OS provides different <span class="red-highlight">access control IDs</span> and <span class="red-highlight">permissions</span> to different users on the system.
+Also, each file may also have <span class="red-highlight">different levels of permissions</span> to Read, Write, Modify, and so on.
+These may also be helpful when <span class="red-highlight">more than one user</span> is using the same system.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال على الصلاحيات:</div>
+                    في شركة، ممكن مدير المشروع يكون له صلاحية قراءة وكتابة (Read/Write) على ملفات المشروع، بينما الموظف العادي له صلاحية قراءة فقط (Read-only).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">5.5 التحكم في التزامن والتنظيف (Concurrency and Cleanup Control)</div>
+                <h4>التزامن (Concurrency Control)</h4>
+                <p>دي نقطة مهمة جداً. الـ OS لازم يضمن إن محدش يقدر يمسح أو ينقل ملف وهو لسه مفتوح أو مستخدم بواسطة برنامج تاني.</p>
+                <div class="source-text">
+There are many cases when the OS needs to <span class="red-highlight">ensure that a file is not moved or deleted when it is in use</span>.
+For example, if a user is making changes to a file, the OS needs to ensure that the same file cannot be moved or deleted by another application or process. In this case, the OS would cause the attempt... to <span class="red-highlight">fail with an appropriate error code</span>.
+                </div>
+                <div class="note">
+                    جرب تفتح ملف وورد، وبعدين حاول تمسحه وهو لسه مفتوح. الويندوز هيطلعلك رسالة يقولك "The action can't be completed because the file is open in another program". ده مثال على الـ Concurrency Control.
+                </div>
+
+                <h4>التنظيف (Cleanup Control)</h4>
+                <p>البرامج وهي شغالة بتعمل ملفات مؤقتة كتير. الـ OS مسؤول عن إنه ينضف الملفات دي بشكل دوري عشان متستهلكش مساحة على الفاضي. العملية دي بتتم عن طريق حاجة اسمها "جامع القمامة".</p>
+                <div class="source-text">
+The OS needs to be able to <span class="red-highlight">periodically clear temporarily created files</span> that may no longer be required for the functioning of the system.
+This is typically done using a <span class="red-highlight">garbage collector</span> on the system.
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس الخامس. الملف الجاي هيغطي الدرس السادس: الوصول والحماية.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس السابع: المحاكاة الافتراضية وواجهة المستخدم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800; /* Orange for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #ff9800, #f57c00);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #f57c00;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #e65100;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس السابع: المحاكاة الافتراضية وواجهة المستخدم والـ Shells</p>
+        </div>
+        
+        <div class="note">
+            <strong>تنبيه هام:</strong> هذا الدرس <strong class="red-highlight">Self Study</strong> (دراسة ذاتية)، مما يعني أنه مهم جدًا ويجب فهمه جيدًا لأنه قد يكون موضع أسئلة في الامتحان.
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 7: Virtualization and User Interface and Shells</div>
+
+            <div class="topic">
+                <div class="topic-title">7.1 المحاكاة الافتراضية (Virtualization)</div>
+                <p>المحاكاة الافتراضية هي تقنية بتسمح للـ OS إنه يقسم موارد الهاردوير بتاع جهاز واحد عشان يشغل أكتر من "كمبيوتر افتراضي" مستقل على نفس الجهاز. كل كمبيوتر افتراضي من دول بنسميه <strong class="red-highlight">Virtual Machine (VM)</strong>.</p>
+                <div class="source-text">
+Operating systems and modern hardware provide a feature called <span class="red-highlight">virtualization</span> that <span class="red-highlight">virtualizes the hardware</span> such that each calling environment believes it has the dedicated access it needs to function.
+Virtualization is delivered via so-called <span class="red-highlight">virtual machines (VMs)</span>.
+                </div>
+                <h4>المكونات الأساسية للـ Virtualization:</h4>
+                <ul>
+                    <li><strong class="red-highlight">Host OS:</strong> نظام التشغيل الأساسي اللي متسطب على الجهاز (زي ويندوز 10 عندك).</li>
+                    <li><strong class="red-highlight">Guest OS:</strong> نظام التشغيل اللي شغال جوه الـ VM (ممكن يكون ويندوز 7، أو لينكس، أو أي نظام تاني).</li>
+                    <li><strong class="red-highlight">Hypervisor:</strong> هو البرنامج الوسيط اللي بيدير الـ VMs وبيوزع عليهم موارد الهاردوير (CPU, RAM, ...). هو المدير بتاع البيئة الافتراضية.</li>
+                </ul>
+                <div class="source-text">
+• A VM has its own <span class="red-highlight">guest OS</span>, which may be the same as or different from the underlying <span class="red-highlight">host OS</span>.
+• The host OS provides a <span class="red-highlight">hypervisor</span>, which manages the access to the hardware.
+• The user can completely customize their VM... <span class="red-highlight">without affecting the host OS</span> or any other VM on the system.
+                </div>
+
+                <h4>مزايا الـ Virtualization:</h4>
+                <p>ليه التقنية دي مهمة ومستخدمة بكثرة في السيرفرات والحوسبة السحابية؟</p>
+                <div class="source-text">
+• <span class="red-highlight">Run operating systems</span> where the physical hardware is unavailable.
+• Easier to create <span class="red-highlight">new machines, backup machines</span>, etc.
+• <span class="red-highlight">Software testing</span> using “clean” installs of operating systems and software.
+• <span class="red-highlight">Emulate more machines</span> than are physically available.
+• <span class="red-highlight">Easy migration</span> of virtual machines (shutdown needed or not).
+• <span class="red-highlight">Run legacy systems</span> (تشغيل الأنظمة القديمة).
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال عملي:</div>
+                    أنت مطور برامج وعندك جهاز عليه ويندوز 10 (<span class="red-highlight">Host OS</span>). عايز تتأكد إن برنامجك شغال كويس على ويندوز 7 وعلى توزيعة لينكس اسمها Ubuntu. بدل ما تشتري جهازين كمان، ممكن تستخدم برنامج زي VMware (<span class="red-highlight">Hypervisor</span>) عشان تعمل VM لويندوز 7 و VM تانية لـ Ubuntu (<span class="red-highlight">Guest OSs</span>). هتقدر تشغلهم وتختبر برنامجك فيهم كأنهم أجهزة حقيقية، وكل ده على جهازك الأساسي.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">7.2 الحماية (Protection)</div>
+                <p>الحماية هي مجموعة الآليات اللي الـ OS بيستخدمها عشان يتحكم في وصول البرامج والمستخدمين للموارد ويمنع أي ضرر. ده بيتم عن طريق خطوتين أساسيتين:</p>
+                <div class="source-text">
+The most common protection would be to <span class="red-highlight">authenticate</span> the requester and apply <span class="red-highlight">authorization</span> to any new request to the system.
+• For example, when a request is made to a critical resource, the OS would verify the user request (which is called as <span class="red-highlight">authentication</span>) and their approved access levels (which is called <span class="red-highlight">authorization</span>) and controls before providing access.
+                </div>
+                <ol>
+                    <li><strong class="red-highlight">Authentication (التحقق من الهوية):</strong> دي الخطوة اللي الـ OS بيتأكد فيها "مين أنت؟". زي لما بتكتب اليوزرنيم والباسورد عشان تفتح الكمبيوتر.</li>
+                    <li><strong class="red-highlight">Authorization (منح الصلاحيات):</strong> بعد ما الـ OS عرف أنت مين، بيبص على الصلاحيات بتاعتك عشان يقرر "إيه اللي مسموحلك تعمله؟".</li>
+                </ol>
+                <p>الـ OS بيستخدم حاجة اسمها <strong class="red-highlight">Access Control Lists (ACLs)</strong> عشان يسجل فيها صلاحيات كل مستخدم على كل ملف أو مورد.</p>
+                <div class="example">
+                    <div class="example-title">مثال:</div>
+                    لما تيجي تمسح ملف مهم في فولدر `C:\Windows`:
+                    <ul>
+                        <li>الـ OS بيسألك عن باسورد الأدمن (<span class="red-highlight">Authentication</span>).</li>
+                        <li>بعد ما تكتبه صح، الـ OS بيبص في الـ ACLs ويشوف هل الأدمن ده له صلاحية المسح في الفولدر ده ولا لأ (<span class="red-highlight">Authorization</span>). لو له صلاحية، بيمسح الملف.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">7.3 واجهة المستخدم والـ Shell</div>
+                <p>واجهة المستخدم (UI) هي الطريقة اللي بنتفاعل بيها مع نظام التشغيل. ورغم إنها مش جزء أساسي من الـ Kernel، لكنها جزء لا يتجزأ من تجربة استخدام الـ OS.</p>
+                <div class="source-text">
+Although the <span class="red-highlight">user interface (UI)</span> is not part of the OS kernel itself, this is typically considered to be an <span class="red-highlight">integral part of the OS</span>.
+There can be multiple user interfaces... implemented either as a <span class="red-highlight">text-based interface</span> or a <span class="red-highlight">graphical-based interface</span>.
+                </div>
+                <h4>أنواع واجهات المستخدم:</h4>
+                <ul>
+                    <li><strong class="red-highlight">Graphical User Interface (GUI):</strong> الواجهة الرسومية اللي بنستخدم فيها الماوس والأيقونات والنوافذ. سهلة للمستخدم العادي (زي سطح مكتب ويندوز).</li>
+                    <li><strong class="red-highlight">Command Line Interface (CLI) / Shell:</strong> الواجهة النصية اللي بنكتب فيها أوامر. المبرمجين والـ System Admins بيفضلوها لأنها أسرع وأقوى في تنفيذ المهام المعقدة. (زي CMD أو PowerShell في ويندوز، و Bash في لينكس).</li>
+                </ul>
+                <div class="source-text">
+It is <span class="red-highlight">common for programmers to use the shell interface</span> instead of the GUI for quickly traversing through the file system and interacting with the OS.
+                </div>
+                 <div class="note">
+                    كمطور برامج، لازم تكون عارف إن الواجهة اللي المستخدم بيستخدمها (GUI أو CLI) بتأثر على طريقة كتابة برنامجك، زي طريقة التعامل مع الأوامر اللي بتجيلك من الـ command line أو طريقة عرض المخرجات.
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center; background: #e8f5e9; border-left-color: #4CAF50;">
+            <p><strong>كده الحمد لله خلصنا السبع دروس. تم تغطية كل المحتوى الموجود في الـ PDF. بالتوفيق في الامتحان!</strong></p>
+        </div>
+    </div>
+</body>
+</html>

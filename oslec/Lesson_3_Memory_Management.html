@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس الثالث: إدارة الذاكرة</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.3em;
+        }
+        .header p {
+            margin: 8px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .lesson {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ffc107; /* Yellow for this lesson */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .lesson-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #ffc107, #ff8f00);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #ff8f00;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #856404;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../os.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#2575fc;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #2575fc;">&larr; Back to OS Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة أنظمة التشغيل (OS)</h1>
+            <p>الدرس الثالث: إدارة الذاكرة (Memory Management)</p>
+        </div>
+
+        <div class="lesson">
+            <div class="lesson-title">Lesson 3: Memory Management</div>
+
+            <div class="topic">
+                <div class="topic-title">3.1 الحاجة لإدارة الذاكرة (Need of Memory Management)</div>
+                <p>لما بنشغل برامج كتير في نفس الوقت، كل عملية (Process) بتحتاج مكان في الذاكرة (الرامات). الـ OS هو المسؤول عن توزيع الذاكرة دي على العمليات المختلفة بشكل منظم عشان محدش يدخل على مساحة التاني.</p>
+                <p>العملية بتحتاج الذاكرة عشان:</p>
+                <div class="source-text">
+• <span class="red-highlight">First</span>, the executable itself may need to be loaded into memory for execution. This is usually the <span class="red-highlight">instructions or the code</span> that needs to be run.
+• The <span class="red-highlight">second</span> item would be the <span class="red-highlight">data part</span> of the executable. These could be hardcoded strings, text, and variables.
+• The <span class="red-highlight">third</span> type of memory requirement could arise from <span class="red-highlight">runtime requests</span> for memory. These could be needed from the <span class="red-highlight">stack/heap</span> for the program to perform its execution.
+                </div>
+                <div class="note">
+                    كمان الـ OS نفسه والـ Kernel بتاعه لازم يكونوا متحملين في الذاكرة. وبعض الأجهزة ممكن تحجز جزء من الذاكرة ليها، زي الطابعة اللي بتحجز مساحة اسمها <span class="red-highlight">spooling</span>.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">3.2 ربط العناوين (Address Binding)</div>
+                <p>دي من أهم النقاط في الدرس. البرنامج كل مرة بيشتغل فيها بيتحمل في مكان مختلف في الذاكرة. ولو العملية خرجت من الذاكرة الرئيسية (الرامات) وراحت للذاكرة الافتراضية (على الهارد ديسك) ورجعت تاني، غالبًا هترجع في مكان جديد.</p>
+                <div class="source-text">
+The program each time executed it is loaded in a <span class="red-highlight">different memory location</span>.
+When the process... may be <span class="red-highlight">swapped out</span> from main memory to virtual memory... the process must <span class="red-highlight">swapped in</span> to main memory which – almost cases- <span class="red-highlight">another location</span> in the main memory.
+                </div>
+                <p>ده معناه إن عناوين المتغيرات والدوال جوه البرنامج بتتغير كل شوية! عشان نحل المشكلة دي، الـ OS بيعمل عملية "ربط" أو "ترجمة" للعناوين.</p>
+                
+                <h4>3.2.1 العنوان المنطقي مقابل العنوان الفيزيائي (Logical Address Vs. Physical Address)</h4>
+                <ul>
+                    <li><strong class="red-highlight">العنوان المنطقي (Logical Address):</strong> ده العنوان اللي بيولده الـ CPU. البرنامج بيتعامل مع الذاكرة كأنها مساحة واحدة متصلة بتبدأ من 0، والعناوين دي هي العناوين المنطقية. بيسموها كمان <span class="red-highlight">Virtual Address</span>.</li>
+                    <li><strong class="red-highlight">العنوان الفيزيائي (Physical Address):</strong> ده العنوان الحقيقي الفعلي للمكان في الرامات. ده اللي وحدة الذاكرة بتشوفه.</li>
+                </ul>
+                <p>المسؤول عن ترجمة العنوان المنطقي لعنوان فيزيائي هو جهاز هاردوير اسمه <strong class="red-highlight">Memory Management Unit (MMU)</strong>.</p>
+                <div class="source-text">
+The <span class="red-highlight">memory management unit (MMU)</span> is responsible for translating virtual addresses or logical addresses to physical addresses.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال توضيحي:</div>
+                    تخيل إنك ساكن في عمارة. العنوان المنطقي بتاعك هو "شقة رقم 5". لكن ساعي البريد (الـ MMU) عشان يوصلك، محتاج يعرف العنوان الفيزيائي اللي هو "شارع الحرية، عمارة 10، الدور التاني". الـ MMU بيترجم "شقة 5" للعنوان الحقيقي ده.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">3.3 التواصل بين العمليات (Inter-process Communication - IPC)</div>
+                <p>أحيانًا العمليات بتحتاج تكلم بعضها عشان تنسق الشغل. الـ OS بيوفر طريقتين أساسيتين عشان ده يحصل:</p>
+                
+                <h4>1. طريقة الذاكرة المشتركة (Shared Memory Method)</h4>
+                <p>في الطريقة دي، الـ OS بيخلق مساحة في الذاكرة بتكون مشتركة بين عمليتين أو أكتر، وكلهم بيقدروا يقروا ويكتبوا فيها. واحدة من العمليات ممكن تكون الـ <span class="red-highlight">Producer</span> (المنتج) اللي بيكتب بيانات، والتانية بتكون الـ <span class="red-highlight">Consumer</span> (المستهلك) اللي بيقرأ البيانات دي.</p>
+                <div class="source-text">
+When two or more processes need to communicate..., they may create a <span class="red-highlight">shared memory area</span> that is accessible by both processes.
+The memory acts as the <span class="red-highlight">communication buffer</span> between these two processes.
+                </div>
+                <div class="note">
+                    <strong>مشكلة مهمة:</strong> الطريقة دي سريعة جدًا لأن مفيش نسخ للداتا، لكنها محتاجة إدارة دقيقة عشان نضمن إن العمليتين ميدخلوش يكتبوا في نفس الوقت ويبوظوا الدنيا. العملية دي اسمها <span class="red-highlight">Synchronization</span> (التزامن)، وهنتكلم عنها بالتفصيل في الدرس الرابع.
+                </div>
+
+                <h4>2. طريقة تمرير الرسائل (Message Passing Method)</h4>
+                <p>هنا مفيش ذاكرة مشتركة مباشرة. العمليات بتتواصل عن طريق إنها تبعت لبعض رسايل من خلال قناة اتصال بيوفرها الـ OS، زي <span class="red-highlight">socket</span> أو <span class="red-highlight">pipe</span>.</p>
+                <div class="source-text">
+The other method is called message passing where the two processes have a <span class="red-highlight">predefined communication link</span> that could be a file system, socket, named pipe, and so on and a protocol-based messaging mechanism that they use to communicate.
+                </div>
+                <p>في الحالة دي، العمليات لازم تتفق على بروتوكول معين للرسايل، وواحدة منهم بتكون <span class="red-highlight">Server</span> والتانية <span class="red-highlight">Client</span>، وبيستخدموا أوامر زي <span class="red-highlight">Send</span> و <span class="red-highlight">Receive</span>.</p>
+                <div class="example">
+                    <div class="example-title">مقارنة بين الطريقتين:</div>
+                    <ul>
+                        <li><strong>Shared Memory:</strong> زي ما يكون فيه سبورة بيضا في مكتب، أي موظف يقدر يكتب عليها والتاني يشوف. سريعة، بس لو اتنين كتبوا في نفس المكان هتحصل لخبطة.</li>
+                        <li><strong>Message Passing:</strong> زي ما تبعت إيميل لزميلك. أبطأ شوية (لأن الإيميل بيتحفظ ويتبعت)، لكنها منظمة أكتر ومفيش لخبطة.</li>
+                    </ul>
+                </div>
+                <div class="note">
+                    بعض أنظمة التشغيل بتوفر <span class="red-highlight">System Calls (APIs)</span> جاهزة عشان تبعت وتستقبل البيانات بين العمليات.
+                </div>
+            </div>
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الدرس الثالث. الملف الجاي هيغطي الدرس الرابع: إدارة الإدخال والإخراج.</strong></p>
+        </div>
+    </div>
+</body>
+</html>
