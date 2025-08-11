@@ -1,908 +1,409 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص شامل لمقدمة نظم التشغيل - Operating Systems</title>
+    <title>Operating Systems & Networks</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
+        * {
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff88;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 1;
         }
 
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 10px #00ff88;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Terminal-style header */
         .header {
             text-align: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 20px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff88;
             border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .lesson {
-            margin-bottom: 30px;
-            background: #f8f9fa;
             padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #007bff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .lesson-title {
-            color: #007bff;
-            font-size: 1.6em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: linear-gradient(90deg, #007bff, #0056b3);
-            color: white;
-            border-radius: 8px;
-            text-align: center;
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #00ff88;
         }
 
-        .topic {
-            margin-bottom: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
         }
 
-        .topic-title {
-            color: #28a745;
-            font-size: 1.4em;
-            font-weight: bold;
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .terminal-btn:nth-child(2) { background: #ffbd2e; }
+        .terminal-btn:nth-child(3) { background: #27ca3f; }
+
+        .terminal-title {
+            margin-left: 15px;
+            font-size: 14px;
+            color: #00ff88;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            padding: 10px;
-            background: #e8f5e8;
-            border-radius: 5px;
+            text-shadow: 0 0 20px #00ff88;
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        .english-text {
-            background: #e3f2fd;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #2196f3;
-            font-style: italic;
-            color: #1565c0;
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+            to { text-shadow: 0 0 30px #00ff88, 0 0 40px #00ff88; }
         }
 
-        .red-highlight {
-            background-color: #ff5722;
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-weight: bold;
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            animation: typewriter 3s steps(40) 1s both;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff88;
         }
 
-        .example {
-            background: #fff3cd;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 8px 0;
-            border: 1px solid #ffeaa7;
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
-        .example-title {
-            font-weight: bold;
-            color: #856404;
-            margin-bottom: 5px;
+        /* Button container */
+        .button-container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        ul, ol {
-            padding-right: 20px;
-        }
-
-        li {
-            margin: 8px 0;
-        }
-
-        .diagram {
-            text-align: center;
-            margin: 15px 0;
-            padding: 10px;
-            background: #f1f3f4;
-            border-radius: 8px;
-        }
-
-        .code {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 10px;
-            border-radius: 8px;
+        /* Navigation buttons */
+        .nav-button {
+            position: relative;
+            background: linear-gradient(145deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px 50px;
             font-family: 'Courier New', monospace;
-            margin: 8px 0;
-            direction: ltr;
-            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
+            display: block;
         }
 
-        /* Responsive adjustments for small screens */
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+            border-color: #00ffaa;
+            color: #00ffaa;
+        }
+
+        .nav-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* Icon styles */
+        .button-icon {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
+            .button-container {
+                flex-direction: column;
+                gap: 30px;
             }
 
-            .lesson-title {
-                font-size: 1.4em;
+            .nav-button {
+                min-width: 250px;
+                padding: 25px 40px;
             }
 
-            .topic-title {
-                font-size: 1.2em;
+            h1 {
+                font-size: 2rem;
             }
 
-            .container {
-                padding: 10px;
+            .subtitle {
+                font-size: 1rem;
             }
+        }
 
-            .lesson {
-                padding: 15px;
-            }
+        /* Circuit lines animation */
+        .circuit-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
 
-            .topic {
-                padding: 12px;
-            }
+        .circuit-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation: circuit 4s linear infinite;
+        }
 
-            .english-text, .example, .note {
-                padding: 10px;
-            }
+        @keyframes circuit {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100vw); opacity: 0; }
         }
     </style>
 </head>
 <body>
+    <!-- Animated background -->
+    <div class="grid-bg"></div>
+    
+    <!-- Floating particles -->
+    <div class="particles"></div>
+    
+    <!-- Circuit lines -->
+    <div class="circuit-lines"></div>
+
+    <!-- Main container -->
     <div class="container">
+        <!-- Terminal-style header -->
         <div class="header">
-            <h1>ملخص شامل لمقدمة نظم التشغيل</h1>
-            <p>Operating Systems - FastTrack Course Summary</p>
-            <p>إعداد: أحمد لطفي - ITI</p>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس الأول: مقدمة عن نظم الحاسوب ونظم التشغيل</div>
-            
-            <div class="topic">
-                <div class="topic-title">1.1 مكونات نظام الحاسوب - Computer System Components</div>
-                <p>النظام بيتكون من 4 حاجات أساسية:</p>
-                
-                <div class="english-text">
-                    • <span class="red-highlight">Hardware</span>: provides basic computing resources (CPU, memory, I/O devices)<br>
-                    • <span class="red-highlight">Operating system</span>: controls and coordinates the use of the hardware among the various application programs for the various users<br>
-                    • <span class="red-highlight">Applications programs</span>: define the ways in which the system resources are used to solve the computing problems of the users (compilers, database systems, video games, business programs)<br>
-                    • <span class="red-highlight">Users</span>: people, machines, other computers
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-btn"></div>
+                        <div class="terminal-btn"></div>
+                        <div class="terminal-btn"></div>
+                    </div>
+                    <div class="terminal-title">Eng.Mohamed_Gomaa.exe</div>
                 </div>
-                
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    لما تشتغل لعبة على الكمبيوتر، اللعبة (Application) بتطلب من نظام التشغيل (OS) إنه يستخدم كارت الشاشة (Hardware) عشان يعرض الرسومات للمستخدم (User).
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">1.2 معمارية فون نيومان - Von Neumann Architecture</div>
-                <p>دي المعمارية الأساسية لأي حاسوب، واللي اتنشرت سنة 1945:</p>
-                
-                <div class="english-text">
-                    <span class="red-highlight">Von Neumann architecture</span> was first published by John von Neumann in 1945. His computer architecture design consists of a <span class="red-highlight">Control Unit (CU), Arithmetic and Logic Unit (ALU), Memory Unit, Registers and Inputs/Outputs</span>. Von Neumann architecture is based on the <span class="red-highlight">stored-program computer concept</span>, where instruction data and program data are stored in the same memory.
-                </div>
-
-                <h4>1.2.1 وحدة المعالجة المركزية - CPU</h4>
-                <div class="english-text">
-                    The <span class="red-highlight">Central Processing Unit (CPU)</span> is the electronic circuit responsible for executing the instructions of a computer program. The CPU contains the <span class="red-highlight">ALU, CU and a variety of registers</span>.
-                </div>
-
-                <h5>الـ Registers المهمة:</h5>
-                <ul>
-                    <li><strong class="red-highlight">MAR (Memory Address Register)</strong>: بيحتفظ بعنوان الذاكرة اللي محتاجين نوصلها</li>
-                    <li><strong class="red-highlight">MDR (Memory Data Register)</strong>: بيحتفظ بالبيانات اللي بتتنقل من وإلى الذاكرة</li>
-                    <li><strong class="red-highlight">PC (Program Counter)</strong>: بيحتوي على عنوان التعليمة الجاية</li>
-                    <li><strong class="red-highlight">CIR (Current Instruction Register)</strong>: بيحتوي على التعليمة الحالية أثناء التنفيذ</li>
-                </ul>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    لما المعالج عايز يجيب رقم من الذاكرة، بيحط العنوان في MAR، وبعدين البيانات بتيجي في MDR، زي ما لو إنت عايز حاجة من الثلاجة، تفتح الباب (MAR) وتاخد اللي عايزه (MDR).
-                </div>
-
-                <h4>1.2.3 الـ Buses</h4>
-                <div class="english-text">
-                    A standard CPU system bus is comprised of a <span class="red-highlight">control bus, data bus and address bus</span>.
-                </div>
-                
-                <ul>
-                    <li><strong>Address Bus:</strong> بينقل عناوين الذاكرة</li>
-                    <li><strong>Data Bus:</strong> بينقل البيانات الفعلية</li>
-                    <li><strong>Control Bus:</strong> بينقل إشارات التحكم</li>
-                </ul>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">1.3 نظام التشغيل - Operating System</div>
-                
-                <div class="english-text">
-                    <span class="red-highlight">An operating system</span>, commonly referred to as the OS, is a program that <span class="red-highlight">controls the execution of other programs</span> running on the system. It acts as a <span class="red-highlight">facilitator and intermediate layer</span> between the different software components and the computer hardware.
-                </div>
-
-                <div class="important">
-                    <strong>الأهداف الثلاثة الرئيسية لأي نظام تشغيل:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Efficiency</span> - الكفاءة في الاستجابة</li>
-                        <li><span class="red-highlight">Ease of usability</span> - سهولة الاستخدام</li>
-                        <li><span class="red-highlight">Ability to abstract and extend</span> - القدرة على التجريد والتوسع</li>
-                    </ul>
-                </div>
-
-                <h4>مكونات نظام التشغيل الأساسية:</h4>
-                <div class="english-text">
-                    There is a <span class="red-highlight">core part (kernel)</span> that handles the complex, low-level functionalities and must be running at all times. There are generally some <span class="red-highlight">libraries, applications, and tools</span> that are shipped with the OS.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">أمثلة على أنظمة التشغيل:</div>
-                    <ul>
-                        <li>Microsoft Windows</li>
-                        <li>GNU/Linux-based OS</li>
-                        <li>macOS (للكمبيوترات)</li>
-                        <li>iOS (للآيفون والآيباد)</li>
-                        <li>Android (للهواتف الذكية)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">1.4 ليه محتاجين نظام التشغيل؟</div>
-                
-                <div class="english-text">
-                    The purpose of the operating system is to ensure that it <span class="red-highlight">abstracts the HW and facilitates the seamless execution</span> of our applications using the system.
-                </div>
-
-                <h4>1.4.1 الأنظمة المعقدة ومتعددة المعالجات</h4>
-                <div class="english-text">
-                    When all cores provide the same capabilities, they are called as <span class="red-highlight">homogeneous platforms</span>. There could also be systems that provide different capabilities on different CPU cores. These are called <span class="red-highlight">heterogeneous platforms</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    الموبايل الحديث فيه معالج رئيسي للتطبيقات ومعالج منفصل للجرافيكس (GPU)، نظام التشغيل بيوزع الشغل عليهم بذكاء - التطبيقات العادية على المعالج الرئيسي، والألعاب والفيديوهات على معالج الجرافيكس.
-                </div>
-
-                <h4>1.4.2 تعدد المهام - Multitasking</h4>
-                <div class="english-text">
-                    There could be <span class="red-highlight">many applications</span> that may need to be running on the system <span class="red-highlight">at the same time</span>. These could include applications that the <span class="red-highlight">user initiated</span> ("foreground") and applications that the <span class="red-highlight">OS has initiated</span> in the "background".
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">1.7 مسؤوليات نظام التشغيل</div>
-                
-                <div class="english-text">
-                    The OS performs different functions and handles multiple responsibilities. They are broadly classified into the following functional areas: <span class="red-highlight">Scheduling, Memory management, I/O and resource management, Access and protection, File systems, User interface/shell</span>.
-                </div>
-
-                <div class="note">
-                    <strong>المسؤوليات الأساسية:</strong>
-                    <ul>
-                        <li><strong>Scheduling:</strong> جدولة تنفيذ البرامج</li>
-                        <li><strong>Memory Management:</strong> إدارة الذاكرة</li>
-                        <li><strong>I/O Management:</strong> إدارة أجهزة الإدخال والإخراج</li>
-                        <li><strong>File Systems:</strong> إدارة الملفات</li>
-                        <li><strong>Access and Protection:</strong> الحماية والأمان</li>
-                        <li><strong>User Interface:</strong> واجهة المستخدم</li>
-                    </ul>
-                </div>
+                <h1>SYSTEM PORTAL</h1>
+                <div class="subtitle">Choose your path to explore the digital realm...</div>
             </div>
         </div>
 
-        <div class="lesson">
-            <div class="lesson-title">الدرس الثاني: العمليات والجدولة - Processes and Scheduling</div>
-            
-            <div class="topic">
-                <div class="topic-title">2.2 مفهوم البرنامج والعملية - Program vs Process</div>
-                
-                <div class="english-text">
-                    When a software developer builds a solution, this is typically referred to as the <span class="red-highlight">program</span>. When the program gets triggered to run, the OS assigns a process ID and other metrics for tracking. At the highest level, an <span class="red-highlight">executing program is tracked as a process</span> in the OS.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    ملف Word.exe ده برنامج (Program) موجود على الهارد ديسك، لكن لما تفتحه وتشتغل عليه، ساعتها بيبقى عملية (Process) شغالة في نظام التشغيل.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.3 محتويات العملية - Process Contents</div>
-                
-                <div class="english-text">
-                    A process contains: <span class="red-highlight">Text section (Program instructions), Data Section (Global and Static Variables), Stack Section (Local variables, Return addresses, Method parameters), PC (Next instruction address), Heap section (Dynamic Allocation at run-time)</span>.
-                </div>
-
-                <div class="diagram">
-                    <strong>بنية العملية في الذاكرة:</strong><br>
-                    📚 Text Section (التعليمات)<br>
-                    📊 Data Section (المتغيرات العامة)<br>
-                    📍 PC (عداد البرنامج)<br>
-                    🗃️ Stack (المتغيرات المحلية)<br>
-                    🏗️ Heap (الذاكرة الديناميكية)
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.4 حالات العملية - Process States</div>
-                
-                <div class="english-text">
-                    Process states: <span class="red-highlight">New</span> (The process is being created), <span class="red-highlight">Running</span> (Instructions are being executed), <span class="red-highlight">Waiting</span> (The process is waiting for some event to occur), <span class="red-highlight">Ready</span> (The process is waiting to be assigned to a processor), <span class="red-highlight">Terminated</span> (The process has finished execution).
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    لما تفتح متصفح الإنترنت:
-                    <ul>
-                        <li><strong>New:</strong> النظام بيحضر البرنامج من الهارد ديسك</li>
-                        <li><strong>Ready:</strong> البرنامج جاهز للتشغيل بس مستني دوره</li>
-                        <li><strong>Running:</strong> المعالج بيشغل البرنامج فعلياً</li>
-                        <li><strong>Waiting:</strong> البرنامج مستني صفحة ويب تتحمل</li>
-                        <li><strong>Terminated:</strong> لما تقفل المتصفح</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.5 كتلة التحكم في العملية - Process Control Block (PCB)</div>
-                
-                <div class="english-text">
-                    PCB contains: <span class="red-highlight">Pointer, Process state, Priority, Program counter, CPU registers, Memory management info, I/O status information, Accounting Information</span>.
-                </div>
-
-                <div class="note">
-                    <strong>معلومات مهمة في PCB:</strong>
-                    <ul>
-                        <li><strong class="red-highlight">Process ID:</strong> رقم تعريف فريد للعملية</li>
-                        <li><strong class="red-highlight">Process State:</strong> الحالة الحالية للعملية</li>
-                        <li><strong class="red-highlight">Priority:</strong> أولوية العملية (high, medium, low)</li>
-                        <li><strong class="red-highlight">Program Counter:</strong> عنوان التعليمة التالية</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.6 تبديل السياق - Context Switching</div>
-                
-                <div class="english-text">
-                    When the OS needs to swap a currently executing process with another process, it must do the following steps: <span class="red-highlight">1. Pause the currently executing process and save the context. 2. Switch to the new process. 3. When starting a new process, the OS must set the context appropriately</span> for that process.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    زي الطباخ اللي بيطبخ أكل كتير في نفس الوقت، لما يسيب الأرز (Process A) ويروح يشوف الملوخية (Process B)، لازم يفتكر إيه اللي كان بيعمله في الأرز عشان يرجعله تاني بنفس النقطة.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.7 الجدولة - Scheduling</div>
-                
-                <div class="english-text">
-                    The operating system uses process scheduling queues: <span class="red-highlight">Ready Queue</span> (processes ready to be scheduled), <span class="red-highlight">Waiting Queue</span> (processes blocked by I/O or waiting for resources), <span class="red-highlight">Job queue</span> (maintains all processes in the system).
-                </div>
-
-                <h4>معايير الجدولة - Scheduling Criteria</h4>
-                <div class="english-text">
-                    Typical metrics: <span class="red-highlight">CPU Utilization, Volume/Execution Throughput, Responsiveness, Resource Waiting Time</span>. Most OSs try to ensure there is <span class="red-highlight">fairness and liveness</span> in scheduling.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">خوارزميات الجدولة:</div>
-                    <ul>
-                        <li><strong>FCFS:</strong> First Come, First Serve - أول واحد يجي أول واحد يتخدم</li>
-                        <li><strong>SJF:</strong> Shortest Job First - الشغل الأقصر الأول</li>
-                        <li><strong>Round-Robin:</strong> كل واحد ياخد وقت محدد بالدور</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">2.8 مفهوم الخيوط - Threads</div>
-                
-                <div class="english-text">
-                    A <span class="red-highlight">thread is nothing more than a lightweight process</span>. When a process gets executed, it could create one or more threads internally that can be executed on the processor. <span class="red-highlight">Threads help in performing parallelism within the same process</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    في برنامج الشات، في thread واحد مسؤول عن إرسال الرسائل وthread تاني مسؤول عن استقبالها، عشان تقدر تكتب وتستقبل في نفس الوقت.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس الثالث: إدارة الذاكرة - Memory Management</div>
-            
-            <div class="topic">
-                <div class="topic-title">3.1 الحاجة لإدارة الذاكرة</div>
-                
-                <div class="english-text">
-                    Processes may need memory for various reasons: First, the <span class="red-highlight">executable itself may need to be loaded into memory</span> for execution (instructions/code). The second item would be the <span class="red-highlight">data part of the executable</span> (hardcoded strings, text, variables). The third type could arise from <span class="red-highlight">runtime requests for memory from stack/heap</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    لما تفتح برنامج فوتوشوب، النظام محتاج:
-                    <ul>
-                        <li>مكان للبرنامج نفسه (التعليمات)</li>
-                        <li>مكان للصور اللي بتشتغل عليها (البيانات)</li>
-                        <li>مكان للعمليات المؤقتة (Stack/Heap)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">3.2 ربط العناوين - Address Binding</div>
-                
-                <div class="english-text">
-                    The program each time executed it is loaded in a different memory location. When the process is swapped out from main memory to virtual memory, and when it returns, it's <span class="red-highlight">almost always in another location in main memory</span>. The common solution is to <span class="red-highlight">map the program's compiled addresses to the actual address in physical memory</span>.
-                </div>
-
-                <h4>العناوين المنطقية مقابل الفيزيائية</h4>
-                <div class="english-text">
-                    A program will have <span class="red-highlight">symbolic addresses</span> that get translated into <span class="red-highlight">relative addresses (Logical Address)</span> when compiled. The <span class="red-highlight">memory management unit</span> is responsible for translating virtual addresses or logical addresses to physical addresses.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">3.3 التواصل بين العمليات - Inter-process Communication (IPC)</div>
-                
-                <div class="english-text">
-                    The two common ways are: <span class="red-highlight">Shared memory and Message passing</span>.
-                </div>
-
-                <h4>3.3.1 الذاكرة المشتركة - Shared Memory</h4>
-                <div class="english-text">
-                    Two or more processes create a <span class="red-highlight">shared memory area</span> that is accessible by both processes. One process may act as the <span class="red-highlight">producer of data</span>, while the other could act as the <span class="red-highlight">consumer of data</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    زي لوحة في المطبخ، الماما بتكتب عليها قائمة المشتريات (Producer)، والبابا بيقراها لما يروح السوق (Consumer).
-                </div>
-
-                <h4>3.3.2 تمرير الرسائل - Message Passing</h4>
-                <div class="english-text">
-                    The two processes have a <span class="red-highlight">predefined communication link</span> that could be a file system, socket, named pipe, and so on and a <span class="red-highlight">protocol-based messaging mechanism</span> using Send and Receive commands.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس الرابع: إدارة الإدخال والإخراج - I/O Management</div>
-            
-            <div class="topic">
-                <div class="topic-title">4.1 الحاجة لإدارة I/O</div>
-                
-                <div class="english-text">
-                    There could be multiple devices connected that perform different input-output functions. They vary in the form of <span class="red-highlight">protocols, speed, error reporting mechanisms</span>. The OS presents a <span class="red-highlight">unified I/O system that abstracts the complexity</span> from applications.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">أمثلة على أجهزة I/O:</div>
-                    <ul>
-                        <li><strong>للتفاعل البشري:</strong> شاشة، لوحة مفاتيح، فأرة</li>
-                        <li><strong>للتخزين:</strong> هارد ديسك، فلاشة</li>
-                        <li><strong>للشبكات:</strong> Wi-Fi، إيثرنت، بلوتوث</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.2 نظام I/O الفرعي</div>
-                
-                <div class="english-text">
-                    There is a software component in kernel mode called the <span class="red-highlight">"device driver"</span> that handles all interfaces with a device. It helps with communicating between the device and the OS and <span class="red-highlight">abstracts the device specifics</span>.
-                </div>
-
-                <div class="note">
-                    <strong>البروتوكولات الشائعة:</strong>
-                    <ul>
-                        <li><strong class="red-highlight">PCIe:</strong> للأجهزة عالية السرعة</li>
-                        <li><strong class="red-highlight">I2C:</strong> للأجهزة البسيطة</li>
-                        <li><strong class="red-highlight">ACPI:</strong> لإدارة الطاقة</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.3 فئات أجهزة I/O</div>
-                
-                <div class="english-text">
-                    The I/O devices can be broadly divided into two categories called <span class="red-highlight">block and character devices</span>.
-                </div>
-
-                <h4>4.3.1 أجهزة الكتل - Block Devices</h4>
-                <div class="english-text">
-                    These are devices with which the I/O device controller communicates by sending <span class="red-highlight">blocks of data</span>. A <span class="red-highlight">block is referred to as a group of bytes</span> that are referred together for Read/Write purposes. Example: <span class="red-highlight">flash memory, digital camera</span>.
-                </div>
-
-                <h4>4.3.2 أجهزة الحروف - Character Devices</h4>
-                <div class="english-text">
-                    The communication happens by <span class="red-highlight">sending and receiving single characters</span>, which is usually a byte or an octet. Many serial port devices like <span class="red-highlight">keyboards, sensor devices, and microcontrollers</span> follow this mechanism.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">الفرق بين النوعين:</div>
-                    <ul>
-                        <li><strong>Block Device:</strong> هارد ديسك - بيقرأ ويكتب مجموعات كبيرة من البيانات مرة واحدة</li>
-                        <li><strong>Character Device:</strong> لوحة المفاتيح - بتبعت حرف واحد في المرة</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.4 فئات بروتوكولات I/O</div>
-                
-                <div class="english-text">
-                    There are three main categories of I/O protocols: <span class="red-highlight">Special Instruction I/O, Memory-Mapped I/O, Direct Memory Access (DMA)</span>.
-                </div>
-
-                <h4>4.4.1 I/O بتعليمات خاصة - Special Instruction I/O</h4>
-                <div class="english-text">
-                    There could be <span class="red-highlight">specific CPU instructions</span> that are custom developed for communicating with and controlling the I/O devices. <span class="red-highlight">Each device has a unique I/O address</span>. However, such type of I/Os are <span class="red-highlight">special and smaller in number</span>.
-                </div>
-
-                <h4>4.4.2 I/O معين للذاكرة - Memory-Mapped I/O (MMIO)</h4>
-                <div class="english-text">
-                    The <span class="red-highlight">most common form of I/O protocol</span>. The device and OS agree on a <span class="red-highlight">common address range</span> carved out by the OS, and the I/O device makes reads and writes from/to this space. <span class="red-highlight">MMIO is effective for high-speed communication</span> for network and graphics devices.
-                </div>
-
-                <h4>4.4.3 الوصول المباشر للذاكرة - Direct Memory Access (DMA)</h4>
-                <div class="english-text">
-                    For devices that run at a <span class="red-highlight">slower speed than supported by the CPU</span>, the OS <span class="red-highlight">grants authority to another controller</span> (DMA controller) to <span class="red-highlight">interrupt the CPU after a specific data transfer is complete</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال على DMA:</div>
-                    لما تنسخ ملف كبير من فلاشة لهارد ديسك، المعالج مش محتاج يتدخل في كل byte، DMA controller بيعمل النسخ لوحده ويقول للمعالج لما يخلص.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.5 آليات التعامل مع المقاطعات - Interrupt Handling</div>
-                
-                <div class="english-text">
-                    <span class="red-highlight">Polling or programmed I/O</span>: examine interrupt information periodically. <span class="red-highlight">Interrupt-Driven I/O</span>: there is an <span class="red-highlight">interrupt vector</span> which contains the addresses for all <span class="red-highlight">Interrupt Service Routines (ISR)</span> according to the <span class="red-highlight">Interrupt Request Number (IRQ)</span>. Most OSs use this mechanism.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.6 I/O المتزامن مقابل غير المتزامن</div>
-                
-                <div class="english-text">
-                    <span class="red-highlight">Synchronous I/O</span>: Process request I/O operation → I/O operation is started → I/O Operation is complete → Control is returned to the user process.<br>
-                    <span class="red-highlight">Asynchronous I/O</span>: Process Request I/O operation → I/O operation is started → <span class="red-highlight">Control is returned immediately</span> to the user process → I/O continues while system operations occur.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    <ul>
-                        <li><strong>Synchronous:</strong> لما تطبع ورقة، البرنامج مستني لحد ما الطابعة تخلص</li>
-                        <li><strong>Asynchronous:</strong> لما تحمل فيديو من النت، تقدر تعمل حاجات تانية أثناء التحميل</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.7 التزامن والمقاطع الحرجة - Synchronization</div>
-                
-                <div class="english-text">
-                    In multi-threaded applications, if one thread tries to change the value of shared data at the same time as another thread tries to read the value, there could be a <span class="red-highlight">race condition</span>. The access to such shared variables needs to be <span class="red-highlight">synchronized to protect it from being corrupted</span>.
-                </div>
-
-                <h4>4.7.1 Mutex</h4>
-                <div class="english-text">
-                    A mutex is used for implementing <span class="red-highlight">mutual exclusion</span>: either of the participating processes or threads can have the key (mutex) and proceed with their work. <span class="red-highlight">The other one would have to wait</span> until the one holding the mutex finishes.
-                </div>
-
-                <h4>4.7.2 Semaphore</h4>
-                <div class="english-text">
-                    A semaphore is a <span class="red-highlight">generalized mutex</span>. A <span class="red-highlight">binary semaphore</span> can assume a value of 0/1 and can be used to perform locks to certain critical sections.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي على Mutex:</div>
-                    زي دورة المياه في المكتب، لما حد يدخل بيقفل الباب (ياخد الـ mutex)، والباقي لازم يستنوا لحد ما يخرج ويسيب الباب مفتوح (يسيب الـ mutex).
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">4.8 التعطل - Deadlocks</div>
-                
-                <div class="english-text">
-                    When a set of processes become <span class="red-highlight">blocked because each process is holding a resource and waiting for another resource</span> acquired by some other process. This is called a <span class="red-highlight">deadlock</span>.
-                </div>
-
-                <div class="important">
-                    <strong>الشروط الأربعة للـ Deadlock:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Mutual Exclusion</span> - مورد لا يمكن مشاركته</li>
-                        <li><span class="red-highlight">Hold and Wait</span> - العملية تحتفظ بمورد وتنتظر آخر</li>
-                        <li><span class="red-highlight">No Preemption</span> - لا يمكن أخذ المورد بالقوة</li>
-                        <li><span class="red-highlight">Circular Wait</span> - انتظار دائري بين العمليات</li>
-                    </ul>
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال كلاسيكي على Deadlock:</div>
-                    عندك عربيتين في طريق ضيق، كل واحد محتاج الطريق الثاني عشان يعدي، بس مش حد فيهم عايز يرجع، فالاتنين هيقعدوا واقفين للأبد.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس الخامس: أنظمة الملفات - File Systems</div>
-            
-            <div class="topic">
-                <div class="topic-title">5.1 الحاجة لأنظمة الملفات</div>
-                
-                <div class="english-text">
-                    Applications often need to <span class="red-highlight">read and write files</span> to achieve their goals. OS file systems have two main components: <span class="red-highlight">Directory Service</span> (manage files in a structured manner, manage access, provide Read-Write-Edit controls) and <span class="red-highlight">Storage Service</span> (communicate to underlying hardware such as disk).
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    لما تحفظ صورة من الواتساب، نظام الملفات بيعمل:
-                    <ul>
-                        <li>يدور على مكان فاضي في الذاكرة (Storage Service)</li>
-                        <li>يحط الصورة في مجلد الصور (Directory Service)</li>
-                        <li>يسجل اسم الملف وتاريخه (File Control Block)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">5.2 مفهوم الملف - File Concept</div>
-                
-                <div class="english-text">
-                    From the user perspective, a file is a <span class="red-highlight">collection of related data</span> that is stored together and can be accessed using a <span class="red-highlight">unique file ID (file name)</span>. There could be different file formats like <span class="red-highlight">.bin files (sequence of bytes), EXE files (specific headers, body, controls), JSON, XML</span>.
-                </div>
-
-                <div class="english-text">
-                    The common attributes include the <span class="red-highlight">location of the file, file extension, size, access controls, and history of operations</span>. Some of these are part of the <span class="red-highlight">file control block</span>.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">5.3 مساحة أسماء المجلدات - Directory Name Space</div>
-                
-                <div class="english-text">
-                    Most OSs organize their files in a <span class="red-highlight">hierarchical form with files organized inside folders</span>. Each folder is a <span class="red-highlight">directory</span>. This structure is called the <span class="red-highlight">directory namespace</span>. The directory namespaces can be <span class="red-highlight">multileveled and adaptive</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال على التسلسل الهرمي:</div>
-                    C:\ → Users → Ahmed → Documents → Projects → MyProject → file.txt
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">5.4 التحكم في الوصول - Access Control</div>
-                
-                <div class="english-text">
-                    The OS provides different <span class="red-highlight">access control IDs and permissions</span> to different users on the system. Each file may have <span class="red-highlight">different levels of permissions</span> to Read, Write, Modify. The file system provides and manages the <span class="red-highlight">controls to all files when accessed at runtime</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال على الصلاحيات:</div>
-                    <ul>
-                        <li><strong>Read:</strong> تقدر تفتح الملف وتشوفه بس</li>
-                        <li><strong>Write:</strong> تقدر تعدل في الملف</li>
-                        <li><strong>Execute:</strong> تقدر تشغل الملف (للبرامج)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">5.5 التحكم في التزامن والتنظيف</div>
-                
-                <div class="english-text">
-                    The OS needs to <span class="red-highlight">ensure that a file is not moved or deleted when it is in use</span>. The OS needs to <span class="red-highlight">periodically clear temporarily created files</span> using a <span class="red-highlight">garbage collector</span> on the system.
-                </div>
-
-                <div class="note">
-                    <strong>إدارة الملفات المؤقتة:</strong>
-                    النظام بيحذف الملفات اللي مش محتاجها تلقائياً، زي ملفات الـ cache والملفات المؤقتة عشان ميخلصش مساحة الهارد.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس السادس: الوصول والحماية - Access and Protection</div>
-            
-            <div class="topic">
-                <div class="topic-title">6.1 الحماية والوصول</div>
-                
-                <div class="english-text">
-                    Even in a single-user system, there is still a <span class="red-highlight">need to protect program resources from other applications</span> and protect <span class="red-highlight">critical devices</span> on the system. There is always a need to <span class="red-highlight">connect and share resources between systems</span>. The OS provides APIs that help with <span class="red-highlight">access control and protection</span>.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">6.2 وضع المستخدم ووضع النواة - User Mode and Kernel Mode</div>
-                
-                <div class="english-text">
-                    OS divides the program execution privileges into <span class="red-highlight">different rings</span>. Programs running in specific rings are associated with <span class="red-highlight">specific access levels and privileges</span>. Applications and user-mode services running in <span class="red-highlight">Ring 3</span> would not be able to access hardware directly. The <span class="red-highlight">drivers running on Ring 0</span> level would have the <span class="red-highlight">highest privileges and access to hardware</span>. Most OSs only leverage <span class="red-highlight">Ring 0 and Ring 3</span>.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    <ul>
-                        <li><strong>Ring 0 (Kernel Mode):</strong> نظام التشغيل والـ drivers - ليهم صلاحية كاملة</li>
-                        <li><strong>Ring 3 (User Mode):</strong> التطبيقات العادية - محدودة الصلاحيات</li>
-                    </ul>
-                    لما تحاول تنصب driver جديد، النظام بيطلب منك Administrator لأنه محتاج يدخل Ring 0.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">الدرس السابع: المحاكاة الافتراضية وواجهة المستخدم - Virtualization and UI</div>
-            
-            <div class="topic">
-                <div class="topic-title">7.1 المحاكاة الافتراضية - Virtualization</div>
-                
-                <div class="english-text">
-                    Operating systems provide <span class="red-highlight">virtualization</span> that virtualizes the hardware such that each calling environment believes it has <span class="red-highlight">dedicated access</span>. Virtualization is delivered via <span class="red-highlight">virtual machines (VMs)</span>. A VM has its own <span class="red-highlight">guest OS</span>, which may be different from the <span class="red-highlight">host OS</span>. The <span class="red-highlight">host OS provides a hypervisor</span> which manages access to hardware.
-                </div>
-
-                <div class="important">
-                    <strong>مزايا الـ Virtualization:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Run operating systems where physical hardware is unavailable</span></li>
-                        <li><span class="red-highlight">Easier to create new machines, backup machines</span></li>
-                        <li><span class="red-highlight">Software testing using "clean" installs</span></li>
-                        <li><span class="red-highlight">Emulate more machines than physically available</span></li>
-                        <li><span class="red-highlight">Debug problems (suspend and resume)</span></li>
-                        <li><span class="red-highlight">Easy migration of virtual machines</span></li>
-                        <li><span class="red-highlight">Run legacy systems</span></li>
-                    </ul>
-                </div>
-
-                <div class="example">
-                    <div class="example-title">مثال عملي:</div>
-                    تقدر تشغل Windows جوا Mac باستخدام VMware، كل نظام شغال لوحده ومش بيأثر على التاني، والاتنين بيتقاسموا نفس الهاردوير.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">7.2 الحماية - Protection</div>
-                
-                <div class="english-text">
-                    There could be different <span class="red-highlight">security threats</span> during computer usage. A <span class="red-highlight">threat</span> could be any local or remote program attempting to <span class="red-highlight">compromise the integrity of resources</span>. Modern OSs implement checks to <span class="red-highlight">detect and protect against such incursions</span>. The common protection is to <span class="red-highlight">authenticate the requester and apply authorization</span> to any new request.
-                </div>
-
-                <div class="english-text">
-                    The OS may have <span class="red-highlight">Access Control Lists (ACLs)</span> that contain mapping of system resources to different permission levels. The OS may also provide services to <span class="red-highlight">encrypt and verify certificates</span>.
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="topic-title">7.3 واجهة المستخدم والشيل - User Interface and Shell</div>
-                
-                <div class="english-text">
-                    The <span class="red-highlight">user interface (UI)</span> is typically considered an <span class="red-highlight">integral part of the OS</span>. There can be multiple user interfaces implemented either as <span class="red-highlight">text-based interface or graphical-based interface</span>. The <span class="red-highlight">graphical user interface</span> is the rich set of graphical front-end interfaces. There could be an alternate <span class="red-highlight">command line shell interface</span> (text-based). It is common for <span class="red-highlight">programmers to use the shell interface</span> instead of GUI.
-                </div>
-
-                <div class="example">
-                    <div class="example-title">أمثلة على واجهات المستخدم:</div>
-                    <ul>
-                        <li><strong>GUI:</strong> سطح المكتب في Windows مع الأيقونات والنوافذ</li>
-                        <li><strong>CLI:</strong> Command Prompt أو PowerShell في Windows</li>
-                        <li><strong>Shell:</strong> Bash في Linux</li>
-                    </ul>
-                </div>
-
-                <div class="note">
-                    <strong>أهمية معرفة واجهة المستخدم للمطورين:</strong>
-                    المطور لازم يعرف نوع الواجهة عشان يختار لغة البرمجة المناسبة ويتعامل مع الـ command line arguments والـ input-output pipes صح.
-                </div>
-            </div>
-        </div>
-
-        <div class="lesson">
-            <div class="lesson-title">ملخص سريع للامتحان - Quick Review for MCQ</div>
-            
-            <div class="topic">
-                <div class="topic-title">🔴 النقاط الأساسية للامتحان</div>
-                
-                <div class="important">
-                    <strong>مكونات النظام الأساسية:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Hardware, Operating System, Applications, Users</span></li>
-                        <li><span class="red-highlight">Von Neumann Architecture: CPU (ALU + CU + Registers), Memory, I/O</span></li>
-                        <li><span class="red-highlight">Three main buses: Address, Data, Control</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>العمليات والجدولة:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Process States: New, Ready, Running, Waiting, Terminated</span></li>
-                        <li><span class="red-highlight">PCB contains: Process ID, State, Priority, Program Counter</span></li>
-                        <li><span class="red-highlight">Context Switching: Save → Switch → Restore</span></li>
-                        <li><span class="red-highlight">Scheduling Queues: Ready, Waiting, Job Queue</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>إدارة الذاكرة:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Address Binding: Symbolic → Logical → Physical</span></li>
-                        <li><span class="red-highlight">IPC Methods: Shared Memory, Message Passing</span></li>
-                        <li><span class="red-highlight">Memory Management Unit (MMU)</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>I/O Management:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Device Types: Block Devices, Character Devices</span></li>
-                        <li><span class="red-highlight">I/O Protocols: Special Instructions, MMIO, DMA</span></li>
-                        <li><span class="red-highlight">Synchronous vs Asynchronous I/O</span></li>
-                        <li><span class="red-highlight">Synchronization: Mutex, Semaphore</span></li>
-                        <li><span class="red-highlight">Deadlock Conditions: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>أنظمة الملفات:</strong>
-                    <ul>
-                        <li><span class="red-highlight">File System Components: Directory Service, Storage Service</span></li>
-                        <li><span class="red-highlight">File Attributes: Location, Extension, Size, Access Controls</span></li>
-                        <li><span class="red-highlight">Directory Namespace: Hierarchical Structure</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>الحماية والأمان:</strong>
-                    <ul>
-                        <li><span class="red-highlight">Privilege Rings: Ring 0 (Kernel), Ring 3 (User)</span></li>
-                        <li><span class="red-highlight">Access Control: Authentication, Authorization</span></li>
-                        <li><span class="red-highlight">Virtualization: VM, Guest OS, Host OS, Hypervisor</span></li>
-                    </ul>
-                </div>
-
-                <div class="important">
-                    <strong>واجهة المستخدم:</strong>
-                    <ul>
-                        <li><span class="red-highlight">UI Types: Graphical (GUI), Text-based (CLI)</span></li>
-                        <li><span class="red-highlight">Shell Interface for programmers</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="note" style="text-align: center; margin-top: 40px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); color: white; padding: 25px;">
-            <h3>🎯 نصائح للامتحان</h3>
-            <p>ركز على المصطلحات المكتوبة باللون <span style="background: #ff5722; padding: 2px 4px; border-radius: 3px;">الأحمر</span> دي هتكون أساس أسئلة الـ MCQ</p>
-            <p>اقرأ الأمثلة العملية كويس لأنها هتساعدك تفهم المفاهيم وتطبقها في الأسئلة</p>
-            <p><strong>بالتوفيق! 🚀</strong></p>
+        <!-- Navigation buttons -->
+        <div class="button-container">
+            <a href="os.html" class="nav-button" id="osButton">
+                <span class="button-icon">🖥️</span>
+                Operating Systems
+            </a>
+            <a href="nw.html" class="nav-button" id="nwButton">
+                <span class="button-icon">🌐</span>
+                Networks
+            </a>
         </div>
     </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create circuit lines
+        function createCircuitLines() {
+            const circuitContainer = document.querySelector('.circuit-lines');
+            setInterval(() => {
+                const line = document.createElement('div');
+                line.className = 'circuit-line';
+                line.style.top = Math.random() * 100 + '%';
+                line.style.width = Math.random() * 200 + 100 + 'px';
+                line.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                circuitContainer.appendChild(line);
+
+                // Remove line after animation
+                setTimeout(() => {
+                    line.remove();
+                }, 4000);
+            }, 2000);
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1' || e.key === 'o' || e.key === 'O') {
+                window.location.href = 'os.html';
+            } else if (e.key === '2' || e.key === 'n' || e.key === 'N') {
+                window.location.href = 'nw.html';
+            }
+        });
+
+        // Add sound effects (visual feedback)
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.filter = 'brightness(1.2)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.filter = 'brightness(1)';
+            });
+            
+            button.addEventListener('click', (e) => {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(0, 255, 136, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.style.width = ripple.style.height = size + 'px';
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize effects
+        createParticles();
+        createCircuitLines();
+
+        // Console easter egg
+        console.log(`
+        ╔══════════════════════════════════════╗
+        ║          SYSTEM PORTAL v2.0          ║
+        ║                                      ║
+        ║  Keyboard shortcuts:                 ║
+        ║  Press '1' or 'O' for OS            ║
+        ║  Press '2' or 'N' for Networks      ║
+        ║                                      ║
+        ║  Welcome to the digital realm!       ║
+        ╚══════════════════════════════════════╝
+        `);
+    </script>
 </body>
 </html>
