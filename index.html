@@ -1,0 +1,1044 @@
+One Html File Code
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص مادة أنظمة التشغيل</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 25px;
+        }
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.6em; }
+        h3 { font-size: 1.3em; }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        b {
+            color: #d35400; /* Darker orange for emphasis */
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            direction: ltr; /* Ensure English text remains LTR */
+            text-align: left;
+        }
+        sub {
+            font-size: 0.8em;
+            color: #666;
+            display: block;
+            margin-top: 5px;
+        }
+        .highlight-red {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ملخص شامل لمادة أنظمة التشغيل (Operating Systems)</h1>
+
+        <p>أهلاً بك! بناءً على المصادر اللي قدمتها لي، هنلخص سوا أهم المعلومات والمفاهيم في مادة الـ Operating Systems بالعامية المصرية عشان تكون فاهمها كويس، مع الاحتفاظ بالمصطلحات الإنجليزية زي ما هي. وهنحط أمثلة عملية صغيرة عشان نفهم أكتر مش نحفظ بس، وهتلاقي تحت كل شرح أهم الجمل الإنجليزية من المصدر اللي ممكن تيجي في امتحان الـ MCQ، ومحددة باللون الأحمر.</p>
+
+        <h2>نظرة عامة على الكورس</h2>
+        <p>الكورس ده كله مدته <b>6 ساعات</b> متقسم على <b>محاضرتين</b> [1]. بعد ما تخلص كل الكورسات الأساسية والمفاهيم، هيكون فيه <b>امتحان شامل</b> عشان يحدد تقييمك [1]. المادة دي بتركز على تجديد مسارات هندسة البرمجيات (SWE Tracks) بناءً على SWEBOK V3.0 [1].</p>
+        <p><b>المواضيع اللي بيغطيها الكورس:</b></p>
+        <ul>
+            <li>الدرس الأول: مقدمة لأنظمة الكمبيوتر والـ Operating System [2]</li>
+            <li>الدرس الثاني: العمليات (Processes) والجدولة (Scheduling) [2]</li>
+            <li>الدرس الثالث: إدارة الذاكرة (Memory Management) [2]</li>
+            <li>الدرس الرابع: إدارة الـ I/O (Input/Output) [2]</li>
+            <li>الدرس الخامس: أنظمة الملفات (File Systems) [2]</li>
+            <li>الدرس السادس: الوصول والحماية (Access and Protection) [2]</li>
+            <li>الدرس السابع: المحاكاة الافتراضية (Virtualization) وواجهة المستخدم (User Interface) و الـ Shells [2]</li>
+        </ul>
+        <p>Source Text:</p>
+        <pre>
+* Duration: <span class="highlight-red">6 hours</span>
+* 2 Lectures (6 hours)
+* Evaluation Criteria: A <span class="highlight-red">comprehensive exam</span> after finishing all the main conceptual courses [1]
+* Lesson 1: <span class="highlight-red">Introduction to Computer System and Operating System</span>
+* Lesson 2: <span class="highlight-red">Processes and Scheduling</span>
+* Lesson 3: <span class="highlight-red">Memory Management</span>
+* Lesson 4: <span class="highlight-red">I/O Management</span>
+* Lesson 5: <span class="highlight-red">File Systems</span>
+* Lesson 6: <span class="highlight-red">Access and Protection</span>
+* Lesson 7: <span class="highlight-red">Virtualization and User Interface and Shells</span> [2]
+        </pre>
+        <sub>[1, 2]</sub>
+
+        <h2>1. مكونات نظام الكمبيوتر (Computer System Components)</h2>
+        <p>أي نظام كمبيوتر بيتكون من أربع حاجات أساسية بتشتغل مع بعض [3]:</p>
+        <ul>
+            <li><b>الأجهزة (Hardware):</b> دي الحاجات الأساسية اللي بتدينا موارد الكمبيوتر زي الـ CPU (البروسيسور)، والذاكرة (Memory)، وأجهزة الـ I/O (زي الكيبورد والشاشة) [3].</li>
+            <li><b>نظام التشغيل (Operating System - OS):</b> ده البرنامج اللي <b>بيتحكم وينسق استخدام الأجهزة</b> دي بين البرامج المختلفة والمستخدمين المختلفين [3].</li>
+            <li><b>برامج التطبيقات (Applications Programs):</b> دي البرامج اللي بتحدد إزاي موارد النظام بتستخدم عشان تحل مشاكل المستخدمين، زي برامج الـ Office، الألعاب، أو برامج قواعد البيانات [3].</li>
+            <li><b>المستخدمين (Users):</b> دول ممكن يكونوا بشر، أو آلات، أو كمبيوترات تانية بتستخدم النظام [3].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل إنك في مطعم. المطبخ والمعدات (الأجهزة) هي الـ Hardware. مدير الصالة (الـ OS) بينظم الشغل بين الطباخين (الـ Applications) والنُدل (المستخدمين) عشان الأكل يطلع صح [3].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Hardware: provides basic computing resources</span> (CPU, memory, I/O devices)
+* <span class="highlight-red">Operating system: controls and coordinates the use of the hardware</span> among the various application programs for the various users
+* <span class="highlight-red">Applications programs: define the ways in which the system resources are used</span> to solve the computing problems of the users (compilers, database systems, video games, business programs)
+* <span class="highlight-red">Users: people, machines, other computers</span> [3]
+        </pre>
+        <sub>[3]</sub>
+
+        <h2>2. معمارية فون نيومان (Von Neumann Architecture)</h2>
+        <p>المعمارية دي اتنشرت لأول مرة سنة 1945 بواسطة جون فون نيومان [4]. تصميم الكمبيوتر ده بيتكون من <b>وحدة تحكم (Control Unit - CU)</b>، و<b>وحدة حساب ومنطق (Arithmetic and Logic Unit - ALU)</b>، و<b>وحدة ذاكرة (Memory Unit)</b>، و<b>مسجلات (Registers)</b>، و<b>أجهزة إدخال/إخراج (Inputs/Outputs)</b> [4].</p>
+        <p>المهم في المعمارية دي إنها مبنية على مفهوم <b>"البرنامج المخزن" (stored-program computer)</b>، وده معناه إن بيانات التعليمات (instructions data) وبيانات البرنامج (program data) بتخزن في نفس الذاكرة [4]. التصميم ده لسه بيستخدم في معظم الكمبيوترات اللي بتتصنع النهاردة [4].</p>
+        <p><b>مثال عملي:</b> تخيل مكتبة. لو عندك كتب (بيانات) وورق إرشادات للمذاكرة (تعليمات)، وفون نيومان قال إننا ممكن نحط الاتنين في نفس الرفوف (الذاكرة) بدل ما يكونوا في مكانين منفصلين [4].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Von Neumann architecture was first published by John von Neumann in 1945</span>.
+* His computer architecture design consists of a <span class="highlight-red">Control Unit (CU), Arithmetic and Logic Unit (ALU), Memory Unit, Registers and Inputs/Outputs</span>.
+* Von Neumann architecture is based on the <span class="highlight-red">stored-program computer concept, where instruction data and program data are stored in the same memory</span>. This design is still used in most computers produced today. [4]
+        </pre>
+        <sub>[4]</sub>
+
+        <h3>2.1. وحدة المعالجة المركزية (Central Processing Unit - CPU)</h3>
+        <p>الـ CPU هو <b>الدائرة الإلكترونية المسؤولة عن تنفيذ تعليمات أي برنامج كمبيوتر</b> [5]. أحياناً بنسميه الميكروبروسيسور (microprocessor) أو البروسيسور (processor) [5]. الـ CPU جواه الـ ALU والـ CU ومجموعة متنوعة من الـ Registers [5].</p>
+        <h4>2.1.1. المسجلات (Registers)</h4>
+        <p>دي عبارة عن <b>مناطق تخزين سريعة جداً جوه الـ CPU</b> [5]. أي بيانات لازم تتخزن في Register قبل ما تتعالج [5].</p>
+        <p><b>أمثلة على أنواع الـ Registers [5, 6]:</b></p>
+        <ul>
+            <li><b>MAR (Memory Address Register):</b> بيحتفظ بموقع الذاكرة للبيانات اللي محتاجة توصلها [5].</li>
+            <li><b>MDR (Memory Data Register):</b> بيحتفظ بالبيانات اللي بتتنقل من أو إلى الذاكرة [6].</li>
+            <li><b>AC (Accumulator):</b> ده المكان اللي بتتخزن فيه نتائج العمليات الحسابية والمنطقية المؤقتة [6].</li>
+            <li><b>PC (Program Counter):</b> بيحتوي على عنوان التعليمة التالية اللي هتتنفذ [6].</li>
+            <li><b>CIR (Current Instruction Register):</b> بيحتوي على التعليمة الحالية أثناء المعالجة [6].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل البروسيسور (CPU) زي الشيف اللي بيطبخ. الـ Registers دي زي الأطباق الصغيرة السريعة اللي بيحط فيها المكونات اللي هيستخدمها حالا عشان يشتغل عليها بسرعة قبل ما يحطها في الطبق النهائي [5].</p>
+        <p>Source Text:</p>
+        <pre>
+* The Central Processing Unit (CPU) is the <span class="highlight-red">electronic circuit responsible for executing the instructions of a computer program</span>. [5]
+* Registers are <span class="highlight-red">high speed storage areas in the CPU</span>. <span class="highlight-red">All data must be stored in a register before it can be processed</span>. [5]
+* <span class="highlight-red">MAR Memory Address Register Holds the memory location of data</span> that needs to be accessed [5]
+* <span class="highlight-red">MDR Memory Data Register Holds data that is being transferred to or from memory</span> [6]
+* <span class="highlight-red">AC Accumulator Where intermediate arithmetic and logic results are stored</span> [6]
+* <span class="highlight-red">PC Program Counter Contains the address of the next instruction to be executed</span> [6]
+* <span class="highlight-red">CIR Current Instruction Register Contains the current instruction during processing</span> [6]
+        </pre>
+        <sub>[5, 6]</sub>
+
+        <h4>2.1.2. وحدة الحساب والمنطق (Arithmetic and Logic Unit - ALU)</h4>
+        <p>الـ ALU هي الجزء اللي بيسمح بتنفيذ <b>العمليات الحسابية (زي الجمع والطرح) والعمليات المنطقية (زي AND, OR, NOT)</b> [6].</p>
+        <p><b>مثال عملي:</b> الـ ALU ده زي الآلة الحاسبة الذكية اللي جوه البروسيسور، بتعمل كل عمليات الحساب والمقارنات [6].</p>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">ALU allows arithmetic (add, subtract etc) and logic (AND, OR, NOT etc) operations to be carried out</span>. [6]
+        </pre>
+        <sub>[6]</sub>
+
+        <h4>2.1.3. وحدة التحكم (Control Unit - CU)</h4>
+        <p>الـ CU بتتحكم في <b>تشغيل الـ ALU والذاكرة وأجهزة الـ I/O في الكمبيوتر</b> [7]. هي اللي بتقولهم إزاي يستجيبوا لتعليمات البرنامج اللي لسه قرأتها وفسرتها من الذاكرة [7]. كمان بتوفر إشارات التوقيت والتحكم اللي بتحتاجها مكونات الكمبيوتر التانية [7].</p>
+        <p><b>مثال عملي:</b> الـ CU دي زي قائد الأوركسترا، بتدي إشارات لكل العازفين (أجزاء الكمبيوتر) عشان كلهم يعزفوا صح ومع بعض وفي الوقت المناسب [7].</p>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">control unit controls the operation of the computer’s ALU, memory and input/output devices</span>, telling them how to respond to the program instructions it has just read and interpreted from the memory unit.
+* The control unit also provides the <span class="highlight-red">timing and control signals</span> required by other computer components. [7]
+        </pre>
+        <sub>[7]</sub>
+
+        <h3>2.2. الممرات (Buses)</h3>
+        <p>الـ Buses هي <b>الوسيلة اللي بتتنقل بيها البيانات من جزء في الكمبيوتر لجزء تاني</b>، وبتوصل كل المكونات الداخلية الرئيسية بالـ CPU والذاكرة [8].</p>
+        <p>نظام الـ CPU القياسي فيه <b>3 أنواع من الـ Buses</b> [8]:</p>
+        <ul>
+            <li><b>Address Bus:</b> بيشيل <b>عناوين البيانات</b> (مش البيانات نفسها) بين البروسيسور والذاكرة [8].</li>
+            <li><b>Data Bus:</b> بيشيل <b>البيانات نفسها</b> بين البروسيسور ووحدة الذاكرة وأجهزة الـ I/O [8].</li>
+            <li><b>Control Bus:</b> بيشيل <b>إشارات التحكم/الأوامر</b> من الـ CPU (وإشارات الحالة من الأجهزة التانية) عشان يتحكم وينسق كل الأنشطة جوه الكمبيوتر [8].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل شبكة طرق جوه الكمبيوتر. الـ Address Bus ده طريق بيشيل اسم الشارع اللي عايز تروحله، الـ Data Bus ده الطريق اللي بيشيل العربية اللي فيها البضاعة نفسها، والـ Control Bus ده إشارات المرور اللي بتنظم مين يمشي إمتى [8].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Buses are the means by which data is transmitted from one part of a computer to another</span>, connecting all major internal components to the CPU and memory. [8]
+* A standard CPU system bus is comprised of a <span class="highlight-red">control bus, data bus and address bus</span>. [8]
+* <span class="highlight-red">Address Bus Carries the addresses of data</span> (but not the data) between the processor and memory [8]
+* <span class="highlight-red">Data Bus Carries data</span> between the processor, the memory unit and the input/output devices [8]
+* <span class="highlight-red">Control Bus Carries control signals/commands</span> from the CPU (and status signals from other devices) in order to control and coordinate all the activities within the computer [8]
+        </pre>
+        <sub>[8]</sub>
+
+        <h3>2.3. وحدة الذاكرة (Memory Unit)</h3>
+        <p>وحدة الذاكرة بتتكون من <b>الـ RAM (Random Access Memory)</b> و<b>الـ ROM (Read Only Memory)</b>، ودي أحياناً بنسميها الذاكرة الرئيسية أو الأساسية (primary or main memory) [9].</p>
+        <p>على عكس الهارد ديسك (اللي هو ذاكرة ثانوية - secondary memory)، الذاكرة دي <b>سريعة وممكن الـ CPU يوصلها مباشرة</b> [9]. الـ RAM بتتقسم لأجزاء صغيرة اسمها Bytes، وكل جزء فيه عنوان ومحتويات (الإتنين بصيغة ثنائية) [9]. العنوان ده بيحدد مكان كل Byte في الذاكرة بشكل فريد [9].</p>
+        <p>لما بنحمل البيانات من الذاكرة الدائمة (secondary storage أو hard drive) للـ RAM اللي هي أسرع وممكن نوصلها مباشرة، ده بيخلي الـ CPU يشتغل أسرع بكتير [9].</p>
+        <p><b>مثال عملي:</b> تخيل إنك بتذاكر كتاب. الهارد ديسك هو المكتبة الكبيرة اللي فيها كل الكتب [9]. الـ RAM هي الترابيزة اللي بتحط عليها الكتاب اللي بتذاكره دلوقتي، والورق اللي بتكتب فيه ملاحظاتك، عشان تقدر تشتغل بسرعة [9].</p>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">memory unit consists of RAM (Random Access Memory) and ROM (Read Only Memory)</span>, sometimes referred to as <span class="highlight-red">primary or main memory</span>. [9]
+* Unlike a hard drive (<span class="highlight-red">secondary memory</span>), this memory is <span class="highlight-red">fast and also directly accessible by the CPU</span>. [9]
+* RAM is split into <span class="highlight-red">partitions (bytes)</span>. Each partition consists of an <span class="highlight-red">address and its contents</span> (both in binary form). [9]
+* The <span class="highlight-red">address will uniquely identify every location (byte) in the memory</span>. [9]
+* Loading data from permanent memory (secondary storage or hard drive), into the <span class="highlight-red">faster and directly accessible temporary memory (RAM), allows the CPU to operate much quicker</span>. [9]
+        </pre>
+        <sub>[9]</sub>
+
+        <h3>2.4. أجهزة الإدخال (Input Devices)</h3>
+        <p>دي أجهزة طرفية (peripherals) بتستخدم <b>عشان توفر بيانات وإشارات تحكم للكمبيوتر</b> [10]. أجهزة الإدخال بتسمحلنا ندخل بيانات خام عشان تتعالج [10].</p>
+        <p><b>أمثلة:</b> الكيبورد (الجهاز الافتراضي للإدخال)، الميكروفون، السكانر (2D و 3D)، الماوس، التراك بول (Trackball)، التاتش باد (Touchpad)، قارئات الباركود والـ QR Code، الكاميرا الديجيتال [10].</p>
+        <p><b>مثال عملي:</b> لما بتكتب على الكيبورد، الحروف اللي بتكتبها دي بيانات خام بتدخل للكمبيوتر عشان تتعالج [10].</p>
+        <p>Source Text:</p>
+        <pre>
+* Which are <span class="highlight-red">peripherals used to provide data and control signals to a computer</span>. [10]
+* <span class="highlight-red">Input devices allow us to enter raw data for processing</span>. [10]
+* For Example: <span class="highlight-red">Keyboard (default input device), Microphone, Scanner (2D and 3D), Mouse, Trackball, Touchpad, Barcode and QR Code readers, Digital Camera</span> [10]
+        </pre>
+        <sub>[10]</sub>
+
+        <h3>2.5. أجهزة الإخراج (Output Devices)</h3>
+        <p>دي أجزاء من الـ Hardware بتاعة الكمبيوتر بتستخدم <b>عشان توصل نتائج معالجة البيانات اللي قام بيها الكمبيوتر</b> [11]. الهدف من أجهزة الإخراج هو تحويل معلومات الكمبيوتر لصيغة سهلة للقراءة والفهم للبشر [11].</p>
+        <p><b>أمثلة:</b> الشاشة (Monitor أو Console) (الجهاز الافتراضي للإخراج) – LED أو LCD، أجهزة عرض البيانات (Data Projectors)، السماعات والهيدفون، الطابعة (2D و 3D) – inkjet أو laser، البلوتر (Plotter) (طابعة كبيرة)، القاطعة (Cutter) (2D أو 3D) [11].</p>
+        <p><b>مثال عملي:</b> لما بتطبع مستند، الطابعة (Output Device) بتاخد المعلومات من الكمبيوتر وتحولها لورق مكتوب عشان نقدر نقراه [11].</p>
+        <p>Source Text:</p>
+        <pre>
+* Which are <span class="highlight-red">pieces of computer hardware used to communicate the results of data processing performed by a computer</span>. [11]
+* The objective of output devices is to <span class="highlight-red">turn computer information into a human friendly/readable form</span>. [11]
+* For Example: <span class="highlight-red">Screen (Monitor or Console) (default output device) – LED or LCD, Data Projectors, Speaker and Headphones, Printer (2D and 3D) – inkjet or laser, Plotter (wide format printer), Cutter (2D or 3D)</span> [11]
+        </pre>
+        <sub>[11]</sub>
+
+        <h3>2.6. أجهزة الإدخال/الإخراج (Input/Output Devices)</h3>
+        <p>فيه أجهزة بتشتغل <b>كـ Input و Output في نفس الوقت</b> [12].</p>
+        <p><b>أمثلة:</b> شاشة اللمس (Touch Screen)، الشبكة (Network)، معظم منافذ الـ I/O (سواء Serial أو Parallel)، أنواع المنافذ الجديدة زي USB و Type-C [12]. كل أنواع وحدات التخزين الثانوية (secondary storages) بتستخدم كـ I/O devices للتخزين الدائم، زي الهارد ديسك، الفلوبي ديسك، الفلاش ميموري، الـ CD والـ DVD [12].</p>
+        <p><b>مثال عملي:</b> شاشة الموبايل التاتش: بتدخل عليها الأوامر (Input) وبتعرضلك النتيجة (Output) [12].</p>
+        <p>Source Text:</p>
+        <pre>
+* Some devices work as <span class="highlight-red">Input and Output devices like: Touch Screen, Network, Most of I/O Ports (Both of serial and parallel), New types of ports, like USB and Type-C ports</span> [12]
+* All of the <span class="highlight-red">secondary storages used as I/O devices for permeant storage, like: Hard disk, Floppy disk, Flash memory, CD and DVD</span> [12]
+        </pre>
+        <sub>[12]</sub>
+
+        <h2>3. نظام تشغيل الكمبيوتر (Computer Operating System)</h2>
+        <p>لما الكمبيوتر بيشتغل، البروسيسور بينفذ التعليمات اللي بتجيله. أول كود بيشتغل عادة هو الـ <span class="highlight-red">boot flow</span>، وده اسمه <span class="highlight-red">bootstrap</span>، وهو عبارة عن framework متخزن في الـ <span class="highlight-red">ROM</span> وبيحتوي على تعليمات اسمها <span class="highlight-red">basic input output instructions (BIOS)</span> [13].</p>
+        <p>بالنسبة للكمبيوترات ذات الأغراض العامة، بعد ما بيشتغل وبيعمل <span class="highlight-red">boot up</span>، ممكن يكون فيه تطبيقات كتير محتاجة تشتغل في نفس الوقت [13]. كمان ممكن يكون فيه أجهزة كتير متوصلة بالكمبيوتر (مش جزء من النظام الأساسي) [13]. كل ده لازم يتنسق ويتعامل معاه بكفاءة وسلاسة [13]. المستخدم بيتوقع إن النظام "هيشتغل وخلاص". نظام التشغيل هو اللي بيسهل كل ده وأكتر [13].</p>
+        <p>التعريف العام لأي نظام هو: مجموعة من المكونات متكاملة مع بعضها عشان تنفذ مهمة معينة [14]. يبقى نظام تشغيل الكمبيوتر بيتكون من مكونات متكاملة مع بعضها عشان تشغل نظام الكمبيوتر (Hardware & Software) [14].</p>
+        <p><b>تعريف نظام التشغيل (OS):</b> هو <b>برنامج بيتحكم في تنفيذ البرامج التانية اللي شغالة على النظام</b> [14]. هو بيشتغل كوسيط وطبقة بين مكونات البرامج المختلفة وأجهزة الكمبيوتر [14].</p>
+        <p><b>لما أي نظام تشغيل بيتصمم، بيركز على 3 أهداف رئيسية [15]:</b></p>
+        <ol>
+            <li><b>الكفاءة (Efficiency):</b> كفاءة الـ OS من ناحية الاستجابة والسلاسة [15].</li>
+            <li><b>سهولة الاستخدام (Ease of usability):</b> إن يكون سهل على المستخدم واستخدامه مريح [15].</li>
+            <li><b>القدرة على التجريد والتوسع (Ability to abstract and extend):</b> إنه يقدر يتعامل مع أجهزة وبرامج جديدة ويتوسع فيها [15].</li>
+        </ol>
+        <p><b>مثال عملي:</b> تخيل الـ OS زي مدير مبنى الشقق. هو اللي بيوزع الكهرباء والمياه على كل شقة (التطبيقات)، وبيتأكد إن كل واحد يقدر يستخدم الأسانسير (الأجهزة) من غير ما يتخانقوا [14].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">When a computer turns on, the processor will execute the instructions that are presented to it</span>; generally, the <span class="highlight-red">first code that runs is for the boot flow, called bootstrap</span>, which is a <span class="highlight-red">framework stored in ROM contains some instructions called basic input output instructions (BIOS)</span>. [13]
+* <span class="highlight-red">All these need to be abstracted and handled efficiently and seamlessly</span>. <span class="highlight-red">The user expects the system to “just work.” The operating system facilitates all of this and more</span>. [13]
+* An operating system, commonly referred to as the OS, is a <span class="highlight-red">program that controls the execution of other programs running on the system</span>. It <span class="highlight-red">acts as a facilitator and intermediate layer between the different software components and the computer hardware</span>. [14]
+* When any operating system is built, it focuses on three main objectives:
+    * <span class="highlight-red">Efficiency of the OS in terms of responsiveness, fluidity, and so on</span>
+    * <span class="highlight-red">Ease of usability to the user in terms of making it convenient</span>
+    * <span class="highlight-red">Ability to abstract and extend to new devices and software</span> [15]
+        </pre>
+        <sub>[13-15]</sub>
+
+        <h3>3.1. مكونات نظام التشغيل (Operating System Components)</h3>
+        <p>معظم أنظمة التشغيل ليها على الأقل جزئين رئيسيين [15]:</p>
+        <ul>
+            <li><b>الجزء الأساسي (Core part):</b> ده اللي بيتعامل مع الوظائف المعقدة والمنخفضة المستوى (low-level functionalities) وعادةً بنسميه <span class="highlight-red">kernel</span> [15]. الـ kernel لازم يكون شغال طول الوقت وموجود في الذاكرة الرئيسية (<span class="highlight-red">resident in the main memory</span>) [15].</li>
+            <li><b>المكتبات والتطبيقات والأدوات (Libraries, applications, and tools):</b> دي اللي بتيجي مع الـ OS [16]. زي المتصفحات، الميزات المخصصة، الـ frameworks، والتطبيقات الخاصة بالـ OS اللي بتيجي bundled معاه [16].</li>
+        </ul>
+        <p><b>أمثلة على أنظمة التشغيل الشائعة [16]:</b> Microsoft Windows، GNU/Linux-based OS، macOS (لأجهزة Apple)، iOS (لموبايلات وتابلت Apple)، Android. كل أنظمة التشغيل دي ليها أجيال وإصدارات وتحديثات مختلفة [16].</p>
+        <p><b>مثال عملي:</b> تخيل الـ OS زي جسم الإنسان. الـ kernel هو المخ والقلب اللي لازم يفضل شغال عشان الحياة تستمر [15]. والمكتبات والتطبيقات زي الأطراف والأعضاء التانية اللي بتساعدك تقوم بوظائف مختلفة زي المشي والأكل [16].</p>
+        <p>Source Text:</p>
+        <pre>
+* Most OSs typically have at least two main pieces:
+    * There is a <span class="highlight-red">core part that handles the complex, low-level functionalities and is typically referred to as the kernel and must be running at all times – resident in the main memory</span>. [15]
+    * There are generally some <span class="highlight-red">libraries, applications, and tools that are shipped with the OS</span>. [16]
+* list of operating systems that are commonly prevalent: <span class="highlight-red">Microsoft Windows, GNU/Linux-based OS, macOS, iOS, Android</span> [16]
+        </pre>
+        <sub>[15, 16]</sub>
+
+        <h3>3.2. فئات أنظمة التشغيل (OS Categories)</h3>
+        <p>ممكن نقسم أنظمة التشغيل بناءً على طريقتين أساسيتين: <b>نوع الاستخدام (usage type)</b> أو <b>التصميم والميزات اللي بتدعمها (design/supported features)</b> [17].</p>
+
+        <h4>3.2.1. فئات أنظمة التشغيل - حسب نوع الاستخدام (Usage Types)</h4>
+        <p>بناءً على نوع الاستخدام، فيه <b>خمس فئات رئيسية</b> [18, 19]:</p>
+        <ol>
+            <li><b>Batch:</b> لأنظمة الاستخدام اللي محتاجة تنفيذ سلسلة من الخطوات بشكل متكرر <b>من غير أي تدخل بشري</b> [18]. زي أنظمة المين فريم القديمة والـ DOS [18].<br/>
+                <b>مثال:</b> برنامج بيعمل نسخة احتياطية (backup) لمجموعة ملفات كل يوم الساعة 2 بالليل لوحده من غير ما حد يدخل أي حاجة [18].
+            </li>
+            <li><b>Time Sharing:</b> للأنظمة اللي فيها مستخدمين كتير (أو تطبيقات كتير) بيوصلوا لنفس الـ Hardware المشترك [18]. هنا فيه حاجة لتقسيم الموارد المحدودة دي عليهم عن طريق <span class="highlight-red">timeshare</span> [18]. زي أنظمة Windows, Mac, و Linux [18].<br/>
+                <b>مثال:</b> لما تكون فاتح متصفح، وبتسمع موسيقى، وبتفتح برنامج Word في نفس الوقت على جهازك. الـ OS بيوزع وقت البروسيسور عليهم عشان كلهم يشتغلوا في نفس الوقت كأنهم منفصلين [18].
+            </li>
+            <li><b>Parallel – Distributed (over tightly coupled systems):</b> للأجهزة الموزعة فيزيائياً، ونظام تشغيل واحد محتاج ينسق وصولهم للموارد [18]. بنسمي الأنظمة دي <span class="highlight-red">distributed OSs</span> [18]. زي AIX لـ IBM RS/6000 و Solaris للـ workstations [18].<br/>
+                <b>مثال:</b> جهاز سيرفر ضخم بيتكون من أكتر من كمبيوتر متوصلين ببعض، والـ OS واحد بيتحكم فيهم كلهم عشان ينفذ مهمة واحدة كبيرة زي تحليل بيانات ضخمة [18].
+            </li>
+            <li><b>Network (loosely coupled):</b> نموذج استخدام تاني، شبيه بالـ distributed scenario، لما الأنظمة بتكون متوصلة بشبكة (network protocol) زي الـ IP (Internet Protocol) [19]. فبنسميها <span class="highlight-red">network OSs</span> [19]. زي Windows Server 2008 و Novell Netware [19].<br/>
+                <b>مثال:</b> شبكة مكاتب فيها أجهزة كمبيوتر كتير كل جهاز ليه الـ OS بتاعه، بس كلهم متوصلين بـ Server مركزي بيتحكم في الموارد المشتركة زي الطابعات والملفات اللي على الشبكة [19].
+            </li>
+            <li><b>Real Time:</b> في بعض الحالات، بنحتاج دقة عالية جداً في التوقيت عند التنفيذ والاستجابة [19]. بنسمي الأنظمة دي <span class="highlight-red">real-time OSs</span> [19].<br/>
+                <b>مثال:</b> أنظمة التحكم في الطيارات أو السيارات ذاتية القيادة، لازم الأوامر تتنفذ في جزء من الثانية بالظبط عشان أي تأخير ممكن يعمل كارثة [19].
+            </li>
+        </ol>
+        <p>Source Text:</p>
+        <pre>
+* The OSs can be categorized based on the different methods in use. The two most common methodologies are by the <span class="highlight-red">usage type and the design/supported features of the OS</span>.S [17]
+* Based on this, there are five main categories:
+    * <span class="highlight-red">Batch: For usages where a sequence of steps needs to be executed repeatedly without any human intervention</span>. These classes are called batch OSs. (Old Mainframe and DOS) [18]
+    * <span class="highlight-red">Time Sharing: For systems where many users (or many applications) access common hardware, there could be a need to timeshare the limited resources</span>. The OSs in such cases are categorized as time-sharing OSs. (Windows, Mac, and Linux) [18]
+    * <span class="highlight-red">Parallel – Distributed (over tightly coupled systems): For hardware that is distributed physically and a single OS needs to coordinate their access</span>, we call these systems distributed OSs. (AIX for IBM RS/6000 and Solaris for workstations) [18]
+    * <span class="highlight-red">Network (loosely coupled): Another usage model, similar to the distributed scenario, is when the systems are connected over a network protocol, like IP (Internet Protocol)</span>, and therefore referred to as network OSs. (Windows server 2008, Novell Netware) [19]
+    * <span class="highlight-red">Real Time: In some cases, we need fine-grained time precision in execution and responsiveness</span>. We call these systems real-time OSs. [19]
+        </pre>
+        <sub>[17-19]</sub>
+
+        <h4>3.2.2. فئات أنظمة التشغيل - حسب التصميم والميزات المدعومة (Designed and Supported Features)</h4>
+        <p>بناءً على التصميم، فيه <b>تلات فئات رئيسية</b> [20]:</p>
+        <ol>
+            <li><b>Monolithic:</b> في النوع ده، <b>نظام التشغيل كله بيشتغل في مساحة الـ kernel اللي ليها امتيازات عالية (high-privilege kernel space) وبيشتغل كـ supervisor لكل البرامج التانية اللي بتشتغل</b> [20]. أنظمة الـ UNIX القديمة كتير منها Monolithic [20].<br/>
+                <b>مثال:</b> تخيل إنك في عمارة والمدير بتاعها بيراقب كل حاجة وكل الشغل من مكتبه المركزي، وكل الخدمات بتقدم عن طريقه هو وبس [20].
+            </li>
+            <li><b>Modular:</b> في بعض أنظمة التشغيل، فيه أجزاء من الـ OS بتتصمم كـ <span class="highlight-red">plug-and-play modules</span> اللي ممكن تتحدث بشكل مستقل عن الـ OS kernel [20]. أنظمة التشغيل الحديثة كتير بتتبع المنهج ده، زي Microsoft Windows، و Linux، و macOS [20].<br/>
+                <b>مثال:</b> نفس العمارة، بس هنا ممكن تجيب عمال صيانة لكل خدمة (كهربا، مياه، أسانسير) وكل عامل عنده أدواته الخاصة بيه ويقدر يشتغل ويحدث نفسه من غير ما يأثر على بقية الخدمات أو مدير العمارة [20].
+            </li>
+            <li><b>Micro-service based:</b> دي أنظمة تشغيل أحدث بتستفيد من مفهوم الـ <span class="highlight-red">micro-services</span> [20]. هنا كتير من ميزات الـ OS اللي كانت Monolithic ممكن تتقسم لأجزاء أصغر بتشتغل يا إما في الـ kernel mode أو الـ user mode [20]. منهج الـ micro-service بيساعد في توزيع المسؤوليات بشكل صحيح وتتبع الأخطاء وصيانتها أسهل [20]. بعض إصدارات Red Hat OS بتدعم الـ micro-services بشكل أصلي [20].<br/>
+                <b>مثال:</b> في العمارة دي، كل خدمة (زي تسجيل دخول المستخدمين، إدارة الملفات، التحكم في الأجهزة) بتكون عبارة عن وحدة صغيرة مستقلة (micro-service) ليها مهمتها بالظبط، وده بيخلي التعامل معاها وإصلاحها أسهل بكتير [20].
+            </li>
+        </ol>
+        <p>Source Text:</p>
+        <pre>
+* Based on this, there are three main categories:
+    * <span class="highlight-red">Monolithic: In this case, the entire OS is running in a high-privilege kernel space and acts as the supervisor for all other programs to run</span>. Common monolithic OSs include many of the UNIX flavors. [20]
+    * <span class="highlight-red">Modular: In some OSs, a few parts of the OS are implemented as so-called plug-and-play modules that can be updated independent of the OS kernel</span>. Many modern OSs follow this methodology, such as Microsoft Windows, Linux flavors, and macOS. [20]
+    * <span class="highlight-red">Micro-service based: More modern OSs are emerging and leverage the concept of micro-services where many of the previously monolithic OS features may be broken down into smaller parts that run in either the kernel or user mode</span>. The micro-service approach helps in assigning the right responsibility of the components and easier error tracking and maintenance. Some versions of Red Hat OS support micro-services natively. [20]
+        </pre>
+        <sub>[20]</sub>
+
+        <h2>4. ليه بنحتاج نظام تشغيل (Why We Need an OS)؟</h2>
+        <p>بشكل عام، بنحتاج الـ OS عشان يعمل المهام دي [21]:</p>
+        <ul>
+            <li>يشغل ويسهل تشغيل التطبيقات المختلفة على النظام [21].</li>
+            <li>يدير التعارضات بين التطبيقات المختلفة [21].</li>
+            <li>يضمن إنه <b>يخفي تعقيدات الـ Hardware</b> (abstracts the HW) ويسهل التنفيذ السلس لتطبيقاتنا باستخدام النظام [22].</li>
+        </ul>
+        <p><b>أمثلة على التعقيدات اللي بيتعامل معاها الـ OS [23-26]:</b></p>
+        <ul>
+            <li><b>الأنظمة المعقدة والمتعددة المعالجات (Complex and Multiprocessor Systems):</b> أنظمة الكمبيوتر الحديثة بتدعم معالجات متعددة النواة (multiple CPU cores) [23]. ممكن تكون النواة دي متجانسة (<span class="highlight-red">homogeneous platforms</span>) لو كلها بتدي نفس الإمكانيات، أو غير متجانسة (<span class="highlight-red">heterogeneous platforms</span>) لو كل نواة ليها إمكانيات مختلفة [23]. فيه كمان وحدات تنفيذ إضافية زي الـ GPUs (Graphics Processing Units) اللي بتسرع معالجة الرسوميات ثلاثية الأبعاد [23]. الـ OS هنا لازم يضمن جدولة كفء للبرامج على كل وحدات التنفيذ المتاحة [24]. كمان بيخفي اختلافات إعدادات الـ Hardware عن التطبيقات [24].<br/>
+                <b>مثال:</b> لو جهازك فيه بروسيسور بـ 4 أنوية، الـ OS هو اللي بيقرر أي برنامج يشتغل على أي نواة عشان يستغل كل الأنوية صح، وكمان بيخليك مش محتاج تعرف تفاصيل كل نواة [24].
+            </li>
+            <li><b>البرامج متعددة المهام والوظائف (Multitasking and Multifunction Software):</b> غالباً ممكن يكون فيه تطبيقات كتير محتاجة تشتغل على النظام في نفس الوقت [25]. زي التطبيقات اللي بيشغلها المستخدم في الواجهة (<span class="highlight-red">foreground</span>) والتطبيقات اللي الـ OS بيشغلها في الخلفية (<span class="highlight-red">background</span>) عشان النظام يشتغل بكفاءة [25]. الـ OS هو اللي بيضمن التنفيذ السلس للتطبيقات دي [25].<br/>
+                <b>مثال:</b> لما تكون بتعمل <span class="highlight-red">download</span> لملف كبير في الخلفية، وفي نفس الوقت بتفتح برنامج الرسام عشان ترسم حاجة. الـ OS بيخليهم يشتغلوا سوا من غير ما واحد يعطل التاني [25].
+            </li>
+            <li><b>الأنظمة متعددة المستخدمين (Multiuser Systems):</b> غالباً بيكون فيه أكتر من مستخدم للنظام، زي الـ administrator ومستخدمين تانيين بمستويات صلاحية مختلفة [26]. مهم جداً إن التنفيذ لكل مستخدم يكون سلس عشان مايحسوش بأي تأخير [26]. في نفس الوقت، لازم يكون فيه ضوابط للتعامل مع الخصوصية والأمان بين المستخدمين [26]. الـ OS بيسهل ويدير الإمكانيات دي [26].<br/>
+                <b>مثال:</b> في كمبيوتر الكلية، أكتر من طالب بيستخدم نفس الجهاز، وكل طالب ليه حساب وكلمة سر وملفات خاصة بيه. الـ OS بيسمحلك تشوف ملفاتك بس ومش بتشوف ملفات زمايلك [26].
+            </li>
+        </ul>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">purpose of the operating system is to ensure that it abstracts the HW and facilitates the seamless execution of our applications using the system</span>. [22]
+* When all cores provide the same or identical capabilities, they are called as <span class="highlight-red">homogeneous platforms</span>. [23]
+* There could also be systems that provide different capabilities on different CPU cores. These are called <span class="highlight-red">heterogeneous platforms</span>. [23]
+* There are also additional execution engines such as <span class="highlight-red">Graphics Processing Units (GPUs)</span>, which accelerate graphics and 3D processing and display [23]
+* An operating system supporting such a platform will need to ensure <span class="highlight-red">efficient scheduling of the different programs on the different execution engines (cores)</span> available on the system. [24]
+* Hence, the OS would also be required to <span class="highlight-red">abstract the differences in the hardware configurations to the applications</span>. [24]
+* In general, there could be <span class="highlight-red">many applications that may need to be running on the system at the same time</span>. [25]
+* These could include applications that the user initiated, so-called <span class="highlight-red">“foreground” applications, and applications that the OS has initiated in the “background“ for the effective functionality of the system</span>. [25]
+* Often, there could be <span class="highlight-red">more than one user of a system such as an administrator and multiple other users with different levels of access permission</span> who may want to utilize the system. [26]
+* It is important to <span class="highlight-red">streamline execution for each of these users so that they do not find any perceived delay of their requests</span>. [26]
+        </pre>
+        <sub>[22-26]</sub>
+
+        <h2>5. أهمية معرفة نظام التشغيل لمطوري البرامج (Why Is It Important to Know About the OS?)</h2>
+        <p>مهم جداً لمطوري البرامج إنهم يكون عندهم <b>فهم كويس للبيئة اللي الكود بتاعهم بيشتغل فيها، وهي الـ OS</b> [27]. لو ماعندهمش الفهم ده، مش هيقدروا يحققوا الحاجات اللي عايزنها من برامجهم [27].</p>
+        <p><b>كمطور برامج، فيه أمثلة لحاجات بتعتمد على فهمك للـ OS [27-30]:</b></p>
+        <ul>
+            <li><b>اختيار لغة البرمجة والميزات المطلوبة</b> ممكن يكون بيعتمد على الـ OS [27].</li>
+            <li><b>اختيار بروتوكولات الـ Inter-process Communication (IPC)</b> اللي بتستخدم للمراسلة بين التطبيقات هيعتمد على إمكانيات الـ OS [28].</li>
+            <li>أثناء التطوير وتصحيح الأخطاء (debugging)، ممكن تحتاج تفهم وتتفاعل مع الـ OS. مثلاً، لو بتصلح تطبيق بطيء أو مش بيستجيب، ممكن تحتاج تفهم إزاي الـ OS بيعمل عمليات الـ I/O [28].</li>
+            <li>أسئلة ممكن تظهر أثناء الـ debug زي: هل التطبيق بيوصل لنظام الملفات كتير وبيكتب على الديسك باستمرار؟ هل فيه garbage collector في الـ framework؟ هل التطبيق بيحتفظ بمعلومات الذاكرة الفيزيائية لفترة طويلة؟ هل التطبيق بيعمل <span class="highlight-red">swapping pages</span> في الذاكرة كتير؟ هل فيه حدث نظام تاني زي تحديثات أو فحص فيروسات أثر على الأداء؟ هل فيه تأثير على التطبيق بسبب سياسة الجدولة (scheduling policy) أو أولوية التطبيق (application priority)؟ [29]</li>
+            <li>لو التطبيق محتاج يتفاعل مع جهاز مخصص (custom device)، غالباً هيحتاج يتفاعل مع وظائف منخفضة المستوى بيوفرها الـ OS باستخدام الـ APIs اللي بيوفرها الـ OS للاتصال [30].</li>
+            <li>كمطور برامج، ممكن يكون مطلوب منك تفهم الـ APIs دي وتستفيد من إمكانيات الـ OS [30]. كمان ممكن تحتاج تتبع بروتوكولات قياسية بيوفرها الـ OS لمصادقة مستخدم معين للتطبيق بتاعك عشان تدي صلاحيات ووصول [30].</li>
+        </ul>
+        <p><b>مثال عملي:</b> لو بتعمل لعبة فيديو، لازم تفهم إزاي الـ OS بيدير الذاكرة والبروسيسور عشان اللعبة تكون سريعة وماتهنكش [28]. ولو اللعبة بطيئة، ممكن تكون محتاج تشوف هل الـ OS بيعمل <span class="highlight-red">swapping pages</span> كتير وده بيخلي اللعبة بطيئة [29].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Software developers must have a good understanding of the environment, the OS, that their code is running in, or they won’t be able to achieve the things they want with their program</span>. [27]
+* the <span class="highlight-red">choice of language and needed runtime features may be OS dependent</span>. [27]
+* the <span class="highlight-red">choice of inter-process communication (IPC) protocols used for messaging between applications will depend on the OS offerings</span> [28]
+* debugging a slowly performing or nonresponsive application may require some understanding of <span class="highlight-red">how the OS performs input/output operations</span>. [28]
+* Are you <span class="highlight-red">accessing the file system too often and writing repeatedly to the disk</span>? [29]
+* Is there a <span class="highlight-red">garbage collector</span> in place by the software framework/SDK? [29]
+* Is the application <span class="highlight-red">holding physical memory information for too long</span>? [29]
+* Is the application <span class="highlight-red">frequently creating and swapping pages in memory</span>? [29]
+* Is there an impact on the application based on the <span class="highlight-red">scheduling policy, application priority, and utilization levels</span>? [29]
+* If the application needs to interface with a <span class="highlight-red">custom device, it will most likely need to interface some low-level functionality provided by the OS using the OS-provided API for communication</span>. [30]
+* As a software developer, it may be required to <span class="highlight-red">understand these APIs and leverage the OS capabilities</span>. [30]
+        </pre>
+        <sub>[27-30]</sub>
+
+        <h2>6. مسؤوليات نظام التشغيل (Responsibilities of an OS)</h2>
+        <p>الـ OS لازم يكون قادر على <b>تجريد تعقيدات الـ Hardware الأساسية، ودعم مستخدمين متعددين، وتسهيل تنفيذ تطبيقات متعددة في نفس الوقت</b> [31].</p>
+        <p><b>دي أهم المسؤوليات والحلول اللي بيقدمها الـ OS [31-34]:</b></p>
+        <ul>
+            <li><b>تنفيذ التطبيقات (Applications execution):</b> التطبيقات محتاجة وقت على الـ CPU عشان تنفذ تعليماتها. <span class="highlight-red">الحل: الـ OS بينفذ ويوفر ده باستخدام خوارزميات جدولة مناسبة</span> [31].</li>
+            <li><b>إدارة الذاكرة (Memory Management):</b> التطبيقات محتاجة وصول لذاكرة النظام لتخزين المتغيرات والقيام بالعمليات الحسابية. <span class="highlight-red">الحل: الـ OS بينفذ إدارة الذاكرة ويوفر APIs للتطبيقات عشان تستخدم الذاكرة دي</span> [31].</li>
+            <li><b>إدارة الـ I/O والأجهزة (I/O and Resource Management):</b> كل برنامج ممكن يحتاج يوصل لأجهزة مختلفة على المنصة. <span class="highlight-red">الحل: الـ OS ممكن يوفر APIs لإدارة الأجهزة والـ I/O وواجهات ممكن الأجهزة دي تتواصل من خلالها</span> [32].</li>
+            <li><b>أنظمة الملفات (File Systems):</b> ممكن يكون فيه حاجة للمستخدم أو التطبيقات لحفظ وقراءة المحتويات من التخزين. <span class="highlight-red">الحل: معظم أنظمة التشغيل ليها نظام دليل وملفات (directory and file system) بيتعامل مع تخزين واسترجاع المحتويات على الديسك</span> [32].</li>
+            <li><b>الأمان والكفاءة (Security and Efficiency):</b> مهم جداً إن كل العمليات الأساسية دي تتم بأمان وكفاءة. <span class="highlight-red">الحل: معظم أنظمة التشغيل ليها نظام فرعي للأمان (security subsystem) بيلبي متطلبات أمان معينة، ومحاكاة افتراضية (virtualizations)، وضوابط وتوازنات (controls and balances)</span> [33].</li>
+            <li><b>واجهة المستخدم (User Interface):</b> سهولة الوصول واستخدام النظام. <span class="highlight-red">الحل: الـ OS ممكن يكون عنده GUI (graphical user interface) إضافي عشان يسهل الاستخدام والوصول والعمل مع النظام</span> [33].</li>
+        </ul>
+        <p><b>مثال عملي:</b> لما بتدوس على أيقونة برنامج، الـ OS بيوفرله وقت على البروسيسور (جدولة)، ويخصصله مكان في الذاكرة (إدارة الذاكرة)، ويخليه يستخدم الكيبورد (إدارة الـ I/O)، ويحفظ شغله في ملف (نظام الملفات)، وكل ده بأمان [31-33].</p>
+        <p>Source Text:</p>
+        <pre>
+* The OS needs to be able to <span class="highlight-red">abstract the complexities of the underlying hardware, support multiple users, and facilitate execution of multiple applications at the same time</span>. [31]
+* Applications require time on the CPU to execute their instructions. <span class="highlight-red">The OS shall implement and abstract this using suitable scheduling algorithms</span>. [31]
+* Applications require access to system memory for variable storage and to perform calculations based on values in memory. <span class="highlight-red">The OS shall implement memory management and provide APIs for applications to utilize this memory</span>. [31]
+* Each software may need to access different devices on the platform. <span class="highlight-red">The OS may provide APIs for device and I/O management and interfaces through which these devices can be communicated</span>. [32]
+* There may be a need for the user or applications to save and read back contents from the storage. <span class="highlight-red">Most OSs have a directory and file system that handles the storage and retrieval of contents on the disk</span>. [32]
+* It is important to perform all of the core operations listed in the preceding securely and efficiently. <span class="highlight-red">Most OSs have a security subsystem that meets specific security requirements, virtualizations, and controls and balances</span>. [33]
+* Ease of access and usability of the system. <span class="highlight-red">The OS may also have an additional GUI (graphical user interface) in place to make it easy to use, access, and work with the system</span>. [33]
+* They are broadly classified into the following functional areas: <span class="highlight-red">Scheduling, Memory management, I/O and resource management, Access and protection, File systems, User interface/shell</span> [34]
+        </pre>
+        <sub>[31-34]</sub>
+
+        <h2>7. العمليات (Processes) والجدولة (Scheduling)</h2>
+        <h3>7.1. مقدمة للجدولة (Introduction to Scheduling)</h3>
+        <p>من أهم وظائف الـ OS هي إنه يوفر إمكانية تشغيل تطبيقات متعددة ومتزامنة على النظام (multiple, concurrent applications) وإدارة وصولهم لموارد النظام بكفاءة [35]. لما برامج كتير بتحاول تشتغل في نفس الوقت، ممكن تحصل طلبات متنافسة ومتعارضة للوصول لموارد الـ Hardware زي الـ CPU والذاكرة والأجهزة التانية [35]. الـ OS هو اللي <b>بينسق الطلبات دي وينظم التنفيذ</b> في وقت التشغيل عن طريق <span class="highlight-red">scheduling</span> التنفيذ والطلبات اللاحقة عشان يتجنب التعارضات [35]. قبل ما ندخل في تفاصيل مسؤوليات وخوارزميات الجدولة، مهم نعرف المفاهيم الأساسية لتنفيذ البرامج، خصوصاً الـ <span class="highlight-red">processes</span> والـ <span class="highlight-red">threads</span> [36].</p>
+        <p><b>مثال عملي:</b> تخيل الـ OS زي موظف الاستقبال في عيادة فيها دكتور واحد بس (الـ CPU). لما ييجي كذا عيان (تطبيقات) في نفس الوقت، الموظف هو اللي بينظم دخولهم للدكتور عشان مايتخانقوش أو تحصل لخبطة [35].</p>
+        <p>Source Text:</p>
+        <pre>
+* One of the primary functionalities of the OS would be to <span class="highlight-red">provide the ability to run multiple, concurrent applications on the system and efficiently manage their access to system resources</span>. [35]
+* As many programs try to run in parallel, there may be <span class="highlight-red">competing and conflicting requests to access hardware resources</span> such as CPU, memory, and other devices. [35]
+* The operating system <span class="highlight-red">streamlines these requests and orchestrates the execution at runtime by scheduling the execution and subsequent requests to avoid conflicts</span>. [35]
+* Before we go into the details of scheduling responsibilities and algorithms, it is important to know some background about the basic concepts of program execution, specifically <span class="highlight-red">processes and threads</span>. [36]
+        </pre>
+        <sub>[35, 36]</sub>
+
+        <h3>7.2. مفهوم البرنامج والعملية (Program and Process Concept)</h3>
+        <p>لما مطور برامج بيبني حل، مجموعة الإمكانيات اللي بيوفرها بتكون ثابتة ومتضمنة في شكل <span class="highlight-red">processed code</span> اللي اتبنى للـ OS. ده بنسميه عادةً <span class="highlight-red">program</span> [37]. لما البرنامج بيتنفذ، الـ OS بيخصصله <span class="highlight-red">process ID</span> ومقاييس تانية للتتبع [37]. على أعلى مستوى، البرنامج اللي بيتنفذ ده بيتم تتبعه كـ <span class="highlight-red">process</span> في الـ OS [37]. مهم تعرف إن في سياق أنظمة التشغيل المختلفة، ممكن يستخدموا كلمتي <span class="highlight-red">jobs</span> و <span class="highlight-red">processes</span> بالتبادل، لكن الـ <span class="highlight-red">process</span> بتشير إلى <b>برنامج قيد التنفيذ (a program in execution)</b> [37].</p>
+        <p><b>مثال عملي:</b> عندك ملف لعبة على الكمبيوتر (.exe). ده هو الـ Program [37]. لما تدوس عليه مرتين وتشغل اللعبة، اللعبة دي بتتحول لـ Process والـ OS بيديها Process ID عشان يتابعها [37].</p>
+        <p>Source Text:</p>
+        <pre>
+* When a software developer builds a solution, the set of capabilities it provides is usually static and embedded in the form of <span class="highlight-red">processed code that is built for the OS</span>. This is typically referred to as the <span class="highlight-red">program</span>. [37]
+* When the program gets triggered to run, the <span class="highlight-red">OS assigns a process ID and other metrics for tracking</span>. [37]
+* At the highest level, an <span class="highlight-red">executing program is tracked as a process in the OS</span>. [37]
+* Note that in the context of different operating systems, <span class="highlight-red">jobs and processes may be used interchangeably</span>. However, <span class="highlight-red">process refer to a program in execution</span>. [37]
+        </pre>
+        <sub>[37]</sub>
+
+        <h3>7.3. محتويات العملية (Process Contents)</h3>
+        <p>أي عملية (Process) جواها أقسام مهمة زي [38]:</p>
+        <ul>
+            <li><b>Text section:</b> ده فيه تعليمات البرنامج (Program instructions) وعنوان التعليمة التالية (Program counter) [38].</li>
+            <li><b>Data Section:</b> ده اللي فيه المتغيرات العامة (Global Variables) والثابتة (Static Variables) [38].</li>
+            <li><b>Stack Section:</b> ده اللي فيه المتغيرات المحلية (Local variables)، وعناوين الرجوع (Return addresses)، ومعاملات الـ method (Method parameters) [38].</li>
+            <li><b>Heap section:</b> ده اللي فيه الذاكرة المخصصة ديناميكياً (Dynamic Allocation) أثناء وقت التشغيل (run-time) [38].</li>
+        </ul>
+        <p><b>مثال عملي:</b> لما تكتب برنامج بلغة C++، الكود نفسه هو الـ Text section [38]. المتغيرات اللي بتعرفها بره أي دالة (Global variables) بتكون في الـ Data section [38]. المتغيرات اللي جوه الدوال (Local variables) بتتحط في الـ Stack [38]. ولو بتعمل <span class="highlight-red">new</span> لمصفوفة كبيرة أثناء تشغيل البرنامج، دي بتتحط في الـ Heap [38].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Text section: Program instructions</span> [38]
+* <span class="highlight-red">Data Section: Global and Static Variables</span> [38]
+* <span class="highlight-red">Stack Section: Local variables, Return addresses, Method parameters</span> [38]
+* <span class="highlight-red">PC: Next instruction address</span> [38]
+* <span class="highlight-red">Heap section: Dynamic Allocation (at run-time)</span> [38]
+        </pre>
+        <sub>[38]</sub>
+
+        <h3>7.4. حالات العملية (Process States)</h3>
+        <p>لما برنامج بيتم تشغيله، مثلاً عن طريق الضغط مرتين على ملف .EXE، بيتم إنشاء عملية جديدة [39]. العملية عادةً بتدعم حالات مختلفة من الجاهزية في دورة حياتها [39]:</p>
+        <ul>
+            <li><b>New:</b> العملية لسه بتتعمل [39].</li>
+            <li><b>Running:</b> التعليمات بتتنفس [39].</li>
+            <li><b>Waiting:</b> العملية مستنية حدث معين يحصل (زي ما تستنى إدخال من المستخدم أو عملية I/O تخلص) [39].</li>
+            <li><b>Ready:</b> العملية مستنية إنها تتخصص لـ processor عشان تتنفذ [39].</li>
+            <li><b>Terminated or Exit:</b> العملية خلصت تنفيذها [39].</li>
+        </ul>
+        <p>ممكن يكون فيه أكتر من نواة CPU في النظام، وبالتالي الـ OS ممكن يجدول العمليات على أي نواة متاحة [39]. الـ OS بيراقب ويدير الانتقال بين الحالات دي بسلاسة وبيحتفظ بحالات كل العمليات اللي شغالة على النظام [40].</p>
+        <p><b>مثال عملي:</b> لما بتفتح برنامج جديد، بيكون في حالة <span class="highlight-red">New</span> [39]. لو الكمبيوتر فاضي، بيتحول لـ <span class="highlight-red">Running</span> [39]. لو طلبت منه يفتح ملف من الهارد ديسك، بيتحول لـ <span class="highlight-red">Waiting</span> لحد ما الملف يتفتح [39]. لما الملف يتفتح، بيرجع لـ <span class="highlight-red">Ready</span> عشان يستنى دوره تاني على الـ CPU [39]. ولما تقفل البرنامج، بيتحول لـ <span class="highlight-red">Terminated</span> [39].</p>
+        <p>Source Text:</p>
+        <pre>
+* process typically supports <span class="highlight-red">multiple states of readiness in its lifecycle</span>:
+    * <span class="highlight-red">New: The process is being created</span>.
+    * <span class="highlight-red">Running: Instructions are being executed</span>.
+    * <span class="highlight-red">Waiting: The process is waiting for some event to occur</span>.
+    * <span class="highlight-red">Ready: The process is waiting to be assigned to a processor</span>.
+    * <span class="highlight-red">Terminated or Exit: The process has finished execution</span>. [39]
+* The <span class="highlight-red">OS monitors and manages the transition of these states seamlessly and maintains the states of all such processes running on the system</span>. [40]
+        </pre>
+        <sub>[39, 40]</sub>
+
+        <h3>7.5. كتلة التحكم في العملية (Process Control Block - PCB)</h3>
+        <p>الـ PCB هو <b>هيكل بيانات بيستخدمه الـ OS لتخزين المعلومات المتعلقة بعملية معينة</b> [41]. كل عملية ليها PCB خاص بيها [41].</p>
+        <p><b>المعلومات اللي بيحتويها الـ PCB [41, 42]:</b></p>
+        <ul>
+            <li><b>Pointer:</b> ممكن يشير إلى تسلسل هرمي للعمليات (hierarchy of processes)، مثلاً لو فيه عملية رئيسية هي اللي شغلت العملية دي [41].</li>
+            <li><b>Process state:</b> بيحدد الحالة الحالية للعملية (New, Running, Waiting, Ready, Terminated) [41].</li>
+            <li><b>Priority:</b> بيشير لمستوى الأولوية (عالية، متوسطة، منخفضة، حرجة، في الوقت الفعلي) اللي الـ OS ممكن يستخدمها عشان يحدد الجدولة [41].</li>
+            <li><b>Program counter:</b> عادةً بيشير للتعليمة التالية اللي محتاجة تتنفذ [42].</li>
+            <li><b>CPU registers:</b> تفاصيل المسجلات والذاكرة اللي محتاجة لتنفيذ العملية [41].</li>
+            <li><b>Memory management info:</b> معلومات إدارة الذاكرة المتعلقة بالعملية [41].</li>
+            <li><b>I/O status information:</b> معلومات حالة الـ I/O زي الأجهزة المخصصة للعملية والحدود [42].</li>
+            <li><b>Accounting Information:</b> معلومات المحاسبة زي متطلبات الترحيل من الذاكرة (paging requirements)، والمؤقتات (timers)، والوقت المتبقي للإنهاء [42].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل الـ PCB زي "بطاقة هوية" العملية [41]. فيها كل تفاصيلها: اسمها (ID)، حالتها دلوقتي إيه، إيه أولويتها، فين كانت واقفة لما اتوقفت، إيه الأجهزة اللي بتستخدمها، وهكذا. الـ OS بيستخدم البطاقة دي عشان يدير العملية [41].</p>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">process ID is a unique identifier</span> for the instance of the process that is to be created or currently running. [41]
+* The <span class="highlight-red">process state determines the current state of the process</span>, described in the preceding section. [41]
+* The <span class="highlight-red">pointer could refer to the hierarchy of processes</span> (e.g., if there was a parent process that triggered this process). [41]
+* The <span class="highlight-red">priority refers to the priority level</span> (e.g., high, medium, low, critical, real time, etc.) that the OS may need to use to determine the scheduling. [41]
+* <span class="highlight-red">Affinity and CPU register details include if there is a need to run a process on a specific core</span>. [41]
+* The <span class="highlight-red">program counter usually refers to the next instruction that needs to be run</span>. [42]
+* The <span class="highlight-red">I/O status information, like which devices assigned, limits</span>, and so on that is used to monitor each process is also included in the structure. [42]
+* The <span class="highlight-red">accounting information such as paging requirements from memory, timers, how many time unit remaining to finish</span>, … etc [42]
+        </pre>
+        <sub>[41, 42]</sub>
+
+        <h3>7.6. تبديل السياق (Context Switching)</h3>
+        <p>الـ OS ممكن يحتاج <b>يبدل العملية اللي شغالة حالياً بعملية تانية</b> عشان يسمح لتطبيقات تانية تشتغل [43]. هو بيعمل كده بمساعدة <span class="highlight-red">context switching</span> [43].</p>
+        <p>لما عملية بتشتغل على الـ CPU، الـ <span class="highlight-red">process context</span> (سياق العملية) بيتحدد عن طريق الـ <span class="highlight-red">program counter</span> (التعليمة اللي شغالة حالياً)، و <span class="highlight-red">processor status</span>، و <span class="highlight-red">register states</span>، ومقاييس تانية كتير [43].</p>
+        <p><b>لما الـ OS بيحتاج يبدل عملية شغالة حالياً بعملية تانية، لازم يعمل الخطوات دي [43]:</b></p>
+        <ol>
+            <li><b>يوقف العملية اللي شغالة حالياً ويحفظ السياق بتاعها</b> (context) [43].</li>
+            <li><b>يبدل للعملية الجديدة</b> [43].</li>
+            <li><b>لما يبدأ عملية جديدة، الـ OS لازم يظبط السياق (context) بشكل مناسب للعملية دي</b> [44].</li>
+        </ol>
+        <p>الخطوات دي بتضمن إن العملية هتكمل تنفيذها بالظبط من النقطة اللي توقفت عندها [44].</p>
+        <p><b>مثال عملي:</b> تخيل إنك بتكتب على الـ Word وفجأة بتجيلك رسالة على الـ Whatsapp. الـ OS بيحفظ كل اللي كنت بتعمله في الـ Word (الـ context) عشان لما ترجعله تلاقيه زي ما هو، وبعدين بيشغل الـ Whatsapp، ولما تخلص، بيرجع يجيب الـ context بتاع الـ Word ويكملك من مكانه [43].</p>
+        <p>Source Text:</p>
+        <pre>
+* The operating system may need to <span class="highlight-red">swap the currently executing process with another process to allow other applications to run</span>, it does so with the help of <span class="highlight-red">context switching</span>. [43]
+* When a process is executing on the CPU, the <span class="highlight-red">process context is determined by the program counter (instruction currently run), the processor status, register states, and various other metrics</span>. [43]
+* When the OS needs to swap a currently executing process with another process, it must do the following steps:
+    1. <span class="highlight-red">Pause the currently executing process and save the context</span>.
+    2. <span class="highlight-red">Switch to the new process</span>.
+    3. <span class="highlight-red">When starting a new process, the OS must set the context appropriately for that process</span>. [43, 44]
+* This ensures that the <span class="highlight-red">process executes exactly from where it was swapped</span>. [44]
+        </pre>
+        <sub>[43, 44]</sub>
+
+        <h3>7.7. الجدولة (Scheduling)</h3>
+        <p>أكثر حالات العمليات شيوعاً هي حالات الـ Ready والـ Waiting والـ Running [45]. الـ OS بيستقبل طلبات لتشغيل عمليات كتير في نفس الوقت وممكن يحتاج ينسق التنفيذ [45]. بيستخدم <span class="highlight-red">process scheduling queues</span> (طوابير جدولة العمليات) عشان يعمل كده [45].</p>
+        <h4>7.7.1. طوابير الجدولة (Scheduling Queues)</h4>
+        <ul>
+            <li><b>Ready Queue:</b> لما عملية جديدة بتتعمل، بتتنقل من حالة New لحالة Ready [45]. بتدخل الطابور ده عشان تشير إلى إنها جاهزة للجدولة [45].</li>
+            <li><b>Waiting Queue:</b> لما عملية بتتقفل (blocked) بسبب عملية I/O معتمدة عليها أو جهاز معين أو بتحتاج تتوقف مؤقتاً، بتتنقل لحالة Blocked لأنها مستنية مورد [45]. في النقطة دي، الـ OS بيدخل العملية دي في الـ Waiting queue [45].</li>
+            <li><b>Job queue:</b> ده اللي بيحتفظ بكل العمليات في النظام في أي وقت [45]. عادةً ده بيكون مطلوب لأغراض حفظ السجلات (bookkeeping purposes) [45].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل مكتبة. الـ Ready Queue هي قائمة الانتظار للناس اللي مستنية دورها على جهاز كمبيوتر فاضي [45]. الـ Waiting Queue هي قائمة الناس اللي قاعدة مستنية كتاب معين يرجع من حد تاني [45]. الـ Job Queue هي كل الناس اللي موجودة في المكتبة سواء بيستخدموا جهاز أو مستنين [45].</p>
+        <p>Source Text:</p>
+        <pre>
+* The most frequent process states are the <span class="highlight-red">Ready, Waiting, and Running states</span>. [45]
+* It uses <span class="highlight-red">process scheduling queues</span> to perform this:
+    1. <span class="highlight-red">Ready Queue: When a new process is created, it transitions from New to the Ready state</span>. It enters this queue indicating that it is ready to be scheduled. [45]
+    2. <span class="highlight-red">Waiting Queue: When a process gets blocked by a dependent I/O or device or needs to be suspended temporarily, it moves to the Blocked state since it is waiting for a resource</span>. At this point, the OS pushes such process to the Waiting queue. [45]
+    3. <span class="highlight-red">Job queue that maintains all the processes in the system at any point in time</span>. This is usually needed for bookkeeping purposes. [45]
+        </pre>
+        <sub>[45]</sub>
+
+        <h4>7.7.2. معايير الجدولة (Scheduling Criteria)</h4>
+        <p>دي بعض المقاييس النموذجية اللي الـ OS ممكن يستخدمها عشان يحدد أولويات الجدولة [46]:</p>
+        <ul>
+            <li><b>استخدام الـ CPU ووقت التنفيذ (CPU Utilization and Execution Runtime):</b> إجمالي الوقت اللي العملية بتستخدم فيه الـ CPU باستثناء دورات الخمول (idle cycles) [46].</li>
+            <li><b>حجم التنفيذ/الإنتاجية (Volume/Execution Throughput):</b> بعض أنظمة التشغيل ممكن تحتاج تدعم معدلات تنفيذ معينة لمدة معينة [46].</li>
+            <li><b>الاستجابة (Responsiveness):</b> الوقت المستغرق لإكمال عملية ومتوسط الوقت اللي بتقضيه في الطوابير المختلفة [46].</li>
+            <li><b>وقت انتظار الموارد (Resource Waiting Time):</b> متوسط الوقت المستغرق في عمليات الـ I/O الخارجية على النظام [46].</li>
+        </ul>
+        <p><b>ملاحظة:</b> معظم أنظمة التشغيل بتحاول تضمن العدالة (fairness) والحيوية (liveness) في الجدولة [46]. فيه خوارزميات جدولة مختلفة زي <span class="highlight-red">First Come, First Serve (FCFS)</span>، <span class="highlight-red">Shortest Job First (SJF)</span>، <span class="highlight-red">Shortest Remaining Time First (SRTF)</span>، <span class="highlight-red">Round-Robin</span>، و <span class="highlight-red">Static/Dynamic Priority</span>، وهكذا، اللي الـ OS بيستخدمها لجدولة العمليات [47].</p>
+        <p><b>مثال عملي:</b> لو عندك أكتر من تطبيق عايز يشتغل. الـ OS ممكن يختار التطبيق اللي محتاج وقت قليل على الـ CPU (Shortest Job First) عشان يخلصه بسرعة ويستفيد من الـ CPU [47]. أو ممكن يدي لكل تطبيق وقت صغير بالتناوب (Round-Robin) عشان كل الناس تحس إن التطبيق بتاعها شغال [47].</p>
+        <p>Source Text:</p>
+        <pre>
+* Some of the typical metrics that the OS may use to determine scheduling priorities are listed in the following:
+    * <span class="highlight-red">CPU Utilization and Execution Runtime</span>: The total amount of time the process is making use of the CPU excluding NOP (no-operation) idle cycles. [46]
+    * <span class="highlight-red">Volume/Execution Throughput</span>: Some OSs may need to support certain execution rates for a given duration. [46]
+    * <span class="highlight-red">Responsiveness</span>: The time taken for completion of a process and the average time spent in different queues. [46]
+    * <span class="highlight-red">Resource Waiting Time</span>: The average time taken on external I/Os on the system. [46]
+* Note Most OSs try to ensure there is <span class="highlight-red">fairness and liveness in scheduling</span>. [46]
+* There are various scheduling algorithms like <span class="highlight-red">First Come, First Serve (FCFS), Shortest Job First (SJF), Shortest Remaining Time First (SRTF), Round-Robin, Static/Dynamic Priority</span>, and so on that the OS uses for scheduling of processes. [47]
+        </pre>
+        <sub>[46, 47]</sub>
+
+        <h3>7.8. مفاهيم الـ Thread (Thread Concepts)</h3>
+        <p>الـ <span class="highlight-red">thread</span> هو ببساطة <span class="highlight-red">lightweight process</span> (عملية خفيفة الوزن) [48]. لما عملية بتشتغل، ممكن تنشئ <span class="highlight-red">thread</span> واحد أو أكتر داخلياً ممكن يتنفذوا على البروسيسور [48]. الـ threads دي ليها الـ <span class="highlight-red">PCB</span> بتاعها الخاص بيها، و <span class="highlight-red">program counter</span>، و <span class="highlight-red">context</span>، ومعلومات الـ <span class="highlight-red">register</span>، شبه إزاي العملية بتدار بالظبط [48].</p>
+        <p>الـ Threads بتساعد في <b>تنفيذ التوازي (parallelism) جوه نفس العملية</b> [48].</p>
+        <p><b>أمثلة:</b></p>
+        <ul>
+            <li>برنامج دردشة (Chatting program): عمليات الإرسال والاستقبال مستقلة، وبتستخدم الـ threads [48].</li>
+            <li>ألعاب استراتيجية (Strategic games): فيه إجراءات كتير بتحصل في نفس الوقت بشكل مستقل، وبتستخدم الـ threads [48].</li>
+        </ul>
+        <p>الـ OS ممكن يستخدم أنواع مختلفة من الـ threads، حسب إذا كانت بتشتغل من تطبيق [49]. مثلاً، تطبيق ممكن يستخدم <span class="highlight-red">user-mode threads</span>، و <span class="highlight-red">kernel driver</span> ممكن يستخدم <span class="highlight-red">kernel-mode threads</span> [49]. الـ OS كمان بيتعامل مع التبديل من الـ user-mode threads لـ kernel-mode threads حسب حاجة العملية [49].</p>
+        <p><b>مثال عملي:</b> تخيل برنامج المتصفح بتاعك. لما تفتح أكتر من Tab في نفس الوقت، كل Tab ممكن يكون بيشتغل كـ Thread منفصل جوه نفس الـ Process بتاع المتصفح. ده بيخليك تتصفح أكتر من صفحة في نفس الوقت من غير ما المتصفح كله يقف لو واحدة منهم علقت [48].</p>
+        <p>Source Text:</p>
+        <pre>
+* A <span class="highlight-red">thread is nothing more than a lightweight process</span>. [48]
+* When a process gets executed, it could <span class="highlight-red">create one or more threads internally that can be executed on the processor</span>. [48]
+* These threads have their <span class="highlight-red">own PCB; program counter, context, and register information</span>, similar to how the process is managed. [48]
+* <span class="highlight-red">Threads help in performing parallelism within the same process</span>. [48]
+* The OS may employ <span class="highlight-red">different types of threads, depending on whether they are run from an application</span>. For instance, an application may leverage <span class="highlight-red">user-mode threads, and a kernel driver may leverage kernel-mode threads</span>. The OS also handles switching from user-mode threads to kernel-mode threads as required by a process. [49]
+        </pre>
+        <sub>[48, 49]</sub>
+
+        <h2>8. إدارة الذاكرة (Memory Management)</h2>
+        <h3>8.1. الحاجة لإدارة الذاكرة (Need of Memory Management)</h3>
+        <p>في الأنظمة اللي فيها برامج كتير شغالة بالتوازي، ممكن يكون فيه عمليات كتير في الذاكرة في نفس الوقت، وكل عملية ممكن يكون ليها احتياجات ذاكرة معينة [50].</p>
+        <p><b>العمليات ممكن تحتاج ذاكرة لأسباب مختلفة [50, 51]:</b></p>
+        <ul>
+            <li><b>تحميل البرنامج نفسه:</b> أولاً، الملف التنفيذي (executable) نفسه ممكن يحتاج يتحمل في الذاكرة عشان يتنفذ [50]. ده عادةً بيكون التعليمات أو الكود اللي محتاج يتنفذ [50].</li>
+            <li><b>بيانات البرنامج:</b> الجزء التاني هو جزء البيانات في الملف التنفيذي. ودي ممكن تكون نصوص ثابتة (hardcoded strings)، أو نص (text)، أو متغيرات بيتم الإشارة ليها بواسطة العملية [50].</li>
+            <li><b>طلبات الذاكرة وقت التشغيل (runtime requests):</b> النوع التالت من احتياجات الذاكرة ممكن ينشأ من طلبات الذاكرة وقت التشغيل. ودي ممكن تكون محتاجة من الـ <span class="highlight-red">stack/heap</span> عشان البرنامج ينفذ شغله [51].</li>
+            <li><b>مكونات الـ OS والـ kernel:</b> الـ OS ومكونات الـ kernel ممكن كمان يحتاجوا يتحملوا في الذاكرة [51].</li>
+            <li><b>ذاكرة للأجهزة المحددة:</b> بالإضافة لكده، ممكن يكون فيه جزء معين من الذاكرة مطلوب لأجهزة محددة (زي printer spooling) [51].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل إن الـ RAM هي ورشة عمل كبيرة [50]. لما بتشغل برنامج الفوتوشوب، الـ OS بيخصصله جزء من الورشة دي (الـ RAM) عشان يحط فيها البرنامج نفسه، والصور اللي بيتعامل معاها، وأي شغل مؤقت بيعمله [50].</p>
+        <p>Source Text:</p>
+        <pre>
+* In systems with multiple programs running in parallel, there could be <span class="highlight-red">many processes in memory at the same time, and each process may have specific memory needs</span>. [50]
+* Processes may need memory for various reasons:
+    * First, the <span class="highlight-red">executable itself may need to be loaded into memory for execution</span>. This is usually the instructions or the code that needs to be run. [50]
+    * The second item would be the <span class="highlight-red">data part of the executable</span>. These could be hardcoded strings, text, and variables that are referenced by the process. [50]
+    * The third type of memory requirement could arise from <span class="highlight-red">runtime requests for memory</span>. These could be needed from the <span class="highlight-red">stack/heap</span> for the program to perform its execution. [51]
+    * The <span class="highlight-red">OS and the kernel components may also need to be loaded in memory</span>. [51]
+        </pre>
+        <sub>[50, 51]</sub>
+
+        <h3>8.2. ربط العناوين (Address Binding)</h3>
+        <p>البرنامج في كل مرة بيتنفذ بيتحمل في مكان مختلف في الذاكرة (حسب المساحات المتاحة وقت التحميل) [51]. ولما العملية بتكون في حالة <span class="highlight-red">waiting</span> لعملية I/O، ممكن تتبدل وتخرج من الذاكرة الرئيسية (<span class="highlight-red">main memory</span>) لـ <span class="highlight-red">virtual memory</span> (جزء من التخزين الثانوي) [52]. ولما حالة الـ <span class="highlight-red">waiting</span> بتتغير لـ <span class="highlight-red">ready</span>، العملية لازم ترجع تاني للذاكرة الرئيسية، واللي -في معظم الحالات- بتكون في مكان تاني في الذاكرة الرئيسية [52]. ده معناه إن عناوين المتغيرات اللي بتستخدم في البرنامج ممكن تتغير كذا مرة أثناء التشغيل!!! [52].</p>
+        <p>عشان نحل المشكلة دي، الحل الشائع هو <b>ربط عناوين البرنامج المترجمة بالعناوين الفعلية في الذاكرة الفيزيائية (<span class="highlight-red">map the program’s compiled addresses to the actual address in physical memory</span>)</b> [52].</p>
+        <p><b>مثال عملي:</b> تخيل إنك عامل ملف Word. الـ OS ممكن يفتحهولك على الديسكتوب في أول مرة، وتاني مرة يفتحهولك من الـ Downloads. هو بيعرف مكانه كل مرة وبيتعامل معاه، انت مش محتاج تعرف العنوان الفيزيائي بتاعه بالظبط على الهارد [52].</p>
+        <p>Source Text:</p>
+        <pre>
+* The program each time executed it is <span class="highlight-red">loaded in a different memory location</span> (according to the available spaces at time loading). [51]
+* And so, when the process in waiting state for I/O operation it may be <span class="highlight-red">swapped out from main memory to virtual memory</span> (part from secondary storage), and when the waiting state changed to ready, the process must <span class="highlight-red">swapped in to main memory which – almost cases- another location in the main memory</span>. [52]
+* That means the addresses of the variables which used in the program, <span class="highlight-red">may be changed many times at the runtime</span>!!! [52]
+* To solve this problem, the common solution is to <span class="highlight-red">map the program’s compiled addresses to the actual address in physical memory</span>. [52]
+        </pre>
+        <sub>[51, 52]</sub>
+
+        <h3>8.3. العنوان المنطقي مقابل العنوان الفيزيائي (Logical Address Vs. Physical Address)</h3>
+        <p>البرنامج بيكون فيه متغيرات وتعليمات وإشارات (references) كجزء من الكود المصدري (source code) [53]. الإشارات دي عادةً بيشار إليها كـ <span class="highlight-red">symbolic addresses</span> [53]. لما نفس البرنامج بيتم تجميعه (compiled)، المترجم (compiler) بيحول العناوين دي لـ <span class="highlight-red">relative addresses (Logical Address)</span> [53]. ده مهم للـ OS عشان يقدر يحمل البرنامج في الذاكرة بعنوان أساسي معين (<span class="highlight-red">base address</span>) وبعدين يستخدم العنوان النسبي ده للإشارة لأجزاء مختلفة من البرنامج [53].</p>
+        <p>عموماً، الذاكرة الفيزيائية مش كافية عشان تستضيف كل البرامج في نفس الوقت [53]. ده بيؤدي لمفهوم الـ <span class="highlight-red">virtual memory</span> (الذاكرة الافتراضية) اللي ممكن تتربط بالذاكرة الفيزيائية [53]. <b>وحدة إدارة الذاكرة (<span class="highlight-red">memory management unit</span>) مسؤولة عن تحويل العناوين الافتراضية أو المنطقية لعناوين فيزيائية (<span class="highlight-red">translating virtual addresses or logical addresses to physical addresses</span>)</b> [53].</p>
+        <p><b>مثال عملي:</b> لما تكتب في برنامجك `int x;` ، الـ `x` ده هو العنوان الـ Symbolic [53]. لما تعمل Compile للبرنامج، الـ Compiler بيحوله لعنوان نسبي (Logical Address) زي "المتغير التالت في الكود" [53]. ولما البرنامج بيشتغل، الـ OS والـ MMU بيحولوا العنوان المنطقي ده لمكان حقيقي في الـ RAM (Physical Address) [53].</p>
+        <p>Source Text:</p>
+        <pre>
+* A program will have variables, instructions, and references that are included as part of the source code. The references to these are usually referred to as the <span class="highlight-red">symbolic addresses</span>. When the same program gets compiled, the compiler translates these addresses into <span class="highlight-red">relative addresses (Logical Address)</span>. [53]
+* This is important for the OS to then load the program in memory with a given <span class="highlight-red">base address</span> and then use the relative address from that base to refer to different parts of the program. [53]
+* In general, there is not enough physical memory to host all programs at the same time. This leads to the concept of <span class="highlight-red">virtual memory that can be mapped to physical memory</span>. [53]
+* The <span class="highlight-red">memory management unit is responsible for translating virtual addresses or logical addresses to physical addresses</span>. [53]
+        </pre>
+        <sub>[53]</sub>
+
+        <h3>8.4. الاتصال بين العمليات (Inter-process Communication - IPC)</h3>
+        <p>غالباً بيكون مطلوب إن العمليات تتواصل مع بعضها عشان تنسق الشغل، مثلاً [54]. في الحالات دي، الـ OS بيوفر آلية أو أكتر عشان يخلي العمليات دي تتواصل مع بعضها [54].</p>
+        <p>الآليات دي بتتصنف بشكل عام كـ <span class="highlight-red">inter-process communication (IPC)</span> [54]. الطريقتين الشائعتين هما [54]:</p>
+        <ul>
+            <li><b>Shared memory</b></li>
+            <li><b>Message passing</b></li>
+        </ul>
+
+        <h4>8.4.1. طريقة الذاكرة المشتركة (Shared Memory Method)</h4>
+        <p>لما عمليتين أو أكتر بيحتاجوا يتواصلوا مع بعض، ممكن ينشئوا <b>منطقة ذاكرة مشتركة (shared memory area)</b> ممكن العمليتين يوصلولها [55]. بعدين، ممكن واحدة من العمليات تشتغل كـ <span class="highlight-red">producer</span> للبيانات، والتانية تشتغل كـ <span class="highlight-red">consumer</span> للبيانات [55].</p>
+        <p><b>الذاكرة دي بتشتغل كـ <span class="highlight-red">communication buffer</span> (مخزن مؤقت للاتصال) بين العمليتين دول</b> [55]. دي آلية شائعة جداً للتواصل بين العمليات [55].</p>
+        <p><b>ملاحظة:</b> الطريقة دي بتحتاج آلية لإدارة لما العمليتين بيحتاجوا يحفظوا في الذاكرة المشتركة في نفس الوقت، وده بنسميه <span class="highlight-red">Synchronization</span> (المزامنة) [55].</p>
+        <p><b>مثال عملي:</b> تخيل صندوق بريد واحد مشترك بين شخصين. شخص بيحط رسائل فيه (producer)، والشخص التاني بياخد الرسائل منه (consumer) [55]. الصندوق ده هو الـ Shared Memory [55]. لو الاتنين حاولوا يحطوا رسالة في نفس الوقت، ممكن تحصل مشكلة، فبنحتاج Sync [55].</p>
+        <p>Source Text:</p>
+        <pre>
+* When two or more processes need to communicate with each other, they may <span class="highlight-red">create a shared memory area that is accessible by both processes</span>. [55]
+* Then, one of the processes may act as the <span class="highlight-red">producer of data</span>, while the other could act as the <span class="highlight-red">consumer of data</span>. [55]
+* The <span class="highlight-red">memory acts as the communication buffer between these two processes</span>. [55]
+* Note: this method need a way of management when the two processes need to save in the shared memory at the same time, it is called <span class="highlight-red">Synchronization</span> [55]
+        </pre>
+        <sub>[55]</sub>
+
+        <h4>8.4.2. طريقة تمرير الرسائل (Message Passing Method)</h4>
+        <p>الطريقة التانية اسمها <span class="highlight-red">message passing</span> (تمرير الرسائل) [56]. هنا العمليتين بيكون ليهم <b>رابط اتصال محدد مسبقاً (predefined communication link)</b> ممكن يكون <span class="highlight-red">file system</span>، أو <span class="highlight-red">socket</span>، أو <span class="highlight-red">named pipe</span>، وهكذا [56]. وبيستخدموا آلية رسائل مبنية على بروتوكول عشان يتواصلوا [56].</p>
+        <p>عادةً، الخطوة الأولى بتكون إنشاء قناة الاتصال نفسها [56]. مثلاً، في حالة اتصال TCP/IP، ممكن واحدة من العمليات تشتغل كـ <span class="highlight-red">server</span> وتنتظر على <span class="highlight-red">port</span> معين [56]. العملية التانية ممكن تسجل نفسها كـ <span class="highlight-red">client</span> وتتصل بالـ <span class="highlight-red">port</span> ده [57]. الخطوة اللي بعدها ممكن تتضمن تبادل الرسائل بين الـ <span class="highlight-red">client</span> والـ <span class="highlight-red">server</span> باستخدام بروتوكولات محددة مسبقاً عن طريق أوامر <span class="highlight-red">Send</span> و <span class="highlight-red">Receive</span> [57]. العمليات لازم تتفق على معايير وتدفق الاتصال عشان ده ينجح [57].</p>
+        <p><b>ملاحظة:</b> بعض أنظمة التشغيل ليها <span class="highlight-red">system calls (APIs)</span> لإرسال واستقبال البيانات بين العمليات [57].</p>
+        <p><b>مثال عملي:</b> تخيل إنك بتكلم صاحبك على الواتساب [56]. مش بتستخدموا نفس الورقة عشان تكتبوا لبعض (Shared Memory)، لكن كل واحد عنده موبايله وبيبعت رسائل للواتساب سيرفر (Communication Link) وهو اللي بيوصل الرسالة للتاني [56].</p>
+        <p>Source Text:</p>
+        <pre>
+* The other method is called <span class="highlight-red">message passing where the two processes have a predefined communication link that could be a file system, socket, named pipe, and so on and a protocol-based messaging mechanism that they use to communicate</span>. [56]
+* For example, in the case of a <span class="highlight-red">TCP/IP communication, one of the processes could act as the server waiting on a specific port. The other process could register as a client and connect to that port</span>. [56, 57]
+* The next step could involve sharing of messages between the client and server using predefined protocols leveraging <span class="highlight-red">Send and Receive commands</span>. [57]
+* Note: <span class="highlight-red">Some OSs have system calls (APIs) for sending and receiving the data among processes</span>. [57]
+        </pre>
+        <sub>[56, 57]</sub>
+
+        <h2>9. إدارة الـ I/O (I/O Management)</h2>
+        <h3>9.1. الحاجة لإدارة الـ I/O (Need of I/O Management)</h3>
+        <p>كجزء من النظام، ممكن يكون فيه أجهزة كتير متوصلة وبتنفذ وظائف إدخال-إخراج مختلفة [58]. الأجهزة دي ممكن تستخدم لتفاعل البشر زي شاشات العرض، شاشات اللمس، الكيبورد، الماوس، وهكذا [58]. أجهزة I/O تانية ممكن تكون لربط النظام بأجهزة تخزين، مستشعرات، وهكذا [58]. وممكن يكون فيه أجهزة I/O لاحتياجات الشبكة بتنفذ أجزاء معينة من stack الشبكة، زي أجهزة الـ Wi-Fi، Ethernet، و Bluetooth [59].</p>
+        <p>الأجهزة دي بتختلف عن بعضها في البروتوكولات اللي بتستخدمها للاتصال، زي تنسيق البيانات، السرعة اللي بتشتغل بيها، آليات الإبلاغ عن الأخطاء، وغيره [59]. <b>الـ OS بيقدم نظام I/O موحد بيخفي التعقيد عن التطبيقات</b> [59]. الـ OS بيتعامل مع ده عن طريق إنشاء بروتوكولات وواجهات مع كل <span class="highlight-red">I/O controller</span> [59]. ومع ذلك، الـ <span class="highlight-red">I/O subsystem</span> عادةً بيكون الجزء المعقد في نظام التشغيل بسبب ديناميكياته وتنوع الـ I/Os اللي بيشملها [59].</p>
+        <p><b>مثال عملي:</b> تخيل إنك عندك كذا طابعة مختلفة الماركة، واحدة بتشتغل بكابل USB وواحدة Wi-Fi [59]. الـ OS بيخليك تبعت أمر طباعة عادي والـ OS هو اللي بيعرف يتعامل مع كل طابعة ببروتوكولها الخاص، انت مش محتاج تعرف التفاصيل دي [59].</p>
+        <p>Source Text:</p>
+        <pre>
+* As part of the system, there could be <span class="highlight-red">multiple devices that are connected and perform different input-output functions</span>. [58]
+* These I/O devices could be used for <span class="highlight-red">human interaction</span> such as display panel, touch panels, keyboard, mouse, and track pads. [58]
+* Another I/O devices could be to connect the system to <span class="highlight-red">storage devices, sensors</span>, and so on. [58]
+* There could also be I/O devices for <span class="highlight-red">networking needs that implement certain parts of the networking stack</span>. [59]
+* They <span class="highlight-red">vary from one to another in the form of protocols they use to communicate</span> such as the data format, speed at which they operate, error reporting mechanisms, and more. [59]
+* The OS <span class="highlight-red">presents a unified I/O system that abstracts the complexity from applications</span>. [59]
+* The <span class="highlight-red">I/O subsystem usually forms the complex part of the operating system</span> due to the dynamics and the wide variety of I/Os involved. [59]
+        </pre>
+        <sub>[58, 59]</sub>
+
+        <h3>9.2. نظام الـ I/O الفرعي (I/O Subsystem)</h3>
+        <p>أجهزة الإدخال/الإخراج اللي متوصلة بالكمبيوتر بنسميها <b>أجهزة طرفية (<span class="highlight-red">peripheral devices</span>)</b> [60]. وهي بتتواصل مع النظام عن طريق الـ Buses [60]:</p>
+        <ul>
+            <li><b>Data bus:</b> لنقل البيانات [60].</li>
+            <li><b>Address bus:</b> بيستخدم لتحديد مواقع العناوين [60].</li>
+            <li><b>Control bus:</b> للتحكم في الجهاز [60].</li>
+        </ul>
+        <p>ممكن يكون فيه Buses أو بروتوكولات أجهزة مختلفة الـ OS بيدعمها [60]. <b>أشهر البروتوكولات [60]:</b> Peripheral Component Interconnect Express (PCIe) protocol، و Inter-Integrated Circuit (I2C)، و Advanced Configuration and Power Interface (ACPI). ممكن الجهاز يتوصل من خلال واجهة أو أكتر من الواجهات دي [61].</p>
+        <p>عادةً، بيكون فيه <b>مكون برمجي في الـ <span class="highlight-red">kernel mode</span> اسمه <span class="highlight-red">“device driver”</span></b> هو اللي بيتعامل مع كل الواجهات مع الجهاز [62]. وهو اللي بيساعد في التواصل بين الجهاز والـ OS وبيخفي التفاصيل الخاصة بالجهاز [62]. كمان ممكن يكون فيه <span class="highlight-red">driver</span> على مستوى الـ Bus نفسه، وده بنسميه <span class="highlight-red">bus driver</span> (زي USB Bus driver) [62]. معظم أنظمة التشغيل بتيجي معاها <span class="highlight-red">inbox driver</span> بينفذ الـ <span class="highlight-red">bus driver</span> [62]. عادةً بيكون فيه driver لكل <span class="highlight-red">controller</span> ولكل <span class="highlight-red">device</span> [62].</p>
+        <p><b>مثال عملي:</b> لما بتوصل فلاشة (Peripheral Device) بالكمبيوتر [60]. الـ USB Bus driver هو اللي بيعرف إن فيه فلاشة اتوصلت وبيخلي الـ OS يقراها [62]. والـ Device driver بتاع الفلاشة هو اللي بيخلي الـ OS يتعامل معاها عشان تنقل ملفات [62].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Input/output devices that are connected to the computer are called peripheral devices</span>. [60]
+* It is communicated with the system through the busses: <span class="highlight-red">Data bus: to transfer data, Address bus: used to specify address locations, and Control bus: to control a device</span>. [60]
+* There could be different buses or device protocols that an operating system may support. The most common protocols include: <span class="highlight-red">Peripheral Component Interconnect Express (PCIe) protocol, Inter-Integrated Circuit (I2C), and Advanced Configuration and Power Interface (ACPI)</span> [61]
+* A <span class="highlight-red">device can be connected over one or more of these interfaces</span>. [61]
+* Typically, there is a software component in kernel mode called as the <span class="highlight-red">“device driver” that handles all interfaces with a device</span>. [62]
+* Similarly, there could be a driver at the bus level usually referred to as the <span class="highlight-red">bus driver</span>. (Ex: USB Bus driver) [62]
+        </pre>
+        <sub>[60-62]</sub>
+
+        <h3>9.3. فئات أجهزة الـ I/O (I/O Devices Categories)</h3>
+        <p>ممكن نقسم أجهزة الـ I/O بشكل عام <b>لفئتين هما <span class="highlight-red">block and character devices</span></b> [63]. عادةً، معظم الأجهزة بيكون ليها <span class="highlight-red">command</span> و <span class="highlight-red">data location</span> وبروتوكول بيفهموا الـ <span class="highlight-red">device firmware</span> والـ <span class="highlight-red">driver</span> [63]. الـ <span class="highlight-red">driver</span> بيملا البيانات المطلوبة وبيصدر أمر [63]. الـ <span class="highlight-red">device firmware</span> بيستجيب للأمر وبيرجع كود بيستخدمه الـ driver [64]. البروتوكول، الحجم، والتنسيق ممكن يختلف من جهاز لجهاز [64].</p>
+        <h4>9.3.1. أجهزة الـ Block (Block Devices)</h4>
+        <p>دي الأجهزة اللي الـ <span class="highlight-red">I/O device controller</span> بيتواصل معاها عن طريق <b>إرسال كتل من البيانات (<span class="highlight-red">sending blocks of data</span>)</b> [64]. الكتلة (block) بتشير لمجموعة من الـ Bytes اللي بيشار ليها كلها سوا لأغراض القراءة/الكتابة [64].</p>
+        <p><b>مثال:</b> <span class="highlight-red">flash memory, digital camera</span> [64]. الـ <span class="highlight-red">device driver</span> بيوصل للبيانات عن طريق تحديد حجم القراءة/الكتابة اللي بيختلف من جهاز لجهاز [64].</p>
+        <p><b>مثال عملي:</b> لما تنقل صورة من الكاميرا الديجيتال للكمبيوتر [64]. الصورة دي بتتنقل في شكل <span class="highlight-red">blocks</span> كبيرة من البيانات مش حرف حرف [64].</p>
+        <p>Source Text:</p>
+        <pre>
+* The <span class="highlight-red">I/O devices can be broadly divided into two categories called block and character devices</span>. [63]
+* These are devices with which the I/O device controller communicates by <span class="highlight-red">sending blocks of data</span>. [64]
+* A block is referred to as a <span class="highlight-red">group of bytes that are referred together for Read/Write purposes</span>. [64]
+* Example: <span class="highlight-red">flash memory, digital camera</span> [64]
+        </pre>
+        <sub>[63, 64]</sub>
+
+        <h4>9.3.2. أجهزة الـ Character (Character Devices)</h4>
+        <p>فئة تانية من الأجهزة هي <span class="highlight-red">character devices</span>، والفرق الدقيق إن الاتصال بيحصل عن طريق <b>إرسال واستقبال <span class="highlight-red">single characters</span> (أحرف منفردة)</b>، واللي عادةً بتكون <span class="highlight-red">byte</span> أو <span class="highlight-red">octet</span> [65].</p>
+        <p><b>أمثلة:</b> <span class="highlight-red">Many serial port devices like keyboards, some sensor devices, and microcontrollers follow this mechanism</span> [65].</p>
+        <p><b>مثال عملي:</b> لما تكتب حرف على الكيبورد [65]. كل حرف بتكتبه بيتبعت للكمبيوتر كـ character واحد [65].</p>
+        <p>Source Text:</p>
+        <pre>
+* Another class of devices are <span class="highlight-red">character devices</span>, the subtle difference is that the <span class="highlight-red">communication happens by sending and receiving single characters, which is usually a byte or an octet</span>. [65]
+* <span class="highlight-red">Many serial port devices like keyboards, some sensor devices, and microcontrollers follow this mechanism</span>. [65]
+        </pre>
+        <sub>[65]</sub>
+
+        <h3>9.4. فئات بروتوكولات الـ I/O (I/O Protocols Categories)</h3>
+        <p>البروتوكولات اللي بتستخدمها الأجهزة المختلفة (block devices أو character devices) ممكن تختلف من واحد للتاني [66]. فيه <b>تلات فئات رئيسية لبروتوكولات الـ I/O</b> اللي بتستخدم [66]:</p>
+        <ul>
+            <li><b>Special Instruction I/O (Port-mapped IO - PMIO):</b> ممكن يكون فيه تعليمات CPU معينة مطورة خصيصاً للتواصل مع أجهزة الـ I/O والتحكم فيها [66]. كل جهاز بيكون ليه <span class="highlight-red">unique I/O address</span> (عنوان I/O فريد) [66]. وده ممكن يكون مطلوب لاتصال أسرع وأكثر كفاءة، لكن أنواع الـ I/O دي بتكون خاصة وعددها قليل [66].<br/>
+                <b>مثال:</b> بعض الأجهزة المتخصصة زي المتحكمات الدقيقة في أنظمة التشغيل المدمجة (embedded systems) ممكن تستخدم تعليمات خاصة في الـ CPU للتواصل معاها مباشرة بسرعة عالية [66].
+            </li>
+            <li><b>Memory-Mapped I/O (MMIO):</b> الشكل الأكثر شيوعاً لبروتوكول الـ I/O هو <span class="highlight-red">memory-mapped I/O (MMIO)</span> [67]. هنا الجهاز والـ OS بيتفقوا على <b>نطاق عناوين مشترك (<span class="highlight-red">common address range</span>)</b> بيحدده الـ OS، وجهاز الـ I/O بيعمل عمليات قراءة وكتابة من/إلى المساحة دي عشان يتواصل مع الـ OS [67]. مكونات الـ OS زي الـ drivers هتتواصل باستخدام الواجهة دي عشان تتكلم مع الجهاز [67]. الـ MMIO كمان آلية فعالة لنقل البيانات ممكن تتنفذ من غير ما تستهلك دورات CPU غالية [67]. عشان كده، بتستخدم لإتاحة اتصال عالي السرعة لأجهزة الشبكة والرسوميات اللي بتحتاج معدلات نقل بيانات عالية بسبب حجم البيانات اللي بيتنقل [67].<br/>
+                <b>مثال:</b> كارت الشاشة بيستخدم MMIO [67]. الـ OS بيحجز جزء من الذاكرة كعنوان مشترك، والـ CPU بيكتب بيانات للـ Video Memory والـ GPU بيقراها مباشرة من هناك عشان يعرض الصورة على الشاشة بسرعة رهيبة [67].
+            </li>
+            <li><b>Direct Memory Access (DMA):</b> ممكن يكون فيه أجهزة بتشتغل بسرعة أبطأ من اللي بيدعمها الـ CPU أو الـ Bus اللي متوصلة بيه [68]. في الحالة دي، الجهاز ممكن يستفيد من <span class="highlight-red">DMA</span> [68]. هنا، الـ OS بيدي صلاحية لمتحكم تاني، عادةً بنسميه <span class="highlight-red">direct memory access controller</span>، إنه <b>يقاطع الـ CPU بعد اكتمال نقل بيانات معين</b> [68]. الأجهزة اللي بتشتغل بسرعة أقل ممكن تتواصل مع متحكم الـ DMA بعد ما تخلص عمليتها [69].<br/>
+                <b>مثال:</b> لما الكمبيوتر بيقرأ ملف كبير من الهارد ديسك [69]. بدل ما الـ CPU يفضل مشغول بعملية النقل ويستنى لحد ما تخلص، الـ DMA Controller بيقوم بالمهمة دي بنفسه وينقل البيانات مباشرة للذاكرة، ولما يخلص بيبعت إشارة للـ CPU إنه خلص [69].</li>
+        </ul>
+        <p>Source Text:</p>
+        <pre>
+* There are three main categories of I/O protocols that are used: <span class="highlight-red">Special Instruction I/O, Memory-Mapped I/O, Direct Memory Access (DMA)</span> [66]
+* <span class="highlight-red">Special Instruction I/O or Port-mapped IO (PMIO)</span> [66]
+* There could be <span class="highlight-red">specific CPU instructions that are custom developed for communicating with and controlling the I/O devices</span>. [66]
+* Each device has a <span class="highlight-red">unique I/O address</span> [66]
+* The most common form of I/O protocol is <span class="highlight-red">memory-mapped I/O (MMIO)</span>. [67]
+* The device and OS agree on a <span class="highlight-red">common address range carved out by the OS, and the I/O device makes reads and writes from/to this space to communicate to the OS</span>. [67]
+* <span class="highlight-red">MMIO is also an effective mechanism for data transfer that can be implemented without using up precious CPU cycles</span>. [67]
+* Hence, it is used to enable <span class="highlight-red">high-speed communication for network and graphics devices</span> that require high data transfer rates due to the volume of data being passed. [67]
+* Here, the OS grants authority to another controller, usually referred to as the <span class="highlight-red">direct memory access controller, to interrupt the CPU after a specific data transfer is complete</span>. [68]
+        </pre>
+        <sub>[66-69]</sub>
+
+        <h3>9.5. آليات التعامل مع المقاطعات (Interrupt Handling Mechanisms)</h3>
+        <p>الـ OS بيتعامل مع الأحداث اللي بتحصل من الأجهزة بطريقتين رئيسيتين [70]:</p>
+        <ul>
+            <li><b>Polling or programmed I/O:</b> في الآلية دي، كل فترة زمنية معينة الـ OS <b>بيفحص معلومات المقاطعة (interrupt information) و بينادي على <span class="highlight-red">routine</span> محددة (driver)</b> [70].<br/>
+                <b>مثال:</b> تخيل إنك بتفتح باب الثلاجة كل 5 دقايق عشان تشوف هل فيه أي حاجة جديدة اتحطت جواها. ده Polling، الكمبيوتر بيسأل الأجهزة باستمرار لو فيه حاجة جديدة [70].
+            </li>
+            <li><b>Interrupt-Driven I/O:</b> في الآلية دي، بيكون فيه <span class="highlight-red">interrupt vector</span> (متجه المقاطعة) بيحتوي على <b>عناوين كل <span class="highlight-red">Interrupt Service Routines (ISR) – drivers –</span> لكل أجهزة الـ I/O</b> [70]. بناءً على <span class="highlight-red">Interrupt Request Number (IRQ)</span> – اللي بيكون فريد لكل جهاز – الـ OS بيحصل على عنوان الـ <span class="highlight-red">service routine</span> الصحيح [70]. <b>معظم أنظمة التشغيل بتستخدم الآلية دي</b> [70].<br/>
+                <b>مثال:</b> بدل ما تفتح باب الثلاجة كل شوية، الثلاجة بتديك رنة موبايل لو حد حط فيها حاجة جديدة. هنا الجهاز هو اللي بيبعت إشارة (Interrupt) للـ OS لما يكون فيه حاجة [70].
+            </li>
+        </ul>
+        <p>Source Text:</p>
+        <pre>
+* Polling or programmed I/O: In this mechanism, each period of time <span class="highlight-red">examine interrupt information and calls a specific routine (driver)</span> [70]
+* Interrupt-Driven I/O: In This mechanism, there is an <span class="highlight-red">interrupt vector which contains the addresses for all Interrupt Service Routines (ISR) –drivers- for all I/O devices</span>, according the <span class="highlight-red">Interrupt Request Number (IRQ) –which unique for each device- the OS acquire the address of the address of the correct service routine</span> [70]
+* <span class="highlight-red">Most of OSs using this mechanism</span> [70]
+        </pre>
+        <sub>[70]</sub>
+
+        <h3>9.6. I/O المتزامن مقابل I/O غير المتزامن (Synchronous Vs. Asynchronous I/O)</h3>
+        <ul>
+            <li><b>Synchronous I/O:</b> في النوع ده، <b>العملية بتطلب عملية I/O وبعدين بتستنى لحد ما عملية الـ I/O دي تخلص</b> قبل ما ترجع تكمل شغلها [71].<br/>
+                <b>مثال:</b> <span class="highlight-red">Printing Operation</span>. لما بتدي أمر طباعة، البرنامج اللي شغاله بيقف لحد ما الطابعة تخلص طباعة كل الصفحات [71].
+            </li>
+            <li><b>Asynchronous I/O:</b> في النوع ده، <b>العملية بتطلب عملية I/O وبعدين الـ OS بيرجع التحكم للعملية فوراً</b> [71]. الـ I/O بيكمل في الخلفية بينما العملية بتكمل شغلها عادي [71].<br/>
+                <b>مثال:</b> <span class="highlight-red">Using Networking sending and receiving using threads</span>. لما ترفع ملف على الإنترنت، تقدر تقفل المتصفح أو تعمل أي حاجة تانية والملف بيكمل رفع في الخلفية [71].
+            </li>
+        </ul>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">Synchronous I/O: Example: Printing Operation</span>
+    * <span class="highlight-red">Process request I/O operation</span>
+    * <span class="highlight-red">I/O operation is started</span>
+    * <span class="highlight-red">I/O Operation is complete</span>
+    * <span class="highlight-red">Control is returned to the user process</span> [71]
+* <span class="highlight-red">Asynchronous I/O: Example: Using Networking sending and receiving using threads</span>
+    * <span class="highlight-red">Process Request I/O operation</span>
+    * <span class="highlight-red">I/O operation is started</span>
+    * <span class="highlight-red">Control is returned immediately to the user process</span>
+    * <span class="highlight-red">I/O continues while system operations occur</span> [71]
+        </pre>
+        <sub>[71]</sub>
+
+        <h3>9.7. المزامنة والأقسام الحرجة (Synchronization and Critical Sections)</h3>
+        <p>في التطبيقات متعددة الـ threads، لو thread بيحاول يغير قيمة بيانات مشتركة (shared data) في نفس الوقت اللي فيه thread تاني بيحاول يقرا القيمة دي، ممكن تحصل حالة سباق (<span class="highlight-red">race condition</span>) بين الـ threads [72]. في الحالة دي، النتيجة ممكن تكون غير متوقعة [72].</p>
+        <p>الوصول للمتغيرات المشتركة دي عن طريق الذاكرة المشتركة، أو الملفات، أو الـ ports، أو موارد الـ I/O التانية لازم يتم مزامنته (<span class="highlight-red">synchronized</span>) عشان نحميها من الفساد [72]. عشان يدعم ده، الـ OS بيوفر <b>mutexes</b> و <b>semaphores</b> لتنسيق الوصول للموارد المشتركة دي [72].</p>
+        <h4>9.7.1. Mutex</h4>
+        <p>الـ <span class="highlight-red">mutex</span> بيستخدم لتنفيذ <b>الاستبعاد المتبادل (<span class="highlight-red">mutual exclusion</span>)</b> [73]. ده معناه إن <b>واحدة بس من العمليات أو الـ threads المشاركة ممكن تمتلك الـ <span class="highlight-red">key (mutex)</span> وتكمل شغلها</b> [73]. التانية لازم تستنى لحد ما اللي معاها الـ mutex تخلص [73].</p>
+        <p><b>مثال عملي:</b> تخيل حمام واحد بس في شقة وفي مفتاح واحد للحمام ده [73]. اللي معاه المفتاح يقدر يدخل الحمام، والتاني لازم يستنى بره لحد ما اللي جوه يخلص ويدي المفتاح. المفتاح ده هو الـ Mutex [73].</p>
+        <p>Source Text:</p>
+        <pre>
+* A <span class="highlight-red">mutex is used for implementing mutual exclusion</span>: <span class="highlight-red">either of the participating processes or threads can have the key (mutex) and proceed with their work</span>. [73]
+* The other one would have to wait until the one holding the mutex finishes. [73]
+        </pre>
+        <sub>[73]</sub>
+
+        <h4>9.7.2. Semaphore</h4>
+        <p>الـ <span class="highlight-red">semaphore</span> هو <b><span class="highlight-red">mutex</span> معمم (generalized mutex)</b> [74]. الـ <span class="highlight-red">binary semaphore</span> ممكن ياخد قيمة 0 أو 1 وممكن يستخدم لعمل <span class="highlight-red">locks</span> لأقسام حرجة معينة [74].</p>
+        <p><b>مثال عملي:</b> لو عندك كذا حمام في الشقة [74]. الـ Semaphore ممكن يقولك فيه كام حمام فاضي. لو فيه 3 حمامات، الـ Semaphore قيمته 3. كل ما حد يدخل حمام، الـ Semaphore ينقص واحد. ولما حد يخرج، يزيد واحد [74].</p>
+        <p>Source Text:</p>
+        <pre>
+* A <span class="highlight-red">semaphore is a generalized mutex</span>. A <span class="highlight-red">binary semaphore can assume a value of 0/1 and can be used to perform locks to certain critical sections</span>. [74]
+        </pre>
+        <sub>[74]</sub>
+
+        <h3>9.8. التعارضات المميتة (Deadlocks)</h3>
+        <p>الـ <span class="highlight-red">deadlock</span> بتحصل <b>لما مجموعة من العمليات بتكون محبوسة (blocked) لأن كل عملية ماسكة مورد ومستنية مورد تاني ماسكاه عملية تانية</b> [74].</p>
+        <p><b>مثال:</b> العملية A ماسكة مورد 1 ومحتاجة مورد 2 [74]. لكن العملية B ماسكة مورد 2 ومحتاجة مورد 1 [74]. لحد ما واحدة منهم تحرر المورد بتاعها، محدش هيعرف يكمل [74].</p>
+        <p><b>الـ deadlock ممكن تحصل لو الشروط الأربعة التالية متوفرة [75]:</b></p>
+        <ul>
+            <li><b>الاستبعاد المتبادل (Mutual Exclusion):</b> فيه مورد واحد على الأقل في النظام مش ممكن مشاركته (not shareable) [75]. ده معناه إن عملية واحدة بس تقدر توصل للمورد ده في أي وقت [75]. (زي مورد 1 و 2 في المثال اللي فات) [75].</li>
+            <li><b>الاحتفاظ والانتظار (Hold and Wait):</b> عملية ماسكة مورد واحد على الأقل ومستنية موارد تانية عشان تكمل شغلها [75]. (زي العمليتين A و B في المثال اللي فات) [75].</li>
+            <li><b>عدم الإزاحة (No Preemption):</b> المورد مش ممكن يتتاخد بالقوة من عملية إلا لو هي اللي حررته تلقائياً [75].</li>
+            <li><b>الانتظار الدائري (Circular Wait):</b> مجموعة من العمليات مستنية بعضها في شكل دائري [75].</li>
+        </ul>
+        <p><b>مثال عملي:</b> تخيل عربيتين في تقاطع ضيق جداً. العربية A عايزة تلف يمين بس العربية B واقفة ساداها [74]. والعربية B عايزة تلف شمال بس العربية A ساداها [74]. كل واحدة ماسكة مكان ومش عايزة تسيبه لحد ما التانية تمشي، فهما الاتنين محبوسين (Deadlock) [74].</p>
+        <p>Source Text:</p>
+        <pre>
+* <span class="highlight-red">When a set of processes become blocked because each process is holding a resource and waiting for another resource acquired by some other process. This is called as a deadlock</span>. [74]
+* A deadlock can arise if the following four conditions hold: [75]
+    * <span class="highlight-red">Mutual Exclusion: There is at least one resource on the system that is not shareable</span>. This means that only one process can access this at any point in time. [75]
+    * <span class="highlight-red">Hold and Wait: A process is holding at least one resource and is waiting for other resources to proceed with its action</span>. [75]
+    * <span class="highlight-red">No Preemption: A resource cannot be forcefully taken from a process unless released automatically</span>. [75]
+    * <span class="highlight-red">Circular Wait: A set of processes are waiting for each other in circular form</span>. [75]
+        </pre>
+        <sub>[74, 75]</sub>
+
+        <h2>10. أنظمة الملفات (File Systems)</h2>
+        <h3>10.1. الحاجة لأنظمة الملفات (Need for File Systems)</h3>
+        <p>التطبيقات غالباً بتحتاج تقرأ وتكتب ملفات عشان تحقق أهدافها [76]. بنعتمد على الـ OS عشان ينشئ ويقرأ ويكتب الملفات دي على النظام [76]. وبنعتمد على الـ OS عشان يحافظ ويدير الملفات على النظام [76].</p>
+        <p><b>أنظمة الملفات في الـ OS ليها مكونين رئيسيين لتسهيل إدارة الملفات [77]:</b></p>
+        <ul>
+            <li><b>Directory Service:</b> فيه حاجة لإدارة الملفات بشكل فريد ومنظم، وإدارة الوصول، وتوفير صلاحيات القراءة-الكتابة-التعديل على نظام الملفات [77]. ده اللي بيقوم بيه طبقة اسمها <span class="highlight-red">directory service</span> [77].</li>
+            <li><b>Storage Service:</b> فيه حاجة للتواصل مع الـ Hardware الأساسي زي الديسك [77]. ده اللي بيديره <span class="highlight-red">storage service</span> اللي بيخفي أنواع أجهزة التخزين المختلفة في النظام [77].</li>
+        </ul>
+        <p><b>مثال عملي:</b> لما بتحفظ ملف صورة على جهازك [76]. الـ Directory Service بيسمحلك تحطه في فولدر معين وتدي له اسم، والـ Storage Service هو اللي بيعرف يحطه على الهارد ديسك بتاعك [77].</p>
+        <p>Source Text:</p>
+        <pre>
+* Applications often need to <span class="highlight-red">read and write files to achieve their goals</span>. We leverage the OS to create, read, and write such files on the system. We depend on the OS to maintain and manage files on the system. [76]
+* OS file systems have two main components to facilitate file management:
+    * <span class="highlight-red">Directory Service: There is a need to uniquely manage files in a structured manner, manage access, and provide Read-Write-Edit controls on the file system</span>. This is taken care by a layer called as the directory service. [77]
+    * <span class="highlight-red">Storage Service: There is a need to communicate to the underlying hardware such as the disk</span>. This is managed by a storage service that abstracts different types of storage devices on the system. [77]
+        </pre>
+        <sub>[76, 77]</sub>
+
+        <h3>10.2. مفهوم الملف (File Concept)</h3>
+        <p>من وجهة نظر المستخدم، الملف هو <b>مجموعة من البيانات المتعلقة ببعضها (collection of related data) اللي بتتخزن سوا وممكن الوصول ليها باستخدام <span class="highlight-red">unique file ID</span> (معرف ملف فريد)</b>، عادةً بيشار ليه بـ <span class="highlight-red">file name</span> (اسم الملف) [78].</p>
+        <p>الملفات دي ممكن تتمثل داخلياً بطرق مختلفة [78]. مثلاً، ممكن يكون فيه ملفات <span class="highlight-red">.bin</span> في Windows، واللي بتمثل ببساطة سلسلة من الـ Bytes [78]. وممكن يكون فيه محتويات منظمة تانية ليها رؤوس (<span class="highlight-red">headers</span>) وأقسام معينة في الملف، زي ملف الـ <span class="highlight-red">EXE</span> في Windows اللي ليه رؤوس محددة وجسم وضوابط [78].</p>
+        <p>كمبرمج، ممكن يكون مهم تعرف سمات الملف قبل ما توصله [79]. <b>السمات الشائعة لأي ملف بتشمل [79]:</b> موقع الملف (<span class="highlight-red">location</span>)، وامتداد الملف (<span class="highlight-red">file extension</span>)، والحجم (<span class="highlight-red">size</span>)، وضوابط الوصول (<span class="highlight-red">access controls</span>)، وبعض تاريخ العمليات اللي اتعملت على الملف [79]. بعض السمات دي بتكون جزء من الـ <span class="highlight-red">file control block</span> (كتلة التحكم في الملف) اللي المستخدم بيوصلها عن طريق الـ OS [79]. معظم أنظمة التشغيل بتعرض <span class="highlight-red">APIs</span> اللي المبرمج يقدر يستخدمها عشان يوصل للتفاصيل في الـ <span class="highlight-red">file control block</span> [79]. بالنسبة للمستخدم، السمات دي بتظهر على الـ <span class="highlight-red">graphical user interface</span> عن طريق أدوات مدمجة بتيجي مع الـ OS [79].</p>
+        <p><b>مثال عملي:</b> لما بتشوف ملف Excel على جهازك [78]. اسم الملف زي "تقرير مبيعات.xlsx" ده الـ File Name [78]. الـ OS لما بيكريه، بيحطله حجم معين، وتاريخ إنشاء، ومين اللي يقدر يعدله (Access controls) [79]. كل المعلومات دي بتكون جوه الـ File Control Block [79].</p>
+        <p>Source Text:</p>
+        <pre>
+* From the perspective of the user, a file is a <span class="highlight-red">collection of related data that is stored together and can be accessed using a unique file ID usually referred as the file name</span>. [78]
+* These files can be represented internally by different methods. For example, there could be <span class="highlight-red">.bin files in Windows</span>, which only represent a sequence of bytes. [78]
+* There could be other structured contents with <span class="highlight-red">headers and specific sections in the file</span>. For example, an <span class="highlight-red">EXE is also a file format in Windows with specific headers, a body, and controls in place</span>. [78]
+* The <span class="highlight-red">common attributes of any file include the location of the file, file extension, size, access controls, and some history of operations done on the file</span>, to name a few. [79]
+* Some of these are part of the so-called <span class="highlight-red">file control block, which a user has access to via the OS</span>. [79]
+* Most OSs expose <span class="highlight-red">APIs using which the programmer can access the details in the file control block</span>. [79]
+* For the user, these are exposed on the <span class="highlight-red">graphical user interface via built-in tools shipped with the OS</span>. [79]
+        </pre>
+        <sub>[78, 79]</sub>
+
+        <h3>10.3. مساحة اسم الدليل (Directory Name Space)</h3>
+        <p>الـ OS بيعرف ترتيب منطقي للملفات المختلفة على النظام بناءً على الاستخدام وخدمات التخزين الأساسية [80]. واحدة من المعايير اللي معظم أنظمة التشغيل بتعتمدها هي تنظيم <span class="highlight-red">directory service</span> بتاعتها عشان تحدد مكان الملفات بكفاءة [80].</p>
+        <p>معظم أنظمة التشغيل بتنظم ملفاتها <b>في شكل هرمي (<span class="highlight-red">hierarchical form</span>) مع ملفات منظمة جوه <span class="highlight-red">folders</span></b> [80]. كل <span class="highlight-red">folder</span> في الحالة دي هو <span class="highlight-red">directory</span> [80]. الهيكل ده بنسميه <span class="highlight-red">directory namespace</span> [80].</p>
+        <p>الـ <span class="highlight-red">directory service</span> و <span class="highlight-red">namespace</span> ليهم إمكانيات إضافية زي البحث بالحجم، النوع، مستويات الوصول، وهكذا [80]. مساحات أسماء الدليل (<span class="highlight-red">directory namespaces</span>) ممكن تكون متعددة المستويات ومتكيفة في أنظمة التشغيل الحديثة [80].</p>
+        <p><b>مثال عملي:</b> لما تفتح My Computer أو File Explorer وتلاقي C: و D: وبعدين جواهم فولدرات زي Documents و Pictures وجواهم فولدرات تانية وملفات. ده كله هو الـ Hierarchical Directory Namespace [80].</p>
+        <p>Source Text:</p>
+        <pre>
+* Most OSs organize their files in a <span class="highlight-red">hierarchical form with files organized inside folders</span>. [80]
+* Each folder in this case is a <span class="highlight-red">directory</span>. This structure is called as the <span class="highlight-red">directory namespace</span>. [80]
+* The directory service and namespace have additional capabilities such as <span class="highlight-red">searches by size, type, access levels</span>, and so on. [80]
+* The <span class="highlight-red">directory namespaces can be multileveled and adaptive in modern OSs</span> [80]
+        </pre>
+        <sub>[80]</sub>
+
+        <h3>10.4. التحكم في الوصول (Access Control)</h3>
+        <p>فيه مستويات وصول مختلفة ممكن نطبقها على مستوى الملفات والدلائل (directories) [81]. الـ OS بيوفر <span class="highlight-red">different access control IDs and permissions to different users on the system</span> (معرفات وضلاحيات وصول مختلفة للمستخدمين المختلفين على النظام) [81].</p>
+        <p>كمان، كل ملف ممكن يكون ليه <span class="highlight-red">different levels of permissions to Read, Write, Modify</span> (مستويات مختلفة من الصلاحيات للقراءة، الكتابة، التعديل) [81]. مثلاً، ممكن يكون فيه ملفات معينة عايز أي حد يقدر يقراها لكن مش يكتب فيها أو يعدلها [82]. نظام الملفات بيوفر ويدير الضوابط لكل الملفات لما يتم الوصول ليها أثناء التشغيل [82]. وده ممكن يكون مفيد لما يكون فيه أكتر من مستخدم بيستخدم نفس النظام [82].</p>
+        <p><b>مثال عملي:</b> لو عملت ملف مهم على جهازك ومش عايز حد تاني يستخدمه. الـ OS بيسمحلك تحط عليه <span class="highlight-red">permissions</span> معينة، زي إنك انت بس اللي تقدر تقراه وتعدله، وأي مستخدم تاني على الجهاز مايقدرش [81].</p>
+        <p>Source Text:</p>
+        <pre>
+* The OS provides <span class="highlight-red">different access control IDs and permissions to different users on the system</span>. [81]
+* Also, each file may also have <span class="highlight-red">different levels of permissions to Read, Write, Modify</span>, and so on. [81]
+* These may also be helpful when <span class="highlight-red">more than one user is using the same system</span>. [82]
+        </pre>
+        <sub>[81, 82]</sub>
+
+        <h3>10.5. التحكم في التزامن والتنظيف (Concurrency and Cleanup Control)</h3>
+        <p>فيه حالات كتير الـ OS بيحتاج يضمن فيها إن الملف مايتحركش أو يتمسح وهو بيستخدم [83]. مثلاً، لو مستخدم بيعمل تغييرات في ملف، الـ OS بيحتاج يتأكد إن نفس الملف ده مايتحركش أو يتمسح بواسطة تطبيق أو عملية تانية [83]. في الحالة دي، الـ OS هيخلي محاولة تحريك أو مسح الملف تفشل مع <span class="highlight-red">error code</span> مناسب [83].</p>
+        <p>كمبرمج، مهم إنك توصل للملف بمستوى الوصول والـ <span class="highlight-red">mode</span> المطلوبين (Read/Write) [83]. ده بيساعد كمان في التوافق مع احتياجات التزامن في الـ OS ويحمي من التحديثات غير المتناسقة [83].</p>
+        <p>الـ OS بيحتاج يكون قادر على <span class="highlight-red">مسح الملفات المؤقتة اللي اتعملت بشكل دوري</span> اللي ممكن متبقاش محتاجة لعمل النظام [84]. ده عادةً بيتم باستخدام <span class="highlight-red">garbage collector</span> على النظام [84]. أنظمة تشغيل كتير بتعلم الملفات اللي مش مستخدمة على مدار فترة زمنية وبيكون ليها إعدادات إضافية ظاهرة، والمستخدم ممكن يظبطها عشان ينظف الملفات من أماكن معينة تلقائياً [84].</p>
+        <p><b>مثال عملي:</b> لما تكون فاتح ملف Word ومبتعرفش تمسحه، الـ OS بيمنعك عشان بيحميه لأنه قيد الاستخدام [83]. ولما بتخلص وتقفله، الـ OS ممكن يمسح الملفات المؤقتة اللي عملها Word بشكل تلقائي [84].</p>
+        <p>Source Text:</p>
+        <pre>
+* There are many cases when the OS needs to ensure that a <span class="highlight-red">file is not moved or deleted when it is in use</span>. [83]
+* For example, if a user is making changes to a file, the OS needs to ensure that the <span class="highlight-red">same file cannot be moved or deleted by another application or process</span>. In this case, the OS would cause the attempt to move or delete the file to fail with an appropriate error code. [83]
+* As a programmer, it is appropriate to access a file with the <span class="highlight-red">required access level and mode (Read/Write)</span>. This also helps to be in line with the <span class="highlight-red">concurrency needs of the OS and guards against inconsistent updates</span>. [83]
+* The OS needs to be able to <span class="highlight-red">periodically clear temporarily created files that may no longer be required for the functioning of the system</span>. [84]
+* This is typically done using a <span class="highlight-red">garbage collector on the system</span>. [84]
+* Many OSs <span class="highlight-red">mark unused files over a period of time and have additional settings that are exposed, which the user can set to clean up files from specified locations automatically</span>. [84]
+        </pre>
+        <sub>[83, 84]</sub>
+
+        <h2>11. الوصول والحماية (Access and Protection)</h2>
+        <h3>11.1. الوصول والحماية (Access and Protection)</h3>
+        <p>حتى لو عندك نظام بيستخدمه مستخدم واحد من غير أي وصول لشبكات أو أنظمة تانية، لسه فيه حاجة لضمان إن محتويات النظام محمية [85]. <b>فيه حاجة لحماية موارد البرنامج من التطبيقات التانية</b> [85]. كمان <b>ممكن يكون فيه حاجة لحماية الأجهزة الحساسة في النظام</b> [85]. دايماً فيه حاجة لربط ومشاركة الموارد والبيانات بين الأنظمة [85]. عشان كده، مهم نحمي الموارد دي بشكل مناسب [85]. الـ OS بيوفر <span class="highlight-red">APIs</span> اللي بتساعد في التحكم في الوصول والحماية [85].</p>
+        <p><b>مثال عملي:</b> لما برنامج غريب يحاول يوصل للملفات الشخصية بتاعتك أو يحاول يتحكم في كاميرا اللابتوب من غير إذنك. الـ OS هنا بيمنعه وبيحميك [85].</p>
+        <p>Source Text:</p>
+        <pre>
+* There is still a <span class="highlight-red">need to protect the program resources from other applications</span>. [85]
+* Also, there may be a <span class="highlight-red">need to protect critical devices on the system</span>. [85]
+* There is always a <span class="highlight-red">need to connect and share resources and data between systems</span>. [85]
+* The OS provides <span class="highlight-red">APIs that help with access control and protection</span>. [85]
+        </pre>
+        <sub>[85]</sub>
+
+        <h3>11.2. وضع المستخدم ووضع الـ Kernel (User Mode and Kernel Mode - Rings)</h3>
+        <p>واحد من الأسباب اللي بتخلي معظم أنظمة التشغيل تنفذ الفصل بين <span class="highlight-red">user mode</span> و <span class="highlight-red">kernel mode</span> هو إنه بيضمن <b>مستويات امتيازات مختلفة للبرامج، بناءً على الوضع اللي بتشتغل فيه</b> [86].</p>
+        <p>الـ OS بيقسم امتيازات تنفيذ البرامج لـ <span class="highlight-red">different rings</span> (حلقات مختلفة) [86]. داخلياً، البرامج اللي بتشتغل في حلقات معينة بتكون مرتبطة بمستويات وصول وامتيازات معينة [86].</p>
+        <p><b>مثال:</b> التطبيقات وخدمات الـ user-mode اللي بتشتغل في <b><span class="highlight-red">Ring 3</span> مش هتقدر توصل للـ <span class="highlight-red">hardware</span> مباشرة</b> [86]. الـ <span class="highlight-red">drivers</span> اللي بتشتغل على مستوى <span class="highlight-red">Ring 0</span> هيكون ليها <b>أعلى الامتيازات والوصول للـ <span class="highlight-red">hardware</span> في النظام</b> [86]. عملياً، معظم أنظمة التشغيل بتستغل حلقتين بس، وهما <span class="highlight-red">Ring 0</span> و <span class="highlight-red">Ring 3</span> [86].</p>
+        <p><b>مثال عملي:</b> تخيل إن الكمبيوتر زي قلعة ليها أبواب كتير. الـ Kernel Mode (Ring 0) هو الملك والحرس بتاعه اللي بيقدر يفتح أي باب ويتحكم في كل حاجة [86]. الـ User Mode (Ring 3) هو المواطن العادي، اللي مسموحله يدخل مناطق معينة بس ومش بيقدر يوصل للخزنة أو يتحكم في أبواب القلعة [86].</p>
+        <p>Source Text:</p>
+        <pre>
+* One of the reasons the <span class="highlight-red">separation between user mode and kernel mode is implemented by most OSs is that it ensures different privilege levels are granted to programs, based on which mode they run in</span>. [86]
+* OS divides the program execution privileges into <span class="highlight-red">different rings</span>. [86]
+* Internally, programs running in specific rings are associated with <span class="highlight-red">specific access levels and privileges</span>. [86]
+* For example, <span class="highlight-red">applications and user-mode services running in Ring 3 would not be able to access the hardware directly</span>. [86]
+* The <span class="highlight-red">drivers running on the Ring 0 level would have the highest privileges and access to the hardware on the system</span>. [86]
+* In practice, most OSs only leverage <span class="highlight-red">two rings, which are Ring 0 and Ring 3</span>. [86]
+        </pre>
+        <sub>[86]</sub>
+
+        <h2>12. المحاكاة الافتراضية (Virtualization) وواجهة المستخدم والـ Shells (User Interface and Shells)</h2>
+        <h3>12.1. المحاكاة الافتراضية (Virtualization)</h3>
+        <p>أنظمة التشغيل والـ Hardware الحديث بيوفروا ميزة اسمها <span class="highlight-red">virtualization</span> (المحاكاة الافتراضية) اللي بتعمل <b>محاكاة افتراضية للـ <span class="highlight-red">hardware</span> بحيث إن كل بيئة بتشتغل عليها بتعتقد إن ليها وصول مخصص للـ <span class="highlight-red">hardware</span></b> اللي بتحتاجه عشان تشتغل [87].</p>
+        <p>الـ <span class="highlight-red">Virtualization</span> بتتقدم عن طريق اللي بنسميه <span class="highlight-red">virtual machines (VMs)</span> (آلات افتراضية) [87].</p>
+        <p><b>الـ VM ليها <span class="highlight-red">guest OS</span> خاص بيها</b>، اللي ممكن يكون هو هو أو مختلف عن <span class="highlight-red">host OS</span> (نظام التشغيل المضيف) الأساسي [87]. المستخدم ممكن يشغل <span class="highlight-red">VM</span>، زي ما بيشغل أي برنامج تاني، ويسجل دخوله للـ <span class="highlight-red">guest OS</span> [87]. الـ <span class="highlight-red">host OS</span> بيوفر <span class="highlight-red">hypervisor</span>، اللي بيدير الوصول للـ <span class="highlight-red">hardware</span> [87]. الـ <span class="highlight-red">guest OS</span> عادةً مش بيكون على دراية بالتفاصيل الداخلية وبيمرر أي طلبات موارد/Hardware للـ <span class="highlight-red">host OS</span> [87]. المستخدم ممكن يخصص الـ <span class="highlight-red">VM</span> بتاعته بالكامل وينفذ كل إجراءاته عليها من غير ما يأثر على الـ <span class="highlight-red">host OS</span> أو أي <span class="highlight-red">VM</span> تانية على النظام [88].</p>
+        <p>بشكل عام، الـ <span class="highlight-red">VMs</span> بتساعد في استخدام موارد الـ <span class="highlight-red">hardware</span> بكفاءة وبتستخدم كتير في نشر السيرفرات والـ <span class="highlight-red">cloud</span> [89].</p>
+        <p><b>مزايا الـ <span class="highlight-red">virtualization</span> [89]:</b></p>
+        <ul>
+            <li><span class="highlight-red">تشغيل أنظمة تشغيل حيث الـ Hardware الفيزيائي مش متاح</span>.</li>
+            <li><span class="highlight-red">أسهل في إنشاء أجهزة جديدة، وعمل نسخ احتياطية للأجهزة، وهكذا</span>.</li>
+            <li><span class="highlight-red">اختبار البرامج باستخدام عمليات تثبيت "نظيفة" لأنظمة التشغيل والبرامج</span>.</li>
+            <li><span class="highlight-red">محاكاة أجهزة أكتر من اللي متاحة فيزيائياً</span>.</li>
+            <li><span class="highlight-red">تصحيح الأخطاء (debugging problems) (تعليق واستئناف الجهاز اللي فيه المشكلة)</span>.</li>
+            <li><span class="highlight-red">سهولة ترحيل الـ virtual machines (مش لازم إيقاف تشغيل)</span>.</li>
+            <li><span class="highlight-red">تشغيل أنظمة قديمة (Run legacy systems)</span>.</li>
+        </ul>
+        <p><b>مثال عملي:</b> عايز تجرب نسخة Linux على جهازك اللي شغال Windows من غير ما تمسح Windows [87]. ممكن تنزل برنامج VirtualBox وتعمل VM جديدة وتشغل Linux جواها. الـ VM دي هتحس إن ليها جهاز خاص بيها [87].</p>
+        <p>Source Text:</p>
+        <pre>
+* Operating systems and modern hardware provide a feature called <span class="highlight-red">virtualization that virtualizes the hardware such that each calling environment believes it has the dedicated access it needs to function</span>. [87]
+* Virtualization is delivered via so-called <span class="highlight-red">virtual machines (VMs)</span>. [87]
+* A <span class="highlight-red">VM has its own guest OS, which may be the same as or different from the underlying host OS</span>. [87]
+* The <span class="highlight-red">host OS provides a hypervisor, which manages the access to the hardware</span>. [87]
+* The user can <span class="highlight-red">completely customize their VM and perform all their actions on this VM without affecting the host OS or any other VM on the system</span>. [88]
+* Advantages of virtualization:
+    * <span class="highlight-red">Run operating systems where the physical hardware is unavailable</span>. [89]
+    * <span class="highlight-red">Easier to create new machines, backup machines, etc</span>. [89]
+    * <span class="highlight-red">Software testing using “clean” installs of operating systems and software</span>. [89]
+    * <span class="highlight-red">Emulate more machines than are physically available</span>. [89]
+    * <span class="highlight-red">Debug problems (suspend and resume the problem machine)</span>. [89]
+    * <span class="highlight-red">Easy migration of virtual machines (shutdown needed or not)</span>. [89]
+    * <span class="highlight-red">Run legacy systems</span> [89]
+        </pre>
+        <sub>[87-89]</sub>
+
+        <h3>12.2. الحماية (Protection - Security)</h3>
+        <p>ممكن تحصل تهديدات أمنية كتير أثناء استخدام الكمبيوتر [90]. التهديد ممكن يكون أي برنامج محلي أو عن بعد بيحاول يضر بسلامة الموارد في النظام [90]. عشان نقلل من ده، أنظمة التشغيل الحديثة عادةً بتنفذ <b>فحوصات للكشف والحماية من التسللات دي</b> [90].</p>
+        <p>أكثر حماية شيوعاً هي <b>مصادقة الطالب (<span class="highlight-red">authenticate the requester</span>) وتطبيق صلاحية (<span class="highlight-red">authorization</span>) على أي طلب جديد للنظام</b> [90].</p>
+        <p><b>مثال:</b> لما يطلب طلب لمورد مهم، الـ OS بيتحقق من طلب المستخدم (اللي بنسميه <span class="highlight-red">authentication</span>) ومستويات الوصول المعتمدة (اللي بنسميها <span class="highlight-red">authorization</span>) والضوابط قبل ما يدي وصول للمورد المهم في النظام [90].</p>
+        <p>الـ OS ممكن كمان يكون عنده <span class="highlight-red">Access Control Lists (ACLs)</span> (قوائم التحكم في الوصول) اللي بتحتوي على ربط موارد النظام بمستويات صلاحية مختلفة [91]. دي بتستخدم داخلياً قبل ما الـ OS يدي صلاحيات لأي مورد [91]. بالإضافة لكده، الـ OS ممكن كمان يوفر خدمات لتشفير والتحقق من الشهادات (<span class="highlight-red">encrypt and verify certificates</span>) اللي بتساعد في تعزيز أمان وحماية النظام نفسه [91].</p>
+        <p><b>مثال عملي:</b> لما بتيجي تفتح ملف حساس، الـ OS بيطلب منك كلمة السر (Authentication) عشان يتأكد إنك صاحب الجهاز، وبعدين بيشوف هل انت ليك صلاحية تفتح الملف ده (Authorization) ولا لأ [90].</p>
+        <p>Source Text:</p>
+        <pre>
+* There could be <span class="highlight-red">different security threats that may arise during the usage of a computer</span>. [90]
+* A threat could be any local or remote program that may be attempting to <span class="highlight-red">compromise the integrity of the resources in the system</span>. [90]
+* To mitigate this, modern OSs usually implement <span class="highlight-red">checks to detect and protect against such incursions</span>. [90]
+* The most common protection would be to <span class="highlight-red">authenticate the requester and apply authorization to any new request to the system</span>. [90]
+* For example, when a request is made to a critical resource, the operating system would <span class="highlight-red">verify the user request (which is called as authentication) and their approved access levels (which is called authorization) and controls before providing access to a critical resource on the system</span>. [90]
+* The OS may also have <span class="highlight-red">Access Control Lists (ACLs) that contain mapping of system resources to different permission levels</span>. This is used internally before the OS grants permissions to any resource. [91]
+* Additionally, the OS may also provide services to <span class="highlight-red">encrypt and verify certificates</span> that help with enhancing the security and protection of the system itself. [91]
+        </pre>
+        <sub>[90, 91]</sub>
+
+        <h3>12.3. واجهة المستخدم والـ Shell (User Interface and Shell)</h3>
+        <p>مع إن <span class="highlight-red">user interface (UI)</span> (واجهة المستخدم) مش جزء من الـ <span class="highlight-red">OS kernel</span> نفسه، لكنها عادةً بتعتبر جزء لا يتجزأ من الـ OS [92]. أنظمة تشغيل كتير بتدعم واجهات مستخدم مختلفة، كتير منها بيتم توفيره من أطراف تالتة [92].</p>
+        <p>ممكن يكون فيه واجهات مستخدم متعددة للـ OS، كلها بتتنفس يا إما <b>كواجهة نصية (<span class="highlight-red">text-based interface</span>) أو واجهة رسومية (<span class="highlight-red">graphical-based interface</span>)</b> [92].</p>
+        <p>الـ <span class="highlight-red">graphical user interface</span> (واجهة المستخدم الرسومية) هي مجموعة غنية من واجهات الواجهة الأمامية الرسومية والوظائف اللي بيوفرها الـ OS للمستخدم عشان يتفاعل مع الكمبيوتر [93].</p>
+        <p>ممكن يكون فيه واجهة أبسط بديلة عن طريق <b><span class="highlight-red">command line shell interface</span></b> (واجهة سطر الأوامر) اللي معظم أنظمة التشغيل بتوفرها للتواصل [93]. ودي واجهة <b>نصية (<span class="highlight-red">text-based interface</span>)</b> [93].</p>
+        <p>المبرمجين عادةً بيستخدموا واجهة الـ <span class="highlight-red">shell</span> بدلاً من الـ <span class="highlight-red">GUI</span> عشان يتنقلوا بسرعة في نظام الملفات ويتفاعلوا مع الـ OS [93].</p>
+        <p><b>مثال عملي:</b> لما بتفتح Windows وتشوف الأيقونات والنوافذ والأزرار، ده الـ GUI [93]. ولما تفتح Command Prompt أو Terminal وتكتب أوامر، ده الـ Shell [93]. المبرمجين بيفضلوا الـ Shell عشان أسرع في بعض المهام وبتديهم تحكم أكبر [93].</p>
+        <p>Source Text:</p>
+        <pre>
+* Although the <span class="highlight-red">user interface (UI) is not part of the OS kernel itself, this is typically considered to be an integral part of the OS</span>. [92]
+* There can be multiple user interfaces for the OS all being implemented either as a <span class="highlight-red">text-based interface or a graphical-based interface</span>. [92]
+* The <span class="highlight-red">graphical user interface is the rich set of graphical front-end interfaces and functionalities provided by the OS for the user to interact with the computer</span>. [93]
+* There could be an alternate simpler interface through a <span class="highlight-red">command line shell interface that most OSs also provide for communication</span>. This is a <span class="highlight-red">text-based interface</span>. [93]
+* It is common for programmers to <span class="highlight-red">use the shell interface instead of the GUI for quickly traversing through the file system and interacting with the OS</span>. [93]
+        </pre>
+        <sub>[92, 93]</sub>
+    </div>
+</body>
+</html>
