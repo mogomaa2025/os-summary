@@ -12,44 +12,46 @@
             padding: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        
+
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            padding: 30px;
+            padding: 15px;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
         }
-        
+
         .header {
             text-align: center;
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             color: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
         }
-        
+
         .header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .lesson {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             background: #f8f9fa;
-            padding: 25px;
+            padding: 20px;
             border-radius: 10px;
             border-left: 5px solid #007bff;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        
+
         .lesson-title {
             color: #007bff;
-            font-size: 1.8em;
+            font-size: 1.6em;
             font-weight: bold;
             margin-bottom: 20px;
             padding: 15px;
@@ -58,35 +60,35 @@
             border-radius: 8px;
             text-align: center;
         }
-        
+
         .topic {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             border: 1px solid #e0e0e0;
         }
-        
+
         .topic-title {
             color: #28a745;
             font-size: 1.4em;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             padding: 10px;
             background: #e8f5e8;
             border-radius: 5px;
         }
-        
+
         .english-text {
             background: #e3f2fd;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
-            margin: 15px 0;
+            margin: 10px 0;
             border-left: 4px solid #2196f3;
             font-style: italic;
             color: #1565c0;
         }
-        
+
         .red-highlight {
             background-color: #ff5722;
             color: white;
@@ -94,63 +96,77 @@
             border-radius: 3px;
             font-weight: bold;
         }
-        
+
         .example {
             background: #fff3cd;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 8px 0;
             border: 1px solid #ffeaa7;
         }
-        
+
         .example-title {
             font-weight: bold;
             color: #856404;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
-        
-        .note {
-            background: #d1ecf1;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border: 1px solid #bee5eb;
-        }
-        
-        .important {
-            background: #f8d7da;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-        }
-        
+
         ul, ol {
             padding-right: 20px;
         }
-        
+
         li {
             margin: 8px 0;
         }
-        
+
         .diagram {
             text-align: center;
-            margin: 20px 0;
-            padding: 15px;
+            margin: 15px 0;
+            padding: 10px;
             background: #f1f3f4;
             border-radius: 8px;
         }
-        
+
         .code {
             background: #272822;
             color: #f8f8f2;
-            padding: 15px;
+            padding: 10px;
             border-radius: 8px;
             font-family: 'Courier New', monospace;
-            margin: 10px 0;
+            margin: 8px 0;
             direction: ltr;
             text-align: left;
+        }
+
+        /* Responsive adjustments for small screens */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .lesson-title {
+                font-size: 1.4em;
+            }
+
+            .topic-title {
+                font-size: 1.2em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .lesson {
+                padding: 15px;
+            }
+
+            .topic {
+                padding: 12px;
+            }
+
+            .english-text, .example, .note {
+                padding: 10px;
+            }
         }
     </style>
 </head>
