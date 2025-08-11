@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حلول LAB 1 - أساسيات الشبكات والأوامر</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #2c3e50;
+            color: #ecf0f1;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #34495e;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .header {
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-bottom: 5px solid #16a085;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; }
+        
+        .question-block {
+            margin-bottom: 25px;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #1abc9c;
+        }
+        .question-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            color: #1abc9c;
+            border-bottom: 2px solid #34495e;
+        }
+        .answer-text p {
+            margin-bottom: 10px;
+        }
+        .command {
+            background: #1e2b37;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #f1c40f;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 1em;
+            color: #f1c40f;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .output {
+            background: #111;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #95a5a6;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #ecf0f1;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #e74c3c;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .explanation {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-right: 4px solid #2ecc71;
+        }
+        .explanation-title {
+            font-weight: bold;
+            color: #2ecc71;
+            margin-bottom: 5px;
+        }
+        ul { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>حلول وتوضيحات LAB 1</h1>
+            <p>الأوامر الأساسية للشبكات</p>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">Q1: ازاي أعرف الـ Private IP بتاعي؟</div>
+            <div class="answer-text">
+                <p>ببساطة، افتح الـ Command Prompt (CMD) واكتب الأمر ده:</p>
+                <div class="command">ipconfig</div>
+                <p>هتلاقي عنوان الـ IP بتاعك تحت كارت الشبكة اللي أنت متصل بيه (سواء Wi-Fi أو كابل) جنب `IPv4 Address`.</p>
+                <div class="output">
+C:\Users\YourUser>ipconfig
+
+Wireless LAN adapter Wi-Fi:
+   ...
+   IPv4 Address. . . . . . . . . . . : <span class="red-highlight">192.168.1.5</span>
+   ...
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-block">
+            <div class="question-title">Q2: الفرق بين ipconfig و ipconfig /all؟</div>
+            <div class="answer-text">
+                <ul>
+                    <li>`ipconfig`: بيديك المعلومات الأساسية بس: <strong class="red-highlight">IP, Subnet Mask, Default Gateway</strong>.</li>
+                    <li>`ipconfig /all`: بيديك كل التفاصيل الممكنة: كل المعلومات الأساسية بالإضافة إلى <strong class="red-highlight">MAC Address, DHCP Server, DNS Servers</strong> وتفاصيل تانية كتير.</li>
+                </ul>
+                <div class="explanation">
+                    <div class="explanation-title">بالبلدي:</div>
+                    `ipconfig` زي ما تبص على وش بطاقتك. `ipconfig /all` زي ما تبص على وشها وضهرها.
+                </div>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">Q3 & Q4: ازاي أجيب الـ Public IP والفرق بينه وبين الـ Private؟</div>
+            <div class="answer-text">
+                <p><strong>عشان تجيب الـ Public IP:</strong></p>
+                <ul>
+                    <li>أسهل طريقة هي إنك تفتح أي متصفح وتدخل على موقع زي <a href="https://www.whatismyip.com/" target="_blank" style="color: #1abc9c;">whatismyip.com</a>.</li>
+                    <li>طريقة تانية للمحترفين باستخدام الأمر `nslookup` في الـ CMD:</li>
+                </ul>
+                <div class="command">nslookup myip.opendns.com resolver1.opendns.com</div>
+                <p><strong>الفرق بينهم:</strong></p>
+                <ul>
+                    <li><strong class="red-highlight">Private IP:</strong> ده عنوانك جوه شبكتك الداخلية (البيت أو المكتب). زي رقم الشقة جوه العمارة. مش بيتشاف على الإنترنت.</li>
+                    <li><strong class="red-highlight">Public IP:</strong> ده عنوان الراوتر بتاعك على الإنترنت. زي عنوان العمارة نفسها على الشارع. ده اللي المواقع والسيرفرات بتشوفه. بيكون فريد على مستوى العالم.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="question-block">
+            <div class="question-title">Q5, Q6, Q7: الجهاز بياخد الـ IP ازاي؟ وإزاي أثبته أو أخليه أوتوماتيك؟</div>
+            <div class="answer-text">
+                <p><strong>Q5: الجهاز بياخد الـ IP بتاعه بطريقتين:</strong></p>
+                <ol>
+                    <li><strong class="red-highlight">Automatic (DHCP):</strong> دي الطريقة الافتراضية. الراوتر (أو سيرفر الـ DHCP) بيدي لجهازك IP تلقائي أول ما يتصل بالشبكة.</li>
+                    <li><strong class="red-highlight">Statically (Manually):</strong> أنت بتدخل الـ IP والإعدادات التانية بإيدك.</li>
+                </ol>
+                <p><strong>Q6 & Q7: عشان تغير بين الطريقتين:</strong></p>
+                <p>بتروح لـ `Control Panel > Network and Sharing Center > Change adapter settings`، وتعمل كليك يمين على كارت الشبكة وتختار `Properties`، بعدين تختار `Internet Protocol Version 4 (TCP/IPv4)` وتدوس `Properties`.</p>
+                <ul>
+                    <li><strong class="red-highlight">Static:</strong> بتختار "Use the following IP address" وتكتب الـ IP اللي أنت عايزه.</li>
+                    <li><strong class="red-highlight">Automatic:</strong> بتختار "Obtain an IP address automatically".</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">Q8: ما هو عنوان APIPA؟</div>
+            <div class="answer-text">
+                <p>APIPA (Automatic Private IP Addressing) هو عنوان IP جهازك بيديه لنفسه تلقائيًا لو فشل إنه ياخد IP من سيرفر الـ DHCP. العنوان ده دايماً بيبدأ بـ <strong class="red-highlight">169.254.x.x</strong>.</p>
+                <div class="explanation">
+                    <div class="explanation-title">فايدته إيه؟</div>
+                    بيسمح للأجهزة اللي في نفس الشبكة وفشلت تاخد IP إنها تكلم بعضها داخليًا، لكنها مش هتقدر تطلع على الإنترنت. لو شفت جهازك واخد IP بيبدأ بـ 169.254، اعرف إن فيه مشكلة في الاتصال بالراوتر.
+                </div>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">Q9 & Q10: ازاي أجيب الـ MAC Address والفرق بين getmac و getmac /v؟</div>
+            <div class="answer-text">
+                <p><strong>عشان تجيب الـ MAC Address عندك طريقتين بالـ CMD:</strong></p>
+                <ol>
+                    <li><div class="command">ipconfig /all</div> (بتلاقيها جنب `Physical Address`).</li>
+                    <li><div class="command">getmac</div></li>
+                </ol>
+                 <p><strong>الفرق بين الأمرين:</strong></p>
+                <ul>
+                    <li>`getmac`: بيجيب الـ MAC Address واسم الاتصال (Transport Name).</li>
+                    <li>`getmac /v`: بيجيب معلومات أكتر (verbose)، بيضيف اسم كارت الشبكة (Network Adapter).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <div class="question-title">Q11, Q13, Q14: ازاي أجدد الـ IP وأشوف وأمسح الـ ARP Cache؟</div>
+            <div class="answer-text">
+                <p><strong>Q11: عشان تطلب IP جديد من الـ DHCP:</strong></p>
+                <p>بتستخدم أمرين ورا بعض:</p>
+                <div class="command">ipconfig /release</div>
+                <p>الأمر ده بيخلي جهازك يتخلى عن الـ IP الحالي بتاعه.</p>
+                <div class="command">ipconfig /renew</div>
+                <p>الأمر ده بيطلب IP جديد من سيرفر الـ DHCP.</p>
+                
+                <p><strong>Q13 & Q14: التعامل مع الـ ARP Cache:</strong></p>
+                <p>الـ ARP Cache هو جدول بيربط بين الـ IP والـ MAC Address للأجهزة اللي في شبكتك.</p>
+                <ul>
+                    <li><strong>عشان تشوف محتويات الجدول:</strong> <div class="command">arp -a</div></li>
+                    <li><strong>عشان تمسح الجدول:</strong> <div class="command">arp -d</div></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="question-block">
+            <div class="question-title">Q16, Q17, Q18: أمر Ping واستخداماته</div>
+            <div class="answer-text">
+                <p>أمر `ping` بيستخدم لاختبار الاتصال بين جهازين.</p>
+                <ul>
+                    <li><strong>`ping 127.0.0.1`</strong>: بيختبر كارت الشبكة بتاعك وتعاريفه. لو رد عليك، يبقى الكارت سليم.</li>
+                    <li><strong>`ping 10.10.0.10`</strong>: لو جالك `Reply from...` يبقى الاتصال تمام. لو جالك `Request timed out` يبقى مفيش اتصال.</li>
+                    <li><strong>`ping 127.0.0.1 -n 8 -l 50000`</strong>: ده معناه ابعت 8 رسايل (<span class="red-highlight">-n 8</span>)، حجم كل رسالة 50000 بايت (<span class="red-highlight">-l 50000</span>) لعنوان اللوب باك.</li>
+                    <li><strong>`ping 127.0.0.1 -t`</strong>: الـ `-t` بتخلي الأمر يفضل شغال ومستمر في إرسال الرسايل من غير ما يقف، وده مفيد لمراقبة استقرار الاتصال.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="question-block">
+            <div class="question-title">Q19: ما هو هجوم حجب الخدمة (DoS Attack)؟</div>
+            <div class="answer-text">
+                <p>Denial of Service (DoS) attack هو هجوم بيحاول يوقع سيرفر أو شبكة عن طريق إغراقه بعدد ضخم من الطلبات أو البيانات اللي مقدرش يستحملها، وبالتالي الخدمة بتبقى غير متاحة للمستخدمين الحقيقيين.</p>
+                <div class="explanation">
+                    <div class="explanation-title">مثال:</div>
+                    تخيل إنك عندك كشك صغير بيخدم زبون واحد في المرة. يجي واحد يبعتلك 1000 شخص يسألوا عن حاجات تافهة في نفس الوقت. الكشك هيتزحم والزبون الحقيقي مش هيعرف يوصلك. ده بالظبط اللي بيعمله الـ DoS Attack.
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

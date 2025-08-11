@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجلسة الثانية: أساسيات الأمن السيبراني</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .session {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #1976d2; /* Blue for this session */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #1976d2, #0d47a1);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #0d47a1;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #0d47a1;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fce4ec;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #e91e63;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #880e4f;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة الشبكات والأمن السيبراني</h1>
+            <p>الجلسة الثانية: أساسيات الأمن السيبراني (Cyber Security Essentials)</p>
+        </div>
+
+        <div class="session">
+            <div class="session-title">Session 2: Cyber Security Essentials</div>
+
+            <div class="topic">
+                <div class="topic-title">1. أهداف أمن المعلومات (Information Security Goals)</div>
+                <p>أمن المعلومات له 3 أهداف رئيسية، بنختصرهم في <strong class="red-highlight">CIA Triad</strong> (ثالوث CIA):</p>
+                <div class="source-text">
+• <span class="red-highlight">Confidentiality</span>: Ensuring that information is not revealed to unauthorized persons. (السرية)
+• <span class="red-highlight">Integrity</span>: Ensuring consistency of data and it should be possible to detect any modification of data. (سلامة البيانات)
+• <span class="red-highlight">Availability</span>: Ensuring that legitimate users are not denied access to information and resources. (التوافرية)
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال توضيحي: حسابك البنكي</div>
+                    <ul>
+                        <li><strong>Confidentiality:</strong> محدش يقدر يشوف رصيدك غيرك.</li>
+                        <li><strong>Integrity:</strong> محدش يقدر يغير رصيدك (لا بالزيادة ولا بالنقصان) بطريقة غير شرعية.</li>
+                        <li><strong>Availability:</strong> تقدر توصل لحسابك وتسحب فلوس في أي وقت تحتاجه.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">2. المخاطر والتهديدات (Risks & Threats)</div>
+                <p>التركيز في عالم الأمن بيكون على "الخطر" (Risk). والخطر ده عبارة عن معادلة بسيطة:</p>
+                <div class="source-text">
+<span class="red-highlight">Risk = Threat x Vulnerability</span>
+                </div>
+                <ul>
+                    <li><strong>Vulnerability (نقطة ضعف):</strong> هي أي ضعف في النظام. (زي باسورد سهل، أو برنامج مش متحدث).</li>
+                    <li><strong>Threat (تهديد):</strong> هو أي شخص أو شيء ممكن يستغل نقطة الضعف دي. (زي الهاكر).</li>
+                </ul>
+                <div class="note">
+                    مستحيل نوصل لأمان بنسبة 100% (<span class="red-highlight">It's impossible to totally eliminate risk</span>). دايماً فيه تكنولوجيا جديدة بتظهر، وبالتالي ثغرات جديدة، وهجمات جديدة.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">3. أنواع الهجمات (Types of Attacks)</div>
+                <p>الهجمات بتتقسم لنوعين رئيسيين:</p>
+                <ul>
+                    <li><strong>Passive Attack (هجوم سلبي):</strong> الهاكر بيتنصت على الشبكة ويجمع معلومات من غير ما يعدل أي حاجة. بيكون صعب اكتشافه (<span class="red-highlight">Difficult to detect</span>). زي اللي بيراقبك من بعيد.</li>
+                    <li><strong>Active Attack (هجوم نشط):</strong> الهاكر بيحاول يعدل البيانات أو يعطل الخدمة. بيكون أسهل في اكتشافه (<span class="red-highlight">Easier to detect</span>) لأنه بيسيب أثر. زي اللي بيحاول يقتحم بيتك.</li>
+                </ul>
+                
+                <h4>أشهر أساليب الهجوم:</h4>
+                <ul>
+                    <li><strong class="red-highlight">Social Engineering (الهندسة الاجتماعية):</strong> فن التلاعب بالبشر عشان ياخد منهم معلومات سرية.
+                        <ul>
+                            <li><strong>Phishing Attack (التصيد):</strong> أشهر مثال. بتجيلك رسالة شكلها رسمي (من فيسبوك مثلاً) تطلب منك تدخل اليوزرنيم والباسورد في صفحة مزيفة.</li>
+                        </ul>
+                    </li>
+                    <li><strong class="red-highlight">Spoof Attack (الانتحال):</strong> الهاكر بينتحل شخصية جهاز أو مستخدم موثوق فيه. أشهر مثال هو تعديل الـ Source IP عشان يخدع الـ Firewall.</li>
+                    <li><strong class="red-highlight">Password Attack:</strong> محاولة تخمين أو كسر الباسوردات.
+                        <ul>
+                            <li><strong>Dictionary attack:</strong> بيجرب قائمة كلمات من القاموس.</li>
+                            <li><strong>Brute-force attack:</strong> بيجرب كل الاحتمالات الممكنة (بياخد وقت طويل).</li>
+                        </ul>
+                    </li>
+                    <li><strong class="red-highlight">Denial of Service (DoS) Attack:</strong> هجوم حجب الخدمة. الهاكر بيبعت طلبات كتير جداً للسيرفر عشان يوقعه وميخليش المستخدمين الحقيقيين يعرفوا يوصلوله.</li>
+                    <li><strong class="red-highlight">DDoS (Distributed DoS):</strong> نسخة أكبر من الـ DoS، الهجوم بييجي من أجهزة كتير جداً في نفس الوقت (اسمها <span class="red-highlight">Zombie PCs</span>).</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">4. البرمجيات الخبيثة (Malicious Software - Malware)</div>
+                <p>دي البرامج اللي هدفها التدمير أو السرقة.</p>
+                <ul>
+                    <li><strong class="red-highlight">Trojan Horse (حصان طروادة):</strong> برنامج شكله بريء ومفيد، لكن جواه كود خبيث بيشتغل في الخلفية.</li>
+                    <li><strong class="red-highlight">Viruses (الفيروسات):</strong> كود خبيث بيلزق نفسه في برنامج سليم، وبينتشر لما البرنامج ده يشتغل.</li>
+                    <li><strong class="red-highlight">Worms (الديدان):</strong> أخطر من الفيروسات لأنها بتقدر تنتشر من جهاز لجهاز لوحدها من غير تدخل بشري عن طريق استغلال ثغرات في الشبكة.</li>
+                    <li><strong class="red-highlight">Ransomware (برامج الفدية):</strong> بيشفر كل ملفاتك ويطلب منك فدية (غالباً بالبيتكوين) عشان يرجعها لك.</li>
+                    <li><strong class="red-highlight">Spyware (برامج التجسس):</strong> بتتجسس على كل حاجة بتعملها وتسجلها وتبعتها للهاكر.</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">5. وسائل الدفاع (Security Defenses)</div>
+                <p>إزاي نحمي نفسنا وشبكتنا؟</p>
+                <ul>
+                    <li><strong class="red-highlight">Firewall (الجدار الناري):</strong> جهاز أو برنامج بيفلتر الترافيك اللي داخل واللي خارج من الشبكة، وبيسمح بالمرور للحاجات الموثوق فيها بس.</li>
+                    <li><strong class="red-highlight">Proxy Server:</strong> سيرفر وسيط. لما تطلب موقع، الطلب بيروح للبروكسي الأول، وهو اللي بيجيب الموقع ويرجعلك. وظيفته الأساسية إنه يخفي الـ IP بتاعك.</li>
+                    <li><strong class="red-highlight">VPN (Virtual Private Network):</strong> بيعمل "نفق" مشفر وآمن لاتصالك بالإنترنت، بيحمي بياناتك من التنصت وبيخفي مكانك الحقيقي.</li>
+                    <li><strong class="red-highlight">IDS/IPS:</strong>
+                        <ul>
+                            <li><strong>IDS (Intrusion Detection System):</strong> نظام كشف التسلل. بيراقب الشبكة ولو شاف أي نشاط مريب بيطلع إنذار (alarm).</li>
+                            <li><strong>IPS (Intrusion Prevention System):</strong> نظام منع التسلل. زي الـ IDS بس مش بس بيطلع إنذار، ده كمان بيقدر يوقف الهجوم بنفسه.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">6. التشفير (Encryption)</div>
+                <p>التشفير هو تحويل البيانات المقروءة (<span class="red-highlight">Plaintext</span>) لبيانات غير مفهومة (<span class="red-highlight">Ciphertext</span>) باستخدام مفتاح (Key). فيه نوعين أساسيين:</p>
+                <ul>
+                    <li><strong class="red-highlight">Symmetric Encryption (تشفير متماثل):</strong> بنستخدم <span class="red-highlight">نفس المفتاح</span> للتشفير وفك التشفير. سريع، لكن مشكلته في كيفية تبادل المفتاح بشكل آمن.</li>
+                    <li><strong class="red-highlight">Asymmetric Encryption (تشفير غير متماثل):</strong> بنستخدم مفتاحين مختلفين: واحد عام للتشفير (<span class="red-highlight">Public Key</span>) وواحد خاص لفك التشفير (<span class="red-highlight">Private Key</span>). أبطأ لكن أكثر أمانًا، وهو أساس التوقيعات الرقمية والشهادات.</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الجلسة الثانية. الملف الجاي هيغطي الجلسة الثالثة: الأنظمة الموزعة.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

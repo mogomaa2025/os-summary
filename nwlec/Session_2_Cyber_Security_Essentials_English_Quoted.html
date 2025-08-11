@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجلسة الثانية: أساسيات الأمن السيبراني</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .session {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #1976d2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #1976d2, #0d47a1);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #0d47a1;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #0d47a1;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fce4ec;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #e91e63;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #880e4f;
+            margin-bottom: 5px;
+        }
+        ul { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة الشبكات والأمن السيبراني</h1>
+            <p>الجلسة الثانية: أساسيات الأمن السيبراني (Cyber Security Essentials)</p>
+        </div>
+
+        <div class="session">
+            <div class="session-title">Session 2: Cyber Security Essentials</div>
+
+            <div class="topic">
+                <div class="topic-title">1. أهداف أمن المعلومات (CIA Triad)</div>
+                <p>الأمن السيبراني هو حماية الأنظمة والشبكات والبيانات من الهجمات. ولكي نقول إن نظامًا ما "آمن"، يجب أن يحقق 3 أهداف رئيسية تعرف بـ "ثالوث CIA":</p>
+                <div class="source-text">
+• <span class="red-highlight">Confidentiality</span>: Ensuring that information is <span class="red-highlight">not revealed to unauthorized persons</span>.
+• <span class="red-highlight">Integrity</span>: Ensuring <span class="red-highlight">consistency</span> of data and it should be possible to <span class="red-highlight">detect any modification</span> of data.
+• <span class="red-highlight">Availability</span>: Ensuring that <span class="red-highlight">legitimate users are not denied access</span> to information and resources.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال: حسابك على فيسبوك</div>
+                    <ul>
+                        <li><strong>السرية (Confidentiality):</strong> أن لا أحد يستطيع قراءة رسائلك الخاصة غيرك.</li>
+                        <li><strong>السلامة (Integrity):</strong> أن لا أحد يستطيع تعديل منشوراتك أو حذفها بدون إذنك.</li>
+                        <li><strong>التوافرية (Availability):</strong> أن تتمكن من الدخول إلى حسابك في أي وقت تريده.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">2. المخاطر والتهديدات (Risks & Threats)</div>
+                <p>التركيز في عالم الأمن السيبراني يكون على إدارة "الخطر" (Risk). والخطر هو نتيجة تفاعل بين تهديد ونقطة ضعف.</p>
+                <div class="source-text">
+• <span class="red-highlight">Risk = Threat x Vulnerability</span>
+• <span class="red-highlight">Vulnerability</span> is the degree of <span class="red-highlight">weakness</span> which is found in every network and device.
+• <span class="red-highlight">Threats</span> is A person, thing, event or idea which <span class="red-highlight">poses danger to an asset</span>.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال:</div>
+                    <strong>نقطة الضعف (Vulnerability):</strong> باب شقتك قفله ضعيف. <br>
+                    <strong>التهديد (Threat):</strong> وجود حرامي في المنطقة. <br>
+                    <strong>الخطر (Risk):</strong> احتمالية سرقة الشقة عالية. لو لا يوجد حرامي (لا يوجد تهديد)، فالخطر منخفض حتى لو الباب ضعيف.
+                </div>
+                <p class="note">من المستحيل القضاء على المخاطر بنسبة 100% (<span class="red-highlight">It's impossible to totally eliminate risk</span>) بسبب ظهور تقنيات وثغرات وهجمات جديدة باستمرار.</p>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">3. أنواع الهجمات (Attack Types)</div>
+                <p>الهجوم هو أي محاولة لتدمير، كشف، تعديل، أو سرقة المعلومات أو الوصول غير المصرح به.</p>
+                 <div class="source-text">
+• <span class="red-highlight">Attack</span>: Any attempt to <span class="red-highlight">destroy, expose, alter, disable, steal or gain unauthorized access</span> to or make unauthorized use of an asset.
+                </div>
+                <p>الهجمات بتتقسم لنوعين رئيسيين:</p>
+                <ul>
+                    <li><strong>Passive Attack (هجوم سلبي):</strong> الهاكر يتنصت على الشبكة ويجمع معلومات. يكون <span class="red-highlight">صعب اكتشافه</span>.</li>
+                    <li><strong>Active Attack (هجوم نشط):</strong> الهاكر يحاول تعديل البيانات أو تعطيل الخدمة. يكون <span class="red-highlight">أسهل في اكتشافه</span> لأنه يغير في النظام.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">4. منهجية وخطوات الهاكر (Attackers Methodology)</div>
+                <p>الهاكر الخبيث يتبع عادة 5 خطوات لتنفيذ هجومه:</p>
+                <ol>
+                    <li><strong>Reconnaissance (الاستطلاع):</strong> جمع أكبر قدر ممكن من المعلومات عن الهدف.</li>
+                    <li><strong>Scanning (المسح):</strong> فحص الشبكة بحثًا عن نقاط ضعف، مثل البورتات المفتوحة وأنواع أنظمة التشغيل.</li>
+                    <li><strong>Gaining Access (الحصول على الدخول):</strong> مرحلة الهجوم الفعلية واستغلال الثغرات.</li>
+                    <li><strong>Maintaining Access (الحفاظ على الدخول):</strong> الهاكر يثبت وجوده في النظام ليعود إليه لاحقًا.</li>
+                    <li><strong>Covering Tracks (إخفاء الآثار):</strong> مسح أي سجلات (logs) أو أدلة تدل على وجوده.</li>
+                </ol>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">5. أساليب الهجوم الشائعة (Attack Methods)</div>
+                 <ul>
+                    <li><strong>Social Engineering (الهندسة الاجتماعية):</strong> فن التلاعب بالبشر للحصول على معلومات.
+                        <ul><li><strong>Phishing Attack (التصيد):</strong> إرسال رسائل أو إنشاء صفحات مزيفة لسرقة بيانات الدخول.</li></ul>
+                    </li>
+                    <li><strong>Spoof Attack (الانتحال):</strong> الهاكر ينتحل شخصية موثوقة، مثل تعديل عنوان IP المصدر ليبدو وكأنه من داخل الشبكة.</li>
+                    <li><strong>Password Attack:</strong> محاولة كسر كلمات المرور باستخدام <span class="red-highlight">Dictionary attack</span> أو <span class="red-highlight">Brute-force attack</span>.</li>
+                    <li><strong>DoS/DDoS Attack:</strong> هجوم حجب الخدمة بإرسال طلبات كثيرة جدًا للسيرفر حتى ينهار. في الـ DDoS، يأتي الهجوم من أجهزة كثيرة مصابة (<span class="red-highlight">zombies</span>).</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">6. البرمجيات الخبيثة (Malware)</div>
+                <ul>
+                    <li><strong class="red-highlight">Trojan Horse (حصان طروادة):</strong> برنامج يبدو مفيدًا ولكنه يخفي وظيفة خبيثة.</li>
+                    <li><strong class="red-highlight">Backdoor or Trapdoor:</strong> نقطة دخول سرية إلى برنامج تسمح بتجاوز الحماية.</li>
+                    <li><strong class="red-highlight">Viruses:</strong> كود خبيث <span class="red-highlight">يُلحق نفسه ببرنامج آخر</span>، وينتشر عند تشغيل هذا البرنامج.</li>
+                    <li><strong class="red-highlight">Worms:</strong> برنامج خبيث <span class="red-highlight">ينسخ وينشر نفسه تلقائيًا</span> عبر الشبكة دون الحاجة إلى ملف مضيف.</li>
+                    <li><strong class="red-highlight">Ransomware:</strong> برامج الفدية التي <span class="red-highlight">تشفر ملفاتك</span> وتطلب فدية.</li>
+                    <li><strong class="red-highlight">Spyware:</strong> برامج تتجسس وتجمع معلومات شخصية <span class="red-highlight">بدون إذنك</span>.</li>
+                </ul>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">7. وسائل الدفاع (Attacks Mitigation)</div>
+                <ul>
+                    <li><strong>Firewall (الجدار الناري):</strong> يراقب ويفلتر حركة مرور الشبكة لحماية الشبكة الداخلية من التهديدات الخارجية.</li>
+                    <li><strong>Proxy Server:</strong> يعمل كوسيط بين المستخدم والإنترنت، وهدفه الرئيسي هو <span class="red-highlight">إخفاء عنوان IP الخاص بالعميل</span>.</li>
+                    <li><strong>VPN (Virtual Private Network):</strong> تنشئ "نفقًا" آمنًا ومشفراً عبر الإنترنت.</li>
+                    <li><strong>IDS/IPS:</strong>
+                        <ul>
+                            <li><strong>IDS (Intrusion Detection System):</strong> نظام يكتشف الأنشطة المشبوهة ويرسل إنذارات (<span class="red-highlight">alarms and logs</span>).</li>
+                            <li><strong>IPS (Intrusion Prevention System):</strong> مثل IDS ولكنه يتخذ إجراءً ويوقف الهجوم (<span class="red-highlight">Stops the traffic</span>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Next generation Firewall (NGFW):</strong> جدار ناري متقدم يفحص محتوى الحزم (deep-packet inspection) ويفهم التطبيقات.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">8. التشفير (Encryption)</div>
+                <p>هو تحويل البيانات المقروءة (<span class="red-highlight">plaintext</span>) إلى بيانات غير مفهومة (<span class="red-highlight">ciphertext</span>) باستخدام مفتاح (<span class="red-highlight">key</span>).</p>
+                <div class="source-text">
+• In <span class="red-highlight">symmetric encryption</span>, the <span class="red-highlight">same key</span> both encrypts and decrypts data. (Not secure)
+• In <span class="red-highlight">Asymmetric encryption</span> Uses <span class="red-highlight">two keys</span>, one for encryption (<span class="red-highlight">public key</span>) and the other for decryption (<span class="red-highlight">private key</span>).
+                </div>
+                 <div class="example">
+                    <div class="example-title">مثال:</div>
+                    <strong>التشفير المتماثل:</strong> مثل قفل له مفتاح واحد. سريع، لكن مشكلته كيف ستسلم المفتاح للشخص الآخر بأمان. <br>
+                    <strong>التشفير غير المتماثل:</strong> مثل صندوق بريد له فتحتان. فتحة لوضع الرسائل (عامة لأي شخص)، وفتحة أخرى بمفتاح خاص لا يمتلكه إلا أنت لاستخراج الرسائل.
+                </div>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الجلسة الثانية. الملف الجاي سيغطي الجلسة الثالثة والأخيرة: الأنظمة الموزعة.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

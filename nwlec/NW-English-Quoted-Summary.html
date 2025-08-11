@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص شامل - شبكات وأمن سيبراني</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #09203f 0%, #537895 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; }
+        
+        .session {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        
+        /* Session 1 Styles */
+        .s1 { border: 1px solid #d32f2f; }
+        .s1 .session-title { background: linear-gradient(90deg, #d32f2f, #b71c1c); }
+        .s1 .topic-title { color: #b71c1c; }
+        .s1 .source-text { background: #ffebee; border-color: #f44336; color: #b71c1c; }
+
+        /* Session 2 Styles */
+        .s2 { border: 1px solid #1976d2; }
+        .s2 .session-title { background: linear-gradient(90deg, #1976d2, #0d47a1); }
+        .s2 .topic-title { color: #0d47a1; }
+        .s2 .source-text { background: #e3f2fd; border-color: #2196f3; color: #0d47a1; }
+
+        /* Session 3 Styles */
+        .s3 { border: 1px solid #2e7d32; }
+        .s3 .session-title { background: linear-gradient(90deg, #4caf50, #2e7d32); }
+        .s3 .topic-title { color: #2e7d32; }
+        .s3 .source-text { background: #e8f5e9; border-color: #4caf50; color: #1b5e20; }
+        
+        ul { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>الملخص الشامل لمادة الشبكات والأمن السيبراني</h1>
+            <p>إعداد: م. محمد أبوسحلي - ITI</p>
+        </div>
+
+        <!-- Session 1: Network Essentials -->
+        <div class="session s1">
+            <div class="session-title">الجلسة الأولى: أساسيات الشبكات</div>
+            <div class="topic">
+                <div class="topic-title">تعريف الشبكة ومكوناتها</div>
+                <p>الشبكة هي مجموعة أجهزة متصلة ببعضها عشان تشارك الموارد. أهم كلمة هنا هي <strong class="red-highlight">مشاركة الموارد</strong>.</p>
+                <div class="source-text">
+a collection of computers, and other devices... connected together... to perform certain task such as : <span class="red-highlight">Share Resources</span>.
+                </div>
+                <div class="example">
+                    <div class="example-title">مثال عملي:</div>
+                    في مكتب، بدل ما كل موظف يكون عنده طابعة، بنجيب طابعة واحدة ونوصلها على الشبكة والكل يستخدمها (مشاركة جهاز).
+                </div>
+                
+                <p>مكونات أي شبكة هي هاردوير وسوفتوير:</p>
+                <div class="source-text">
+• <span class="red-highlight">Hardware</span>: Devices (Computers, Printers, Routers), Medium (Wired, Wireless).
+• <span class="red-highlight">Software</span>: Messages (Mails, WhatsApp), <span class="red-highlight">Protocols</span> (http, https, FTP).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">مصطلحات وعناوين أساسية</div>
+                <p>كل جهاز على الشبكة له عنوانين أساسيين:</p>
+                <ul>
+                    <li><strong>MAC Address:</strong> العنوان الفيزيائي. ده رقم فريد على مستوى العالم ومحفور على كارت الشبكة.</li>
+                    <li><strong>IP Address:</strong> العنوان المنطقي. الجهاز بياخده عشان يتشاف على الشبكة.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">NIC (Network Interface Card)</span>: a hardware that enable the device to directly access the network.
+• <span class="red-highlight">Mac address</span>: <span class="red-highlight">Physical Address</span>, <span class="red-highlight">Unique address over the world</span> burned on the NIC card.
+• <span class="red-highlight">IP address</span>: <span class="red-highlight">logical address</span>, identify each device on an IP network layer.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">أجهزة الشبكات</div>
+                 <ul>
+                    <li><strong>Hub:</strong> غبي، بيبعت لكل الناس (بيعمل broadcast)، وده بيبطئ الشبكة.</li>
+                    <li><strong>Switch:</strong> ذكي، بيبعت للشخص المطلوب بس، بيربط أجهزة <strong class="red-highlight">في نفس الشبكة</strong>.</li>
+                    <li><strong>Router:</strong> وظيفته ربط <strong class="red-highlight">شبكات مختلفة</strong> ببعضها.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Hub</span>: Allow different nodes to communicate... (<span class="red-highlight">Slow the network</span>).
+• <span class="red-highlight">Switch</span>: Allow different nodes to communicate... <span class="red-highlight">without slowing each other</span>.
+• <span class="red-highlight">Router</span>: Allow <span class="red-highlight">different networks</span> to communicate with each other.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">تصنيفات الشبكات</div>
+                <p>بنقسم الشبكات حسب المساحة ونموذج العمل.</p>
+                <ul>
+                    <li><strong>حسب المساحة:</strong> <strong class="red-highlight">LAN</strong> (شبكة محلية سريعة) و <strong class="red-highlight">WAN</strong> (شبكة واسعة بطيئة، زي الإنترنت).</li>
+                    <li><strong>حسب النموذج:</strong> <strong class="red-highlight">Client/Server</strong> (سيرفر بيخدم عملاء) و <strong class="red-highlight">Peer-to-Peer</strong> (كل الأجهزة متساوية).</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Local Area Networks (LAN)</span>: a group of computers connected in <span class="red-highlight">small geographical area</span>... <span class="red-highlight">High speed</span>.
+• <span class="red-highlight">Wide Area Networks (WAN)</span>: a group of computers connected in <span class="red-highlight">Large geographical area</span>... <span class="red-highlight">Very low Speed</span>. example of WAN is <span class="red-highlight">Internet</span>.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">نموذج TCP/IP</div>
+                <p>ده النموذج الفعلي للإنترنت، ومكون من 4 طبقات رئيسية:</p>
+                <ol>
+                    <li><strong>Application Layer:</strong> بتخدم البرامج مباشرة. بروتوكولاتها زي: <strong class="red-highlight">HTTP, DNS, FTP, SMTP</strong>.</li>
+                    <li><strong>Transport Layer:</strong> مسؤولة عن النقل الموثوق. بروتوكولاتها: <strong class="red-highlight">TCP</strong> (موثوق وبطيء) و <strong class="red-highlight">UDP</strong> (غير موثوق وسريع).</li>
+                    <li><strong>Internet Layer:</strong> مسؤولة عن العنونة وتحديد المسار (Routing). بروتوكولها الأساسي هو <strong class="red-highlight">IP</strong>.</li>
+                    <li><strong>Network Access Layer:</strong> مسؤولة عن التعامل المباشر مع الهاردوير والـ MAC Address.</li>
+                </ol>
+                <div class="example">
+                    <div class="example-title">TCP vs UDP:</div>
+                    استخدم <strong class="red-highlight">TCP</strong> لما تكون سلامة البيانات أهم حاجة (زي تحميل ملف أو فتح موقع). استخدم <strong class="red-highlight">UDP</strong> لما تكون السرعة أهم حاجة (زي مكالمة فيديو أو لعبة أونلاين).
+                </div>
+            </div>
+        </div>
+
+        <!-- Session 2: Cyber Security Essentials -->
+        <div class="session s2">
+            <div class="session-title">الجلسة الثانية: أساسيات الأمن السيبراني</div>
+            <div class="topic">
+                <div class="topic-title">أهداف أمن المعلومات (CIA Triad)</div>
+                <p>أي نظام آمن لازم يحقق 3 أهداف:</p>
+                <ul>
+                    <li><strong>Confidentiality (السرية):</strong> ضمان إن المعلومات محدش يشوفها غير المصرح لهم.</li>
+                    <li><strong>Integrity (السلامة):</strong> ضمان إن المعلومات متعدلش عليها بطريقة غير شرعية.</li>
+                    <li><strong>Availability (التوافرية):</strong> ضمان إن المعلومات تكون متاحة للمستخدمين الشرعيين وقت ما يحتاجوها.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Confidentiality</span>: Ensuring that information is not revealed to unauthorized persons.
+• <span class="red-highlight">Integrity</span>: Ensuring consistency of data and... detect any modification of data.
+• <span class="red-highlight">Availability</span>: Ensuring that legitimate users are not denied access.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">المخاطر وأنواع الهجمات</div>
+                <p>الخطر هو نتيجة وجود تهديد يستغل نقطة ضعف: <strong class="red-highlight">Risk = Threat x Vulnerability</strong>.</p>
+                <p>الهجمات نوعين: <strong class="red-highlight">Passive</strong> (تنصت بس، صعب اكتشافه) و <strong class="red-highlight">Active</strong> (تعديل أو تعطيل، أسهل في اكتشافه).</p>
+                <div class="source-text">
+• <span class="red-highlight">Passive Attack</span>: <span class="red-highlight">Difficult to detect</span>, because the attacker isn't actively sending traffic.
+• <span class="red-highlight">Active Attack</span>: <span class="red-highlight">Easier to detect</span>, because the attacker is actively sending traffic.
+                </div>
+                
+                <h4>أشهر الهجمات:</h4>
+                <ul>
+                    <li><strong>Phishing:</strong> صفحات مزيفة لسرقة الباسوردات.</li>
+                    <li><strong>DoS/DDoS:</strong> إغراق السيرفر بطلبات عشان يقع.</li>
+                    <li><strong>Malware:</strong> برامج خبيثة زي <strong class="red-highlight">Virus, Worm, Trojan, Ransomware</strong>.</li>
+                </ul>
+                <div class="example">
+                    <div class="example-title">الفرق بين Virus و Worm:</div>
+                    الفيروس (Virus) محتاج عائل (برنامج سليم) عشان ينتشر، زي فيروس الإنفلونزا محتاج شخص. الدودة (Worm) بتقدر تنتشر لوحدها في الشبكة من غير مساعدة حد.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">وسائل الدفاع</div>
+                <ul>
+                    <li><strong>Firewall:</strong> جدار ناري بيفلتر الترافيك.</li>
+                    <li><strong>VPN:</strong> بيعمل نفق مشفر وآمن لاتصالك بالإنترنت.</li>
+                    <li><strong>IDS/IPS:</strong> الـ <strong class="red-highlight">IDS</strong> بيكتشف وينبه، الـ <strong class="red-highlight">IPS</strong> بيكتشف ويمنع الهجوم.</li>
+                    <li><strong>Encryption:</strong> تشفير البيانات عشان محدش يفهمها.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Firewall</span>: protects internal network users from external threats.
+• <span class="red-highlight">NIDS</span>: Detects that there is Bad traffic Flow... send alarms and logs.
+• <span class="red-highlight">NIPS</span>: <span class="red-highlight">Stops the traffic</span> if it detects that there is intrusion.
+                </div>
+                
+                <h4>التشفير (Encryption):</h4>
+                <ul>
+                    <li><strong>Symmetric:</strong> بنستخدم <strong class="red-highlight">نفس المفتاح</strong> للتشفير وفك التشفير.</li>
+                    <li><strong>Asymmetric:</strong> بنستخدم مفتاحين، <strong class="red-highlight">Public Key</strong> للتشفير و <strong class="red-highlight">Private Key</strong> لفك التشفير.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Session 3: Distributed Systems -->
+        <div class="session s3">
+            <div class="session-title">الجلسة الثالثة: الأنظمة الموزعة</div>
+            <div class="topic">
+                <div class="topic-title">ما هي الأنظمة الموزعة؟</div>
+                <p>هي مجموعة أجهزة كمبيوتر مستقلة، بتشتغل مع بعض عشان تظهر للمستخدم كأنها جهاز واحد.</p>
+                <div class="source-text">
+Is a <span class="red-highlight">group of computers working together</span> as to <span class="red-highlight">appear as a single computer</span> to the end-user.
+                </div>
+                <p>مزاياها: <strong class="red-highlight">أداء أعلى، موثوقية، وقابلية للتوسع</strong>.</p>
+                <div class="example">
+                    <div class="example-title">مثال:</div>
+                    محرك بحث جوجل. أنت بتتعامل مع واجهة واحدة، لكن في الحقيقة طلبك بيتوزع على آلاف السيرفرات حول العالم.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">الحوسبة السحابية (Cloud Computing)</div>
+                <p>هي توفير موارد كمبيوتر (سيرفرات، تخزين...) حسب الطلب عن طريق الإنترنت.</p>
+                
+                <h4>نماذج خدمات السحابة:</h4>
+                <ul>
+                    <li><strong class="red-highlight">IaaS (Infrastructure as a Service):</strong> بتاخد البنية التحتية بس (سيرفر افتراضي فاضي). ليك أعلى تحكم.</li>
+                    <li><strong class="red-highlight">PaaS (Platform as a Service):</strong> بتاخد منصة جاهزة عليها نظام تشغيل، كل اللي عليك تحط الكود بتاعك.</li>
+                    <li><strong class="red-highlight">SaaS (Software as a Service):</strong> بتاخد برنامج جاهز للاستخدام مباشرة. ليك أقل تحكم.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">SaaS</span>: Customers are provided access to an <span class="red-highlight">application</span>.
+• <span class="red-highlight">PaaS</span>: Customers can <span class="red-highlight">deploy supported applications</span> onto the provider's cloud infrastructure.
+• <span class="red-highlight">IaaS</span>: Customers can provision processing, storage, networks... and <span class="red-highlight">deploy and run operating systems</span> and applications.
+                </div>
+                
+                <h4>نماذج نشر السحابة:</h4>
+                <ul>
+                    <li><strong>Public:</strong> متاحة للجميع (مثل AWS, Azure).</li>
+                    <li><strong>Private:</strong> مخصصة لمؤسسة واحدة فقط.</li>
+                    <li><strong>Hybrid:</strong> خليط بين العام والخاص.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجلسة الثالثة: الأنظمة الموزعة</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .session {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50; /* Green for this session */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #4caf50, #2e7d32);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #2e7d32;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #1b5e20;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة الشبكات والأمن السيبراني</h1>
+            <p>الجلسة الثالثة: الأنظمة الموزعة (Distributed System)</p>
+        </div>
+
+        <div class="session">
+            <div class="session-title">Session 3: Distributed System</div>
+
+            <div class="topic">
+                <div class="topic-title">1. ما هي الأنظمة الموزعة؟ (Distributed Systems)</div>
+                <p>النظام الموزع هو مجموعة من أجهزة الكمبيوتر المستقلة اللي بتشتغل مع بعضها عشان تظهر للمستخدم النهائي كأنها جهاز كمبيوتر واحد قوي.</p>
+                <div class="source-text">
+Is a <span class="red-highlight">group of computers working together</span> as to <span class="red-highlight">appear as a single computer</span> to the end-user.
+Is a collection of <span class="red-highlight">independent components</span> located on different machines that share messages with each other in order to achieve common goals.
+                </div>
+                
+                <h4>الفرق بين النظام المركزي والموزع (Centralized vs. Distributed):</h4>
+                <ul>
+                    <li><strong>النظام المركزي (Centralized):</strong> كل البيانات والمعالجة بتتم على جهاز كمبيوتر واحد. بسيط وسهل، لكن لو الجهاز ده وقع، النظام كله بيقع.</li>
+                    <li><strong>النظام الموزع (Distributed):</strong> البيانات والمعالجة متوزعة على أجهزة كتير. أعقد، لكنه أقوى وأكثر تحملاً للأعطال (<span class="red-highlight">robust</span>) وقابل للتوسع (<span class="red-highlight">scalable</span>).</li>
+                </ul>
+                <div class="example">
+                    <div class="example-title">مثال: موقع جوجل</div>
+                    لما بتبحث في جوجل، أنت مش بتكلم سيرفر واحد. طلبك بيروح لشبكة ضخمة من آلاف السيرفرات المتوزعة حول العالم. كل السيرفرات دي بتشتغل مع بعض عشان تديك نتيجة البحث في أقل من ثانية. بالنسبة لك، الموضوع بيبان كأنك بتتعامل مع "جوجل" ككيان واحد، وده هو جوهر النظام الموزع.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">2. لماذا نبني الأنظمة الموزعة؟</div>
+                <p>بنلجأ للأنظمة الموزعة عشان نحقق أهداف معينة صعب تحقيقها بجهاز واحد:</p>
+                <div class="source-text">
+• <span class="red-highlight">Performance</span>: maximize resources and information while preventing failures. (أداء أعلى)
+• <span class="red-highlight">Reliability</span>: if one system fails, it won't affect the availability of the service. (موثوقية أعلى)
+• <span class="red-highlight">Scaling</span>: (قابلية للتوسع)
+• <span class="red-highlight">One interface to the end-user</span>. (واجهة واحدة للمستخدم)
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">3. أمثلة على الأنظمة الموزعة</div>
+                <ul>
+                    <li><strong class="red-highlight">Domain Name System (DNS):</strong> النظام اللي بيترجم أسماء المواقع (like google.com) لـ IP addresses. ده نظام موزع على مستوى العالم.</li>
+                    <li><strong class="red-highlight">Facebook & Google:</strong> بيستخدموا أنظمة موزعة بشكل مكثف عشان يقدروا يخدموا مليارات المستخدمين.</li>
+                    <li><strong class="red-highlight">Cloud Computing (الحوسبة السحابية):</strong> هي أكبر وأوضح مثال على الأنظمة الموزعة.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">4. الحوسبة السحابية (Cloud Computing)</div>
+                <p>الحوسبة السحابية هي ببساطة توفير موارد كمبيوتر (سيرفرات، تخزين، قواعد بيانات، برامج) حسب الطلب (<span class="red-highlight">on-demand</span>) عن طريق الإنترنت.</p>
+                <div class="source-text">
+A <span class="red-highlight">pool of resources</span> that can be <span class="red-highlight">rapidly provisioned</span> in an automated, on-demand manner.
+                </div>
+                <h4>قيمة الحوسبة السحابية (Value):</h4>
+                <ul>
+                    <li><strong>Economies of scale:</strong> توفير التكاليف لأنك مش محتاج تشتري هاردوير.</li>
+                    <li><strong>Elasticity:</strong> المرونة في زيادة أو تقليل الموارد حسب الحاجة.</li>
+                    <li><strong>Accessibility:</strong> سهولة الوصول للموارد من أي مكان في العالم.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">5. نماذج خدمات الحوسبة السحابية (Cloud Computing Service Models)</div>
+                <p>الخدمات السحابية بتتقدم في 3 نماذج أساسية. الفرق بينهم هو "مقدار التحكم" اللي الشركة بتدهولك.</p>
+                <ul>
+                    <li>
+                        <strong class="red-highlight">Infrastructure as a Service (IaaS):</strong>
+                        <p>هنا الشركة بتديك البنية التحتية الأساسية (سيرفرات افتراضية، مساحة تخزين، شبكات). وأنت المسؤول عن تسطيب نظام التشغيل والبرامج وإدارتها. <br><strong>مثال:</strong> كأنك أجرت أرض فاضية، وأنت اللي هتبني عليها البيت من الأساس. <br><strong>أشهر المزودين:</strong> Amazon Web Services (AWS EC2), Microsoft Azure VMs.</p>
+                    </li>
+                    <li>
+                        <strong class="red-highlight">Platform as a Service (PaaS):</strong>
+                        <p>هنا الشركة بتديك البنية التحتية وكمان نظام التشغيل وقواعد البيانات. أنت كل اللي عليك إنك تحط الكود بتاعك وتشغله. <br><strong>مثال:</strong> كأنك أجرت شقة متشطبة بس من غير عفش. أنت اللي هتجيب العفش (الكود بتاعك). <br><strong>أشهر المزودين:</strong> Heroku, Google App Engine.</p>
+                    </li>
+                    <li>
+                        <strong class="red-highlight">Software as a Service (SaaS):</strong>
+                        <p>هنا الشركة بتديك البرنامج جاهز للاستخدام عن طريق المتصفح. أنت مش بتدير أي حاجة خالص، مجرد مستخدم نهائي. <br><strong>مثال:</strong> كأنك أجرت غرفة في فندق مفروشة بالكامل. أنت بس بتستخدمها. <br><strong>أشهر الأمثلة:</strong> Gmail, Office 365, Google Docs.</p>
+                    </li>
+                </ul>
+                 <div class="note">
+                    <strong>ملحوظة مهمة:</strong> كل ما تطلع لفوق من IaaS لـ PaaS لـ SaaS، تحكمك بيقل (Less Control) لكن سهولة الاستخدام بتزيد (More Convenience).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">6. نماذج نشر الحوسبة السحابية (Cloud Deployment Models)</div>
+                <p>مين اللي بيستخدم السحابة دي؟</p>
+                <ul>
+                    <li><strong class="red-highlight">Public Cloud (سحابة عامة):</strong> الموارد متاحة لأي حد على الإنترنت. (زي AWS, Azure).</li>
+                    <li><strong class="red-highlight">Private Cloud (سحابة خاصة):</strong> الموارد مخصصة لمؤسسة واحدة بس. بتوفر أمان وتحكم أعلى.</li>
+                    <li><strong class="red-highlight">Hybrid Cloud (سحابة هجينة):</strong> خليط بين السحابة العامة والخاصة.</li>
+                    <li><strong class="red-highlight">Community Cloud (سحابة مجتمعية):</strong> الموارد بيشاركها مجموعة من المؤسسات اللي ليها اهتمامات مشتركة (زي مجموعة بنوك).</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده الحمد لله خلصنا الجلسة الثالثة وكل محتوى المادة. الملفات الجاية هتكون للمراجعة النهائية والاختبار.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

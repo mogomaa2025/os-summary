@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجلسة الأولى: أساسيات الشبكات</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; opacity: 0.9; }
+        .session {
+            margin-bottom: 30px;
+            background: #fdfdff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #d32f2f;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-title {
+            color: white;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #d32f2f, #b71c1c);
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .topic {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        .topic-title {
+            color: #b71c1c;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .source-text {
+            background: #ffebee;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #f44336;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #b71c1c;
+            text-align: left;
+            direction: ltr;
+            white-space: pre-wrap;
+        }
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .example {
+            background: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .example-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .note {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        ul, ol { padding-right: 25px; }
+        li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>ملخص مادة الشبكات والأمن السيبراني</h1>
+            <p>الجلسة الأولى: أساسيات الشبكات (Network Essentials)</p>
+        </div>
+
+        <div class="session">
+            <div class="session-title">Session 1: Network Essentials</div>
+
+            <div class="topic">
+                <div class="topic-title">تعريف شبكة الكمبيوتر (Computer Network)</div>
+                <p>شبكة الكمبيوتر ببساطة هي مجموعة من الأجهزة (كمبيوتر، طابعة، موبايل...) متصلة ببعضها عشان تقدر تعمل حاجة معينة، وأهم حاجة هي مشاركة الموارد.</p>
+                <div class="source-text">
+a collection of computers, and other devices, or peripherals connected together through connecting media to perform certain task such as : <span class="red-highlight">Share Resources</span>.
+                </div>
+                <h4>الموارد اللي بنشاركها (Resources can be):</h4>
+                <ul>
+                    <li><strong>File Sharing:</strong> مشاركة الملفات.</li>
+                    <li><strong>Devices Sharing:</strong> مشاركة الأجهزة (زي طابعة واحدة لكل المكتب).</li>
+                    <li><strong>Software Sharing:</strong> مشاركة البرامج.</li>
+                    <li><strong>Shared Internet Access:</strong> مشاركة خط إنترنت واحد.</li>
+                </ul>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">عناصر الشبكة (Network Elements)</div>
+                 <p>عشان الشبكة تشتغل، محتاجين هاردوير وسوفتوير.</p>
+                 <ul>
+                    <li><strong>Hardware:</strong> الأجزاء الملموسة زي الأجهزة (كمبيوتر، راوتر) والوسط الناقل (كابلات، واي فاي).</li>
+                    <li><strong>Software:</strong> الأجزاء غير الملموسة زي الرسايل اللي بتتبعت والبروتوكولات اللي بتنظمها.</li>
+                 </ul>
+                <div class="source-text">
+• <span class="red-highlight">Hardware</span>
+  • Devices: Computers – Printers –Phone – Routers - Switches
+  • Medium: Wired -Wireless -Satellites
+• <span class="red-highlight">Software</span>
+  • Messages: Information that travels over the medium such as Mails-WhatsApp....etc
+  • <span class="red-highlight">Protocols</span>: Governs how messages flow across network such as http -https-FTP-RDP
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">مصطلحات أساسية (Network Basic)</div>
+                <p>كل جهاز على الشبكة له عنوانين أساسيين:</p>
+                <ul>
+                    <li><strong>NIC (Network Interface Card):</strong> كارت الشبكة. ده الجزء الهاردوير اللي بيخلي جهازك يقدر يتصل بالشبكة.</li>
+                    <li><strong>MAC Address:</strong> العنوان الفيزيائي. ده رقم فريد على مستوى العالم ومحفور على الكارت نفسه.</li>
+                    <li><strong>IP Address:</strong> العنوان المنطقي. الجهاز بياخده عشان يتشاف على الشبكة.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">NIC (Network Interface Card)</span>/network adapter or LAN adapter: a hardware that enable the device to directly access the network
+• <span class="red-highlight">Mac address</span>: <span class="red-highlight">Physical Address</span>, <span class="red-highlight">Unique address over the world</span> burned on the NIC card
+• <span class="red-highlight">IP address</span>: <span class="red-highlight">logical address</span>, identify each device on an IP network layer.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">أجهزة الشبكات (Networking Devices)</div>
+                <ul>
+                    <li><strong class="red-highlight">Hub:</strong> جهاز غبي. أي رسالة بتجيله بيبعتها لكل الأجهزة المتصلة بيه، وده بيعمل بطء وزحمة في الشبكة.</li>
+                    <li><strong class="red-highlight">Switch:</strong> جهاز ذكي. بيبعت الرسالة للجهاز المقصود بس، وده بيخليه أسرع وأكثر أمانًا من الـ Hub. وظيفته ربط الأجهزة <strong class="red-highlight">في نفس الشبكة</strong>.</li>
+                    <li><strong class="red-highlight">Router:</strong> وظيفته الأساسية هي ربط <strong class="red-highlight">الشبكات المختلفة</strong> ببعضها.</li>
+                    <li><strong class="red-highlight">Repeater:</strong> مقوي إشارة. بياخد الإشارة الضعيفة ويعيد توليدها عشان توصل لمسافة أبعد.</li>
+                    <li><strong class="red-highlight">Access Point (AP):</strong> بيحول الشبكة السلكية لشبكة لاسلكية (Wi-Fi).</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Hub</span>: Allow different nodes to communicate... (<span class="red-highlight">Slow the network</span>).
+• <span class="red-highlight">Repeater</span>: <span class="red-highlight">Regenerate the signal</span> over the same network.
+• <span class="red-highlight">Access point (AP)</span>: allows other <span class="red-highlight">Wi-Fi devices to connect</span> to a wired network.
+• <span class="red-highlight">Switch</span>: Allow different nodes to communicate... at the same network and time <span class="red-highlight">without slowing each other</span>.
+• <span class="red-highlight">Router</span>: Allow <span class="red-highlight">different networks</span> to communicate with each other.
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">تصنيفات الشبكات (Networks Classifications)</div>
+                <p>بنقسم الشبكات حسب 3 حاجات: الشكل، المساحة، والنموذج.</p>
+                
+                <h4>1. حسب الطريقة الهندسية للتوصيل (Network Topology):</h4>
+                <p>ده شكل توصيل الأجهزة ببعضها.</p>
+                <ul>
+                    <li><strong>Star:</strong> كل الأجهزة متصلة بجهاز مركزي (Switch أو Hub). دي أشهر طريقة.</li>
+                    <li><strong>Ring:</strong> الأجهزة متصلة في شكل حلقة.</li>
+                    <li><strong>Mesh:</strong> كل جهاز متصل بكل الأجهزة التانية. مكلفة جداً بس قوية وموثوقة.</li>
+                    <li><strong>Hybrid:</strong> خليط من أكتر من نوع.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Network Topology</span>: how devices are connected (<span class="red-highlight">shape</span>) and how message flow from one device to another device.
+                </div>
+
+                <h4>2. حسب المساحة الجغرافية (Covered Area):</h4>
+                <ul>
+                    <li><strong class="red-highlight">LAN (Local Area Network):</strong> شبكة محلية في مساحة صغيرة (مبنى، مكتب). سرعتها عالية.</li>
+                    <li><strong class="red-highlight">WAN (Wide Area Network):</strong> شبكة واسعة بتغطي مساحة كبيرة (مدينة، دولة). سرعتها أبطأ. <strong class="red-highlight">الإنترنت هو أكبر مثال على الـ WAN</strong>.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Local Area Networks (LAN)</span>: a group of computers connected in <span class="red-highlight">small geographical area</span>... <span class="red-highlight">High speed</span> of communications.
+• <span class="red-highlight">Wide Area Networks (WAN)</span>: a group of computers connected in <span class="red-highlight">Large geographical area</span>... <span class="red-highlight">Very low Speed</span>. example of WAN is <span class="red-highlight">Internet</span>.
+                </div>
+                
+                <h4>3. حسب نموذج الشبكة (Network Model):</h4>
+                <ul>
+                    <li><strong class="red-highlight">Peer-to-Peer:</strong> شبكة الند للند. كل الأجهزة متساوية في الصلاحيات ومفيش سيرفر مركزي.</li>
+                    <li><strong class="red-highlight">Client/Server:</strong> فيه جهاز مخصص كـ "سيرفر" بيقدم خدمات، وباقي الأجهزة "عملاء" (Clients) بتطلب منه الخدمات دي.</li>
+                </ul>
+                <div class="source-text">
+• <span class="red-highlight">Peer to Peer Networks</span>: <span class="red-highlight">No dedicated resources</span>... All nodes are the same.
+• <span class="red-highlight">Client/Server Networks</span>: Some nodes (<span class="red-highlight">SERVER</span>) are dedicated to present services to other nodes (CLIENTS). <span class="red-highlight">Server is more powerful</span>.
+                </div>
+            </div>
+            
+            <div class="topic">
+                <div class="topic-title">البروتوكولات ونماذج الشبكات (Protocols & Models)</div>
+                <p>ليه محتاجين بروتوكولات؟ عشان ننظم الاتصال ونضمن إن الأجهزة بتفهم بعض.</p>
+                <div class="source-text">
+• Why we need Protocols ?
+  • To communicate <span class="red-highlight">efficiently</span>
+  • <span class="red-highlight">Control the messages</span> and the messages quantity
+                </div>
+                
+                <h4>نموذج OSI و TCP/IP</h4>
+                <p>عشان ننظم عملية الاتصال المعقدة، تم تقسيمها لطبقات. <strong class="red-highlight">OSI</strong> هو نموذج نظري استرشادي من 7 طبقات، لكن <strong class="red-highlight">TCP/IP</strong> هو النموذج الفعلي المستخدم على الإنترنت ومكون من 4 طبقات (في النموذج المحدث).</p>
+                
+                <h4>طبقات TCP/IP ووظائفها:</h4>
+                <ol>
+                    <li><strong>Application Layer:</strong> الطبقة اللي البرامج بتتفاعل معاها. بروتوكولاتها: <strong class="red-highlight">HTTP</strong> (للمواقع)، <strong class="red-highlight">FTP</strong> (لنقل الملفات)، <strong class="red-highlight">SMTP/IMAP/POP3</strong> (للإيميلات)، <strong class="red-highlight">DNS</strong> (لترجمة أسماء المواقع لـ IP).</li>
+                    <li><strong>Transport Layer:</strong> مسؤولة عن النقل الموثوق للبيانات وتحديد الخدمة عن طريق <strong class="red-highlight">Port Numbers</strong>. بروتوكولاتها: <strong class="red-highlight">TCP</strong> (موثوق) و <strong class="red-highlight">UDP</strong> (غير موثوق).</li>
+                    <li><strong>Internet (Network) Layer:</strong> مسؤولة عن العنونة المنطقية (<strong class="red-highlight">IP Address</strong>) وتحديد أفضل مسار (Routing).</li>
+                    <li><strong>Network Access Layer:</strong> مسؤولة عن العنونة الفيزيائية (<strong class="red-highlight">MAC Address</strong>) والتعامل المباشر مع الهاردوير.</li>
+                </ol>
+                <div class="example">
+                    <div class="example-title">TCP vs UDP:</div>
+                    <strong>TCP:</strong> زي مكالمة التليفون، لازم تتأكد إن الخط اتفتح والطرف التاني سامعك (Connection oriented, Reliable).
+                    <br>
+                    <strong>UDP:</strong> زي ما تبعت جواب بالبريد، أنت بترميه وخلاص ومش بتتأكد إذا وصل ولا لأ (Connectionless, Unreliable).
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="topic-title">عناوين IP (IP Addressing)</div>
+                <ul>
+                    <li><strong class="red-highlight">IPv4:</strong> العنوان 32-bit (4 خانات كل خانة من 0-255).</li>
+                    <li><strong class="red-highlight">IPv6:</strong> العنوان الجديد 128-bit، بيوفر عدد مهول من العناوين.</li>
+                    <li><strong class="red-highlight">Public IP:</strong> عنوانك على الإنترنت، فريد عالميًا.</li>
+                    <li><strong class="red-highlight">Private IP:</strong> عنوان داخلي في شبكتك المحلية (زي 192.168.x.x).</li>
+                    <li><strong class="red-highlight">NAT (Network Address Translation):</strong> التقنية اللي بتترجم من Private لـ Public عشان أجهزتك تطلع على الإنترنت.</li>
+                </ul>
+                <h4>طرق تعيين IP:</h4>
+                <div class="source-text">
+• <span class="red-highlight">Manually</span>
+• <span class="red-highlight">Automatic ( By DHCP )</span>
+• <span class="red-highlight">APIPA</span> (Random /Rang : 169.254.X.X)
+                </div>
+                <p>الـ <strong class="red-highlight">APIPA</strong> هو عنوان الجهاز بيديه لنفسه لو فشل إنه ياخد IP من سيرفر الـ DHCP.</p>
+            </div>
+
+        </div>
+        <div class="note" style="text-align: center;">
+            <p><strong>كده خلصنا الجلسة الأولى بكل تفاصيلها. يمكنك الآن الانتقال للملف التالي.</strong></p>
+        </div>
+    </div>
+</body>
+</html>

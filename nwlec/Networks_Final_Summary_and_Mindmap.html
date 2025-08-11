@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص نهائي وخريطة ذهنية - شبكات وأمن سيبراني</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #09203f 0%, #537895 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #007bff;
+            display: inline-block;
+        }
+        .center-wrapper { text-align: center; }
+        
+        /* Summary Styles */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .session-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 5px solid;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .session-summary h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .session-summary h3 .icon {
+            margin-left: 10px;
+            font-size: 1.5em;
+        }
+        .session-summary ul {
+            padding-right: 20px;
+            list-style-type: none;
+        }
+        .session-summary li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+        .session-summary li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-weight: bold;
+            color: inherit;
+        }
+        /* Session-specific colors */
+        .s1 { border-color: #d32f2f; color: #d32f2f; }
+        .s2 { border-color: #1976d2; color: #1976d2; }
+        .s3 { border-color: #4caf50; color: #4caf50; }
+        
+        .red-highlight {
+            background-color: #ff5252;
+            color: white;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Mind Map Styles */
+        .mindmap {
+            text-align: center;
+            padding: 20px;
+            direction: ltr;
+            overflow-x: auto;
+        }
+        .mindmap ul {
+            position: relative;
+            padding: 1em 0;
+            white-space: nowrap;
+            margin: 0 auto;
+            list-style: none;
+            display: inline-flex;
+        }
+        .mindmap ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #ccc;
+            width: 0;
+            height: 20px;
+        }
+        .mindmap li {
+            text-align: center;
+            position: relative;
+            padding: 20px 10px 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .mindmap li::before, .mindmap li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+        .mindmap li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+        .mindmap li:only-child::after, .mindmap li:only-child::before { display: none; }
+        .mindmap li:first-child::before, .mindmap li:last-child::after { border: 0 none; }
+        .mindmap li:last-child::before { border-right: 2px solid #ccc; border-radius: 0 5px 0 0; }
+        .mindmap li:first-child::after { border-radius: 5px 0 0 0; }
+        .mindmap li span {
+            border: 2px solid #ccc;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: white;
+            color: #333;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .mindmap li span:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .mindmap > ul > li > span {
+            background-color: #212529; color: white; border-color: #000; font-size: 1.3em;
+        }
+        .mindmap ul ul > li > span {
+            background-color: #f8f9fa; border-color: #adb5bd;
+        }
+        .mindmap .s1 span { background-color: #ffebee; border-color: #d32f2f; }
+        .mindmap .s2 span { background-color: #e3f2fd; border-color: #1976d2; }
+        .mindmap .s3 span { background-color: #e8f5e9; border-color: #4caf50; }
+        
+        .final-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>الملخص النهائي والخريطة الذهنية</h1>
+            <p>مادة الشبكات والأمن السيبراني</p>
+        </div>
+
+        <div class="center-wrapper">
+            <h2 class="section-title">ملخص الزبدة (MCQ Focused)</h2>
+        </div>
+        <div class="summary-grid">
+            <div class="session-summary s1">
+                <h3><span class="icon">🌐</span>الجلسة 1: أساسيات الشبكات</h3>
+                <ul>
+                    <li><strong>الشبكة:</strong> أجهزة متصلة لمشاركة الموارد (<span class="red-highlight">Share Resources</span>).</li>
+                    <li><strong>عناوين:</strong> <span class="red-highlight">MAC</span> (فيزيائي، فريد عالميًا)، <span class="red-highlight">IP</span> (منطقي، فريد على الشبكة).</li>
+                    <li><strong>أجهزة:</strong> <span class="red-highlight">Switch</span> (ذكي، لنفس الشبكة)، <span class="red-highlight">Router</span> (لربط شبكات مختلفة).</li>
+                    <li><strong>مساحة:</strong> <span class="red-highlight">LAN</span> (محلية، سريعة)، <span class="red-highlight">WAN</span> (واسعة، بطيئة، مثل الإنترنت).</li>
+                    <li><strong>نماذج:</strong> <span class="red-highlight">Client/Server</span> (سيرفر يقدم خدمة)، <span class="red-highlight">Peer-to-Peer</span> (كل الأجهزة متساوية).</li>
+                    <li><strong>TCP/IP Layers:</strong> Application, Transport, Internet, Network Access.</li>
+                    <li><strong>Transport Protocols:</strong> <span class="red-highlight">TCP</span> (موثوق، للملفات والمواقع)، <span class="red-highlight">UDP</span> (سريع وغير موثوق، للفيديو والبث).</li>
+                    <li><strong>Application Protocols:</strong> <span class="red-highlight">HTTP</span> (مواقع)، <span class="red-highlight">DNS</span> (ترجمة أسماء)، <span class="red-highlight">FTP</span> (ملفات)، <span class="red-highlight">SMTP/POP3</span> (إيميل).</li>
+                </ul>
+            </div>
+            <div class="session-summary s2">
+                <h3><span class="icon">🛡️</span>الجلسة 2: أساسيات الأمن السيبراني</h3>
+                <ul>
+                    <li><strong>أهداف الأمن (CIA):</strong> <span class="red-highlight">Confidentiality</span> (سرية)، <span class="red-highlight">Integrity</span> (سلامة)، <span class="red-highlight">Availability</span> (توافرية).</li>
+                    <li><strong>معادلة الخطر:</strong> <span class="red-highlight">Risk</span> = Threat (تهديد) x Vulnerability (نقطة ضعف).</li>
+                    <li><strong>أنواع الهجمات:</strong> <span class="red-highlight">Passive</span> (تنصت، صعب اكتشافه)، <span class="red-highlight">Active</span> (تعديل، أسهل في اكتشافه).</li>
+                    <li><strong>هجمات شائعة:</strong> <span class="red-highlight">Phishing</span> (تصيد)، <span class="red-highlight">DoS/DDoS</span> (حجب خدمة)، <span class="red-highlight">Spoofing</span> (انتحال).</li>
+                    <li><strong>برمجيات خبيثة:</strong> <span class="red-highlight">Virus</span> (يلصق نفسه ببرنامج)، <span class="red-highlight">Worm</span> (ينتشر لوحده)، <span class="red-highlight">Trojan</span> (متخفي)، <span class="red-highlight">Ransomware</span> (فدية).</li>
+                    <li><strong>وسائل دفاع:</strong> <span class="red-highlight">Firewall</span> (فلترة)، <span class="red-highlight">VPN</span> (نفق مشفر)، <span class="red-highlight">IDS</span> (يكتشف)، <span class="red-highlight">IPS</span> (يكتشف ويمنع).</li>
+                    <li><strong>تشفير:</strong> <span class="red-highlight">Symmetric</span> (نفس المفتاح)، <span class="red-highlight">Asymmetric</span> (مفتاح عام وخاص).</li>
+                </ul>
+            </div>
+            <div class="session-summary s3">
+                <h3><span class="icon">☁️</span>الجلسة 3: الأنظمة الموزعة</h3>
+                <ul>
+                    <li><strong>النظام الموزع:</strong> مجموعة أجهزة مستقلة تظهر للمستخدم كجهاز <span class="red-highlight">واحد</span>.</li>
+                    <li><strong>مزاياه:</strong> أداء أعلى (<span class="red-highlight">Performance</span>)، موثوقية (<span class="red-highlight">Reliability</span>)، قابلية للتوسع (<span class="red-highlight">Scalability</span>).</li>
+                    <li><strong>الحوسبة السحابية (Cloud):</strong> توفير موارد كمبيوتر <span class="red-highlight">حسب الطلب</span> عبر الإنترنت.</li>
+                    <li><strong>نماذج الخدمة (Service Models):</strong>
+                        <ul>
+                            <li><strong class="red-highlight">IaaS:</strong> بنية تحتية فقط (تأجير سيرفر فاضي).</li>
+                            <li><strong class="red-highlight">PaaS:</strong> منصة جاهزة للكود بتاعك (تأجير سيرفر عليه OS).</li>
+                            <li><strong class="red-highlight">SaaS:</strong> برنامج جاهز للاستخدام (مثل Gmail).</li>
+                        </ul>
+                    </li>
+                    <li><strong>نماذج النشر (Deployment Models):</strong>
+                        <ul>
+                            <li><strong class="red-highlight">Public:</strong> متاحة للجميع (AWS).</li>
+                            <li><strong class="red-highlight">Private:</strong> لمؤسسة واحدة فقط.</li>
+                            <li><strong class="red-highlight">Hybrid:</strong> خليط بينهما.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="center-wrapper">
+            <h2 class="section-title">خريطة ذهنية لمفاهيم المادة</h2>
+        </div>
+        <div class="mindmap">
+            <ul>
+                <li>
+                    <span>Computer Networks & Cyber Security</span>
+                    <ul>
+                        <li class="s1">
+                            <span>Session 1: Network Essentials</span>
+                            <ul>
+                                <li><span>Basics (NIC, MAC, IP)</span></li>
+                                <li><span>Devices (Switch, Router)</span></li>
+                                <li><span>Types (LAN/WAN, Client-Server)</span></li>
+                                <li><span>Models (TCP/IP, OSI)</span></li>
+                                <li><span>Protocols (HTTP, TCP, UDP, IP)</span></li>
+                            </ul>
+                        </li>
+                        <li class="s2">
+                            <span>Session 2: Cyber Security</span>
+                            <ul>
+                                <li><span>CIA Triad (Confidentiality, Integrity, Availability)</span></li>
+                                <li><span>Risk = Threat x Vulnerability</span></li>
+                                <li><span>Attacks (Phishing, DoS, Spoofing)</span></li>
+                                <li><span>Malware (Virus, Worm, Trojan)</span></li>
+                                <li><span>Defenses (Firewall, VPN, IDS/IPS)</span></li>
+                                <li><span>Encryption (Symmetric, Asymmetric)</span></li>
+                            </ul>
+                        </li>
+                        <li class="s3">
+                            <span>Session 3: Distributed Systems</span>
+                            <ul>
+                                <li><span>Concept (Multiple computers as one)</span></li>
+                                <li><span>Benefits (Scalability, Reliability)</span></li>
+                                <li><span>Cloud Computing</span></li>
+                                <li><span>Service Models (IaaS, PaaS, SaaS)</span></li>
+                                <li><span>Deployment Models (Public, Private)</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="final-note">
+            <h3>بالتوفيق في الامتحان!</h3>
+            <p>استخدم هذا الملخص للمراجعة السريعة والخريطة الذهنية لربط المفاهيم ببعضها. أنت الآن جاهز.</p>
+        </div>
+    </div>
+</body>
+</html>
