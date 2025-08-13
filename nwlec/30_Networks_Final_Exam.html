@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive MCQ Quiz - Networks & Cyber Security</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 { margin: 0; font-size: 2.3em; }
+        .header p { margin: 8px 0 0; font-size: 1.1em; }
+
+        #quiz-container { margin-top: 20px; }
+        .question-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: left;
+            direction: ltr;
+        }
+        .options-container .option {
+            display: block;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-align: left;
+            direction: ltr;
+        }
+        .options-container .option:hover {
+            background-color: #e9ecef;
+            border-color: #007bff;
+        }
+        
+        .options-container .option.correct {
+            background-color: #d4edda; border-color: #c3e6cb; color: #155724; font-weight: bold;
+        }
+        .options-container .option.incorrect {
+            background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; font-weight: bold;
+        }
+        .options-container.disabled .option:not(.correct):not(.incorrect) {
+            cursor: not-allowed; opacity: 0.6;
+        }
+        
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #fff8e1;
+            border-right: 5px solid #ffc107;
+        }
+        .explanation strong { color: #856404; }
+        
+        #quiz-summary {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <a href="../nw.html" style="display:inline-block;margin-bottom:20px;padding:10px 20px;background:#e0e7ef;color:#c31432;font-weight:bold;border-radius:8px;text-decoration:none;border:2px solid #c31432;">&larr; Back to Networks Lectures</a>
+    <div class="container">
+        <div class="header">
+            <h1>Networks & Cyber Security MCQ Quiz</h1>
+            <p>Test your knowledge with real-time feedback</p>
+        </div>
+        
+        <div id="quiz-summary">Score: 0 / 20</div>
+
+        <div id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            // Session 1
+            { session: 1, question: "Which networking device is known for being intelligent as it forwards data only to the intended recipient's port?", options: ["Hub", "Repeater", "Switch", "Router"], answer: "Switch", explanation: "الـ Switch ذكي لأنه بيبني جدول MAC address وبيبعت الداتا للعنوان المطلوب بس، على عكس الـ Hub الغبي اللي بيبعت لكل الناس." },
+            { session: 1, question: "The Internet is the largest example of which type of network?", options: ["LAN (Local Area Network)", "MAN (Metropolitan Area Network)", "WAN (Wide Area Network)", "PAN (Personal Area Network)"], answer: "WAN (Wide Area Network)", explanation: "الـ WAN بتربط شبكات على مساحات جغرافية واسعة (دول وقارات)، والإنترنت هو أكبر مثال على كده." },
+            { session: 1, question: "Which protocol is responsible for translating a domain name (e.g., google.com) into an IP address?", options: ["HTTP", "FTP", "SMTP", "DNS"], answer: "DNS", explanation: "نظام أسماء النطاقات (DNS) هو دليل تليفونات الإنترنت. أنت بتديله الاسم، وهو بيديك الـ IP." },
+            { session: 1, question: "Which Transport Layer protocol is connectionless, unreliable, and suitable for video streaming?", options: ["TCP", "UDP", "IP", "HTTP"], answer: "UDP", explanation: "الـ UDP بيرمي الداتا بسرعة من غير ما يتأكد إنها وصلت (unreliable)، وده مناسب للبث المباشر اللي السرعة فيه أهم من الدقة." },
+            { session: 1, question: "What is the primary function of a Router?", options: ["To connect devices within the same network", "To connect different networks together", "To regenerate a weak signal", "To convert a wired network to wireless"], answer: "To connect different networks together", explanation: "وظيفة الراوتر الأساسية هي إنه يربط شبكات مختلفة ببعضها، زي شبكة بيتك الداخلية بشبكة الإنترنت." },
+            { session: 1, question: "A physical address that is unique for every Network Interface Card (NIC) in the world is called:", options: ["IP Address", "Port Number", "MAC Address", "Socket Address"], answer: "MAC Address", explanation: "الـ MAC address هو زي بصمة الصباع لكارت الشبكة، رقم فريد على مستوى العالم ومحفور على الكارت." },
+
+            // Session 2
+            { session: 2, question: "The 'C' in the CIA triad of information security stands for:", options: ["Control", "Confidentiality", "Consistency", "Cyber"], answer: "Confidentiality", explanation: "ثالوث أمن المعلومات هو Confidentiality (السرية), Integrity (السلامة), و Availability (التوافرية)." },
+            { session: 2, question: "An attacker sends a fake email that looks like it's from a legitimate bank to trick users into revealing their passwords. This is an example of:", options: ["DoS Attack", "Spoofing", "Phishing", "Hijacking"], answer: "Phishing", explanation: "هجوم التصيد (Phishing) بيعتمد على الخداع وإرسال رسايل مزيفة عشان يسرق بياناتك." },
+            { session: 2, question: "Which type of malware can replicate and spread across a network by itself, without needing to attach to a host file?", options: ["Virus", "Trojan Horse", "Worm", "Spyware"], answer: "Worm", explanation: "الدودة (Worm) أخطر من الفيروس لأنها بتقدر تنتشر لوحدها في الشبكة، زي الدودة الحقيقية." },
+            { session: 2, question: "A security device or software that filters incoming and outgoing network traffic based on a set of rules is a:", options: ["VPN", "Proxy Server", "Firewall", "Router"], answer: "Firewall", explanation: "الجدار الناري (Firewall) هو حارس البوابة بتاع الشبكة، بيفلتر كل اللي داخل وكل اللي خارج." },
+            { session: 2, question: "In which type of encryption are two different keys (a public and a private key) used?", options: ["Symmetric Encryption", "Asymmetric Encryption", "Hashing", "Steganography"], answer: "Asymmetric Encryption", explanation: "التشفير غير المتماثل (Asymmetric) بيستخدم مفتاحين، واحد عام (Public) بتديه للناس عشان يشفروا لك رسايل، وواحد خاص (Private) معاك أنت بس عشان تفك التشفير." },
+            { session: 2, question: "A hacker uses thousands of compromised computers (zombies) to attack a single server and make it unavailable. This is a:", options: ["DoS Attack", "DDoS Attack", "Spoof Attack", "Phishing Attack"], answer: "DDoS Attack", explanation: "لما الهجوم ييجي من أجهزة كتير متفرقة (Distributed)، بنسميه DDoS. ده أصعب في صده من الـ DoS العادي." },
+
+            // Session 3
+            { session: 3, question: "A system where a group of independent computers work together to appear as a single, unified system to the end-user is called a:", options: ["Centralized System", "Mainframe System", "Distributed System", "Standalone System"], answer: "Distributed System", explanation: "النظام الموزع هو مجموعة أجهزة بتشتغل مع بعض كأنها جهاز واحد ضخم، زي سيرفرات جوجل." },
+            { session: 3, question: "Which cloud computing service model provides the user with the most control, including managing the operating system and applications?", options: ["SaaS (Software as a Service)", "PaaS (Platform as a Service)", "IaaS (Infrastructure as a Service)", "FaaS (Function as a Service)"], answer: "IaaS (Infrastructure as a Service)", explanation: "في الـ IaaS، أنت بتأجر الهاردوير بس (سيرفر افتراضي)، وأنت المسؤول عن كل حاجة فوقه من أول نظام التشغيل." },
+            { session: 3, question: "Gmail and Google Docs are classic examples of which cloud computing service model?", options: ["IaaS", "PaaS", "SaaS", "DaaS"], answer: "SaaS", explanation: "في الـ SaaS، أنت بتستخدم برنامج جاهز عن طريق الإنترنت من غير ما تشغل بالك بأي تفاصيل تقنية. أنت مجرد مستخدم نهائي." },
+            { session: 3, question: "What is the key difference between Virtualization and Dual Boot?", options: ["Virtualization is slower", "Dual Boot allows running multiple OSs at the same time", "Virtualization allows running multiple OSs at the same time", "They are the same concept"], answer: "Virtualization allows running multiple OSs at the same time", explanation: "في الـ Virtualization تقدر تشغل ويندوز ولينكس في نفس اللحظة. في الـ Dual Boot لازم تعمل ريستارت عشان تختار نظام تشغيل واحد بس يشتغل." },
+            { session: 3, question: "A cloud deployment model where the infrastructure is operated exclusively for a single organization is known as:", options: ["Public Cloud", "Private Cloud", "Hybrid Cloud", "Community Cloud"], answer: "Private Cloud", explanation: "السحابة الخاصة (Private Cloud) بتكون مخصصة لشركة واحدة بس عشان توفرلها أقصى درجات الأمان والتحكم." },
+            { session: 1, question: "What does the protocol TCP provide that UDP does not?", options: ["Speed", "Low latency", "Reliability and error checking", "Broadcasting"], answer: "Reliability and error checking", explanation: "الـ TCP بروتوكول موثوق (Reliable) لأنه بيتأكد إن كل البيانات وصلت سليمة وبالترتيب عن طريق الـ Acknowledgement والـ Checksum." },
+            { session: 2, question: "What is the primary goal of a Proxy Server?", options: ["To encrypt all traffic", "To speed up the internet connection", "To hide the internal client IP addresses and filter content", "To connect different networks"], answer: "To hide the internal client IP addresses and filter content", explanation: "البروكسي بيشتغل كوسيط بينك وبين الإنترنت، فبيخفي الـ IP بتاعك وممكن يفلتر المواقع اللي بتزورها." },
+            { session: 3, question: "The ability of a cloud service to automatically increase or decrease resources based on demand is called:", options: ["Reliability", "Scalability", "Elasticity", "Availability"], answer: "Elasticity", explanation: "المرونة (Elasticity) هي قدرة السحابة على التمدد والانكماش تلقائياً مع حجم الشغل، زي الأستك." }
+
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const summaryContainer = document.getElementById('quiz-summary');
+        let score = 0;
+
+        function buildQuiz() {
+            quizData.forEach((currentQuestion, questionNumber) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+
+                const questionText = document.createElement('div');
+                questionText.className = 'question-text';
+                questionText.innerHTML = `${questionNumber + 1}. ${currentQuestion.question}`;
+                questionBlock.appendChild(questionText);
+
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'options-container';
+                optionsContainer.id = `q${questionNumber}-options`;
+
+                currentQuestion.options.forEach(optionText => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.innerText = optionText;
+                    optionDiv.dataset.question = questionNumber;
+                    optionsContainer.appendChild(optionDiv);
+                });
+
+                questionBlock.appendChild(optionsContainer);
+                
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.id = `exp${questionNumber}`;
+                explanationDiv.innerHTML = `<strong>الشرح:</strong> ${currentQuestion.explanation}`;
+                questionBlock.appendChild(explanationDiv);
+
+                quizContainer.appendChild(questionBlock);
+            });
+        }
+
+        function checkAnswer(e) {
+            if (!e.target.classList.contains('option')) return;
+            
+            const selectedOption = e.target;
+            const questionNumber = selectedOption.dataset.question;
+            const optionsContainer = document.getElementById(`q${questionNumber}-options`);
+            
+            if (optionsContainer.classList.contains('disabled')) return;
+            optionsContainer.classList.add('disabled');
+
+            const userAnswer = selectedOption.innerText;
+            const correctAnswer = quizData[questionNumber].answer;
+            const explanationDiv = document.getElementById(`exp${questionNumber}`);
+
+            if (userAnswer === correctAnswer) {
+                score++;
+                selectedOption.classList.add('correct');
+            } else {
+                selectedOption.classList.add('incorrect');
+                const allOptions = optionsContainer.children;
+                for(let option of allOptions){
+                    if(option.innerText === correctAnswer){
+                        option.classList.add('correct');
+                        break;
+                    }
+                }
+            }
+            
+            explanationDiv.style.display = 'block';
+            summaryContainer.innerText = `Score: ${score} / ${quizData.length}`;
+        }
+
+        buildQuiz();
+        quizContainer.addEventListener('click', checkAnswer);
+    </script>
+</body>
+</html>
