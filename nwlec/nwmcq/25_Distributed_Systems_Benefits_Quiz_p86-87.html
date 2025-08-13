@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed Systems Benefits & Examples Quiz - Pages 86-87</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c0392b; /* A red color from the PDF theme */
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --correct-bg: #d4edda;
+            --wrong-bg: #f8d7da;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c3e50 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .quiz-header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quiz-header .subtitle {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .question-card {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            background-color: rgba(192, 57, 43, 0.03);
+        }
+        
+        .question-card:last-child {
+            border-bottom: none;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .form-check {
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: var(--light-bg);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-check:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-color);
+        }
+        
+        .form-check-input {
+            margin: 0 15px 0 0;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .correct-answer {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--success-color) !important;
+            position: relative;
+        }
+        
+        .correct-answer::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+        
+        .wrong-answer {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--danger-color) !important;
+            position: relative;
+        }
+        
+        .wrong-answer::after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--danger-color);
+            font-size: 1.2rem;
+        }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fdf5f5;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-color);
+            display: none;
+            animation: slideDown 0.5s ease;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .explanation-title i {
+            margin-right: 8px;
+        }
+        
+        .explanation-text {
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .source-reference {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+        
+        .quiz-footer {
+            padding: 25px;
+            text-align: center;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .quiz-footer i {
+            color: var(--primary-color);
+            margin: 0 5px;
+        }
+        
+        .progress-container {
+            height: 6px;
+            background: #e9ecef;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #e74c3c);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        
+        .true-false-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .form-check {
+                padding: 12px 15px;
+            }
+            
+            .form-check-input {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Distributed Systems Benefits & Examples Quiz</h1>
+            <div class="subtitle">Complete coverage of Pages 86 & 87</div>
+            <div class="section-badge">
+                <i class="fas fa-book-open me-2"></i>Pages 86 & 87
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">1</div>
+                Which of the following is NOT listed as a reason to build a distributed system?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
+                    <label class="form-check-label">A. Simplicity of management</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
+                    <label class="form-check-label">B. Performance</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
+                    <label class="form-check-label">C. Reliability</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1d" value="D">
+                    <label class="form-check-label">D. Scaling</label>
+                </div>
+            </div>
+            <div id="q1-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The listed reasons are: One interface, Performance, Reliability, Dependency on cloud, and Scaling. Simplicity is a trait of centralized systems, not distributed ones.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 86
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">2</div>
+                How does a distributed system improve reliability?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
+                    <label class="form-check-label">A. It uses a single, powerful computer.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
+                    <label class="form-check-label">B. If one system fails, it won't affect the availability of the service.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
+                    <label class="form-check-label">C. It maximizes resources and information usage.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
+                    <label class="form-check-label">D. It provides a single interface to the end-user.</label>
+                </div>
+            </div>
+            <div id="q2-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    Reliability is improved because "if one system fails, it won't affect the availability of the service."
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 86
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">3</div>
+                Which of the following is given as an example of a distributed system?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
+                    <label class="form-check-label">A. A standalone personal computer</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
+                    <label class="form-check-label">B. A basic calculator</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
+                    <label class="form-check-label">C. Domain Name System (DNS)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3d" value="D">
+                    <label class="form-check-label">D. A single-node database</label>
+                </div>
+            </div>
+            <div id="q3-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The slide lists three examples: Domain Name System (DNS), Facebook & Google, and Cloud Computing.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 87
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">4</div>
+                What technology is mentioned as being a key component of Cloud Computing in the context of distributed systems?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
+                    <label class="form-check-label">A. Encryption</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
+                    <label class="form-check-label">B. Firewalls</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
+                    <label class="form-check-label">C. Virtualization</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4d" value="D">
+                    <label class="form-check-label">D. Solid State Drives (SSDs)</label>
+                </div>
+            </div>
+            <div id="q4-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    Under the "Cloud Computing" example, the single sub-point listed is "Virtualization".
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 87
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">5</div>
+                True or False: A major benefit of distributed systems is providing multiple, complex interfaces for the end-user.
+                <span class="true-false-badge">TRUE/FALSE</span>
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5a" value="True">
+                    <label class="form-check-label">A. True</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5b" value="False">
+                    <label class="form-check-label">B. False</label>
+                </div>
+            </div>
+            <div id="q5-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    False. A listed benefit is "One interface to the end-user." The goal is to hide the underlying complexity and make it appear as a single system.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 86
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-footer">
+            <i class="fas fa-info-circle"></i> Based on "Introduction to Computer Networks & Cyber Security.pdf"
+            <i class="fas fa-file-alt"></i> Page 86: Benefits | Page 87: Examples
+            <i class="fas fa-check-circle"></i> Complete coverage of all content
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Correct answers
+            const correctAnswers = {
+                q1: 'A',
+                q2: 'B',
+                q3: 'C',
+                q4: 'C',
+                q5: 'False'
+            };
+            
+            // Track answered questions
+            const answeredQuestions = new Set();
+            const totalQuestions = 5;
+            
+            // Add event listeners to all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const questionName = this.name;
+                    const selectedValue = this.value;
+                    const explanationId = questionName + '-explanation';
+                    const explanationDiv = document.getElementById(explanationId);
+                    
+                    // Disable all radios for this question after answering
+                    document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                        option.disabled = true;
+                    });
+                    
+                    // Reset styling before applying new styles
+                    document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                        option.closest('.form-check').classList.remove('correct-answer', 'wrong-answer');
+                    });
+
+                    // Check if selected answer is correct
+                    if (selectedValue === correctAnswers[questionName]) {
+                        this.closest('.form-check').classList.add('correct-answer');
+                    } else {
+                        this.closest('.form-check').classList.add('wrong-answer');
+                        // Highlight correct answer
+                        document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                            if (option.value === correctAnswers[questionName]) {
+                                option.closest('.form-check').classList.add('correct-answer');
+                            }
+                        });
+                    }
+                    
+                    // Show explanation with animation
+                    setTimeout(() => {
+                        explanationDiv.classList.add('show');
+                    }, 300);
+                    
+                    // Track answered question and update progress bar
+                    if (!answeredQuestions.has(questionName)) {
+                        answeredQuestions.add(questionName);
+                        updateProgressBar();
+                    }
+                });
+            });
+            
+            // Add click event to form-check divs to make entire area clickable
+            document.querySelectorAll('.form-check').forEach(optionDiv => {
+                optionDiv.addEventListener('click', function(e) {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio && !radio.disabled) {
+                        radio.click();
+                    }
+                });
+            });
+            
+            // Update progress bar
+            function updateProgressBar() {
+                const progress = (answeredQuestions.size / totalQuestions) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        });
+    </script>
+</body>
+</html>

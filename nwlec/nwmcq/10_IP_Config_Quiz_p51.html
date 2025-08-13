@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Configuration & Testing Quiz - Page 51</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c0392b; /* A red color from the PDF theme */
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --correct-bg: #d4edda;
+            --wrong-bg: #f8d7da;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c3e50 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .quiz-header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quiz-header .subtitle {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .question-card {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            background-color: rgba(192, 57, 43, 0.03);
+        }
+        
+        .question-card:last-child {
+            border-bottom: none;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .form-check {
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: var(--light-bg);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-check:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-color);
+        }
+        
+        .form-check-input {
+            margin: 0 15px 0 0;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .correct-answer {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--success-color) !important;
+            position: relative;
+        }
+        
+        .correct-answer::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+        
+        .wrong-answer {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--danger-color) !important;
+            position: relative;
+        }
+        
+        .wrong-answer::after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--danger-color);
+            font-size: 1.2rem;
+        }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fdf5f5;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-color);
+            display: none;
+            animation: slideDown 0.5s ease;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .explanation-title i {
+            margin-right: 8px;
+        }
+        
+        .explanation-text {
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .source-reference {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+        
+        .quiz-footer {
+            padding: 25px;
+            text-align: center;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .quiz-footer i {
+            color: var(--primary-color);
+            margin: 0 5px;
+        }
+        
+        .progress-container {
+            height: 6px;
+            background: #e9ecef;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #e74c3c);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        
+        .true-false-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .form-check {
+                padding: 12px 15px;
+            }
+            
+            .form-check-input {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>IP Configuration & Testing Quiz</h1>
+            <div class="subtitle">Complete coverage of Page 51: IP Assignment & Commands</div>
+            <div class="section-badge">
+                <i class="fas fa-book-open me-2"></i>Page 51
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">1</div>
+                Which protocol is responsible for the "Automatic" assignment of IP addresses?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
+                    <label class="form-check-label">A. APIPA</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
+                    <label class="form-check-label">B. DNS</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
+                    <label class="form-check-label">C. DHCP</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1d" value="D">
+                    <label class="form-check-label">D. ICMP</label>
+                </div>
+            </div>
+            <div id="q1-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The slide lists three methods for assigning an IP address. The "Automatic" method is specified as being done "(By DHCP)".
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">2</div>
+                What is the IP address range for APIPA (Automatic Private IP Addressing)?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
+                    <label class="form-check-label">A. 10.0.0.X</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
+                    <label class="form-check-label">B. 192.168.X.X</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
+                    <label class="form-check-label">C. 172.16.X.X</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
+                    <label class="form-check-label">D. 169.254.X.X</label>
+                </div>
+            </div>
+            <div id="q2-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The slide specifies the APIPA address range is "169.254.X.X". This is used when a device is set to use DHCP but cannot find a DHCP server.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">3</div>
+                Which command would you use to find your private IP address and other network configuration details?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
+                    <label class="form-check-label">A. Ping</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
+                    <label class="form-check-label">B. Ipconfig</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
+                    <label class="form-check-label">C. Netstat</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3d" value="D">
+                    <label class="form-check-label">D. Nslookup</label>
+                </div>
+            </div>
+            <div id="q3-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    Under the heading "To find your private IP", the command "Ipconfig" is listed, along with its variants like "ipconfig /all".
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">4</div>
+                What is the purpose of the ICMP (Ping) command?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
+                    <label class="form-check-label">A. To test connectivity between Hosts</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
+                    <label class="form-check-label">B. To release your current IP address</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
+                    <label class="form-check-label">C. To display all current network connections</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4d" value="D">
+                    <label class="form-check-label">D. To find the IP address of a domain name</label>
+                </div>
+            </div>
+            <div id="q4-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The slide explicitly states that "ICMP (Ping)" is used "To test connectivity between Hosts".
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">5</div>
+                If you wanted to release your current IP address obtained from a DHCP server, which command would you use?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5a" value="A">
+                    <label class="form-check-label">A. ipconfig /all</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5b" value="B">
+                    <label class="form-check-label">B. ipconfig /renew</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5c" value="C">
+                    <label class="form-check-label">C. ipconfig /release</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5d" value="D">
+                    <label class="form-check-label">D. ping /release</label>
+                </div>
+            </div>
+            <div id="q5-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The command "ipconfig /release" is listed for the purpose of giving up the current DHCP-assigned IP address. "ipconfig /renew" is used to get a new one.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">6</div>
+                True or False: The "Manually" assigning an IP address means you are using the DHCP protocol.
+                <span class="true-false-badge">TRUE/FALSE</span>
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" id="q6a" value="True">
+                    <label class="form-check-label">A. True</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" id="q6b" value="False">
+                    <label class="form-check-label">B. False</label>
+                </div>
+            </div>
+            <div id="q6-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    False. "Manually" assigning an IP address (also known as a static IP) is the alternative to "Automatic" assignment, which uses DHCP.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 51
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-footer">
+            <i class="fas fa-info-circle"></i> Based on "Introduction to Computer Networks & Cyber Security.pdf"
+            <i class="fas fa-file-alt"></i> Page 51: IP Address Assignment and Testing Commands
+            <i class="fas fa-check-circle"></i> Complete coverage of all content
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Correct answers
+            const correctAnswers = {
+                q1: 'C',
+                q2: 'D',
+                q3: 'B',
+                q4: 'A',
+                q5: 'C',
+                q6: 'False'
+            };
+            
+            // Track answered questions
+            const answeredQuestions = new Set();
+            const totalQuestions = 6;
+            
+            // Add event listeners to all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const questionName = this.name;
+                    const selectedValue = this.value;
+                    const explanationId = questionName + '-explanation';
+                    const explanationDiv = document.getElementById(explanationId);
+                    
+                    // Disable all radios for this question after answering
+                    document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                        option.disabled = true;
+                    });
+                    
+                    // Reset styling before applying new styles
+                    document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                        option.closest('.form-check').classList.remove('correct-answer', 'wrong-answer');
+                    });
+
+                    // Check if selected answer is correct
+                    if (selectedValue === correctAnswers[questionName]) {
+                        this.closest('.form-check').classList.add('correct-answer');
+                    } else {
+                        this.closest('.form-check').classList.add('wrong-answer');
+                        // Highlight correct answer
+                        document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                            if (option.value === correctAnswers[questionName]) {
+                                option.closest('.form-check').classList.add('correct-answer');
+                            }
+                        });
+                    }
+                    
+                    // Show explanation with animation
+                    setTimeout(() => {
+                        explanationDiv.classList.add('show');
+                    }, 300);
+                    
+                    // Track answered question and update progress bar
+                    if (!answeredQuestions.has(questionName)) {
+                        answeredQuestions.add(questionName);
+                        updateProgressBar();
+                    }
+                });
+            });
+            
+            // Add click event to form-check divs to make entire area clickable
+            document.querySelectorAll('.form-check').forEach(optionDiv => {
+                optionDiv.addEventListener('click', function(e) {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio && !radio.disabled) {
+                        radio.click();
+                    }
+                });
+            });
+            
+            // Update progress bar
+            function updateProgressBar() {
+                const progress = (answeredQuestions.size / totalQuestions) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        });
+    </script>
+</body>
+</html>
