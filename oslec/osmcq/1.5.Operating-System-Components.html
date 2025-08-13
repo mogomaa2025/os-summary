@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating System Components Quiz - Pages 26-27: 1.5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fdc;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --correct-bg: #d4edda;
+            --wrong-bg: #f8d7da;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c3e50 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .quiz-header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quiz-header .subtitle {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .question-card {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            background-color: rgba(74, 111, 220, 0.03);
+        }
+        
+        .question-card:last-child {
+            border-bottom: none;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--dark-text);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .form-check {
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: var(--light-bg);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-check:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-color);
+        }
+        
+        .form-check-input {
+            margin: 0 15px 0 0;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0;
+            flex-grow: 1;
+        }
+        
+        .correct-answer {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--success-color) !important;
+            position: relative;
+        }
+        
+        .correct-answer::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+        
+        .wrong-answer {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--danger-color) !important;
+            position: relative;
+        }
+        
+        .wrong-answer::after {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--danger-color);
+            font-size: 1.2rem;
+        }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f1f3f9;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary-color);
+            display: none;
+            animation: slideDown 0.5s ease;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .explanation-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .explanation-title i {
+            margin-right: 8px;
+        }
+        
+        .explanation-text {
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .source-reference {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+        
+        .quiz-footer {
+            padding: 25px;
+            text-align: center;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .quiz-footer i {
+            color: var(--primary-color);
+            margin: 0 5px;
+        }
+        
+        .progress-container {
+            height: 6px;
+            background: #e9ecef;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #6a11cb);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        
+        .true-false-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .form-check {
+                padding: 12px 15px;
+            }
+            
+            .form-check-input {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Operating System Components Quiz</h1>
+            <div class="subtitle">Complete coverage of Pages 26-27: Section 1.5</div>
+            <div class="section-badge">
+                <i class="fas fa-book-open me-2"></i>Section 1.5
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">1</div>
+                According to the diagram, which component is located in the "User Applications" layer and runs as un-privileged code?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1a" value="A">
+                    <label class="form-check-label">A. Scheduler</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1b" value="B">
+                    <label class="form-check-label">B. File System</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1c" value="C">
+                    <label class="form-check-label">C. App 1</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" id="q1d" value="D">
+                    <label class="form-check-label">D. Drivers</label>
+                </div>
+            </div>
+            <div id="q1-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The diagram on page 26 clearly shows "App 1, App 2... App N" in the top layer, which is labeled as "User Applications" and "Un-Privileged code". The other options are part of the privileged Kernel/OS layer.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 26, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">2</div>
+                What does an OS expose for programs to request access to system resources and communicate with hardware?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="A">
+                    <label class="form-check-label">A. Direct Memory Access controllers</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="B">
+                    <label class="form-check-label">B. APIs (Application Programming Interfaces)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2c" value="C">
+                    <label class="form-check-label">C. User-mode drivers</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2d" value="D">
+                    <label class="form-check-label">D. System Buses</label>
+                </div>
+            </div>
+            <div id="q2-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    "Typically, there are APIs (application programming interfaces) that are exposed to access system resources. These APIs are then used by programs to request for communicating to the hardware."
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 27, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">3</div>
+                How does an OS manage simultaneous requests from multiple programs and users?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3a" value="A">
+                    <label class="form-check-label">A. By forcing users to take turns running their programs.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3b" value="B">
+                    <label class="form-check-label">B. By streamlining requests using scheduling algorithms and managing I/O conflicts.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3c" value="C">
+                    <label class="form-check-label">C. By giving priority to the first program that was launched.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q3" id="q3d" value="D">
+                    <label class="form-check-label">D. By combining all requests into a single, large task.</label>
+                </div>
+            </div>
+            <div id="q3-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    "The OS streamlines these requests using efficient scheduling algorithms and through management of I/Os and handling conflicts."
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 27, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">4</div>
+                Based on the diagram, which of the following runs in "Privileged" mode?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4a" value="A">
+                    <label class="form-check-label">A. App N</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4b" value="B">
+                    <label class="form-check-label">B. The user interface</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4c" value="C">
+                    <label class="form-check-label">C. Memory Manager</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q4" id="q4d" value="D">
+                    <label class="form-check-label">D. All applications</label>
+                </div>
+            </div>
+            <div id="q4-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    The diagram on page 26 labels the layer containing components like the Memory Manager, Scheduler, and Drivers as "Privileged code".
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 26, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">5</div>
+                What is a primary role of OS abstractions?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5a" value="A">
+                    <label class="form-check-label">A. To allow applications to coexist and to hide hardware complexities.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5b" value="B">
+                    <label class="form-check-label">B. To provide a command-line interface for developers.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5c" value="C">
+                    <label class="form-check-label">C. To increase the speed of the hardware devices.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q5" id="q5d" value="D">
+                    <label class="form-check-label">D. To expose low-level hardware details to all programs.</label>
+                </div>
+            </div>
+            <div id="q5-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    "As we can see in the above slide, it supports multiple different hardware, supports co-existence of multiple applications, and abstracts the complexities. The OS exposes different levels of abstractions for applications and drivers to work together."
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 27, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">6</div>
+                True or False: Programs can bypass the OS and its APIs to communicate directly with hardware.
+                <span class="true-false-badge">TRUE/FALSE</span>
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" id="q6a" value="True">
+                    <label class="form-check-label">A. True</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q6" id="q6b" value="False">
+                    <label class="form-check-label">B. False</label>
+                </div>
+            </div>
+            <div id="q6-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    This statement is false. The entire structure of the OS, with its privileged kernel and API layer, is designed to prevent this. Programs must use APIs to "request" communication, which the OS then handles.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 27, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-card">
+            <div class="question-title">
+                <div class="question-number">7</div>
+                Which of the following is a key function of the OS mentioned on page 27?
+            </div>
+            <div class="options-container">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" id="q7a" value="A">
+                    <label class="form-check-label">A. Compiling source code into executable programs.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" id="q7b" value="B">
+                    <label class="form-check-label">B. Designing the physical layout of hardware components.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" id="q7c" value="C">
+                    <label class="form-check-label">C. Handling conflicts that arise from simultaneous resource requests.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q7" id="q7d" value="D">
+                    <label class="form-check-label">D. Providing internet connectivity to applications.</label>
+                </div>
+            </div>
+            <div id="q7-explanation" class="explanation">
+                <div class="explanation-title">
+                    <i class="fas fa-lightbulb"></i>Explanation
+                </div>
+                <div class="explanation-text">
+                    "The OS streamlines these requests using efficient scheduling algorithms and through management of I/Os and handling conflicts." This is a key function described.
+                </div>
+                <div class="source-reference">
+                    <i class="fas fa-quote-left me-1"></i>Source: Page 27, Section 1.5
+                </div>
+            </div>
+        </div>
+        
+        <div class="quiz-footer">
+            <i class="fas fa-info-circle"></i> Based on "FastTrack of OS - OneDay(6H) - May 2022_Ver 1.1.pdf" 
+            <i class="fas fa-file-alt"></i> Pages 26-27: Section 1.5 Operating System Components
+            <i class="fas fa-check-circle"></i> Complete coverage of all content
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Correct answers
+            const correctAnswers = {
+                q1: 'C',
+                q2: 'B',
+                q3: 'B',
+                q4: 'C',
+                q5: 'A',
+                q6: 'False',
+                q7: 'C'
+            };
+            
+            // Track answered questions
+            const answeredQuestions = new Set();
+            const totalQuestions = 7;
+            
+            // Add event listeners to all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const questionName = this.name;
+                    const selectedValue = this.value;
+                    const explanationId = questionName + '-explanation';
+                    const explanationDiv = document.getElementById(explanationId);
+                    
+                    // Reset all options for this question
+                    document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                        option.closest('.form-check').classList.remove('correct-answer', 'wrong-answer');
+                    });
+                    
+                    // Hide explanation initially
+                    explanationDiv.classList.remove('show');
+                    
+                    // Check if selected answer is correct
+                    if (selectedValue === correctAnswers[questionName]) {
+                        this.closest('.form-check').classList.add('correct-answer');
+                    } else {
+                        this.closest('.form-check').classList.add('wrong-answer');
+                        // Highlight correct answer
+                        document.querySelectorAll(`input[name="${questionName}"]`).forEach(option => {
+                            if (option.value === correctAnswers[questionName]) {
+                                option.closest('.form-check').classList.add('correct-answer');
+                            }
+                        });
+                    }
+                    
+                    // Show explanation with animation
+                    setTimeout(() => {
+                        explanationDiv.classList.add('show');
+                    }, 300);
+                    
+                    // Track answered question
+                    answeredQuestions.add(questionName);
+                    updateProgressBar();
+                });
+            });
+            
+            // Add click event to form-check divs to make entire area clickable
+            document.querySelectorAll('.form-check').forEach(optionDiv => {
+                optionDiv.addEventListener('click', function(e) {
+                    // Prevent event if clicking directly on radio button
+                    if (e.target.type !== 'radio') {
+                        const radio = this.querySelector('input[type="radio"]');
+                        if (radio) {
+                            radio.click();
+                        }
+                    }
+                });
+            });
+            
+            // Update progress bar
+            function updateProgressBar() {
+                const progress = (answeredQuestions.size / totalQuestions) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        });
+    </script>
+</body>
+</html>
